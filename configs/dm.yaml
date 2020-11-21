@@ -1,0 +1,31 @@
+##General settings
+general:
+  var_folder: "/Users/xc/dev/dmtest/var"
+  upload_tempfolder: "upload_temp"
+  send_from: "noreply@test.no"
+  host: "127.0.0.1:8300"
+  image_thumbnail_size: "600x400"
+  image_thumbnail_folder: "images/thumbnail"
+
+database:
+   type: mysql
+   host: 127.0.0.1
+   username: dmdemo
+   password: dmdemo
+   database: dmdemo
+
+rest_list_fields:
+   report: ["cid", "version", "published", "modified", "author", "author_name", "cuid", "status"]
+
+#permission related
+permission:
+  rest_allowed_operations: ["eui/all"]
+
+auth:
+   refresh_token_secret_key: "1223123dfsldsfbsdfbsfsf-fdsfdsfl"
+   refresh_token_expiry: 180
+   access_token_secret_key: "fsfsfsf333333sdf555456"
+   access_token_expiry: 50
+
+internal:
+  location_columns: ["id", "parent_id", "main_id","hierarchy", "depth", "content_type","content_id", "language","identifier_path", "name", "is_hidden", "is_invisible","priority", "uid", "section", "p"]

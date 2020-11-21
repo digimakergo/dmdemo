@@ -1,0 +1,317 @@
+{
+  "folder": {
+    "name": "Folder",
+    "table_name": "dm_folder",
+    "name_pattern": "{title}",
+    "has_version": false,
+    "has_location": true,
+    "allowed_types": [
+      "folder",
+      "article",
+      "report",
+      "usergroup",
+      "user",
+      "image"
+    ],
+    "data_fields":[{"identifier":"folder_type", "fieldtype":"string"}],
+    "fields": [{
+        "identifier": "title",
+        "type": "text",
+        "name": "Title",
+        "required": true
+      },
+      {
+        "identifier": "summary",
+        "type": "richtext",
+        "name": "Summary",
+        "required": false
+      }
+    ]
+  },
+  "frontpage": {
+    "name": "Frontpage",
+    "table_name": "dm_frontpage",
+    "has_version": false,
+    "has_location": true,
+    "allowed_types": [
+      "folder",
+      "article",
+      "image",
+      "file"
+    ],
+    "fields": [{
+        "identifier": "title",
+        "type": "text",
+        "name": "Title",
+        "required": true
+      },
+      {
+        "identifier": "slideshow",
+        "type": "relationlist",
+        "name": "Slide show",
+        "required": false
+      },
+      {
+        "identifier": "mainarea",
+        "type": "text",
+        "name": "Main container",
+        "required": true
+      },
+      {
+        "identifier": "mainarea_blocks",
+        "type": "relationlist",
+        "name": "Main area blocks",
+        "required": false
+      },
+      {
+        "identifier": "sidearea",
+        "type": "text",
+        "name": "Side container",
+        "required": true
+      },
+      {
+        "identifier": "sidearea_blocks",
+        "type": "relationlist",
+        "name": "Side blocks",
+        "required": false
+      }
+    ]
+  },  
+  "article": {
+    "Name": "Article",
+    "table_name": "dm_article",
+    "has_version": true,
+    "has_location": true,
+    "name_pattern": "{title}",
+    "fields": [{
+        "identifier": "title",
+        "type": "text",
+        "name": "Title",
+        "required": true
+      },
+      {
+        "identifier": "editors",
+        "type": "relationlist",
+        "name": "Editors",
+        "required": false,
+        "parameters":{
+          "type":"user"
+        }
+      },
+      {
+        "identifier": "coverimage",
+        "type": "image",
+        "name": "Cover image",
+        "required": false
+      },
+      {
+        "identifier": "summary",
+        "type": "richtext",
+        "name": "Summary",
+        "required": false,
+        "parameters": {
+          "mode":"compact"
+        }
+      },
+      {
+        "identifier": "body",
+        "type": "richtext",
+        "name": "Body",
+        "required": false
+      },
+      {
+        "identifier": "relations",
+        "type": "container",
+        "is_output": true,
+        "name": "Relations",
+        "required": false,
+        "children_order": [
+          "related_articles",
+          "useful_resources"
+        ],
+        "children": [{
+            "identifier": "related_articles",
+            "type": "relationlist",
+            "required": false,
+            "name": "Related articles",
+            "parameters": {
+              "type": "article"
+            }
+          },
+          {
+            "identifier": "useful_resources",
+            "type": "relationlist",
+            "required": false,
+            "name": "Useful resources",
+            "parameters": {
+              "type": "image"
+            }
+          }
+        ]
+      },
+      {
+        "identifier": "online_time",
+        "type": "text",
+        "name": "Online time",
+        "required": false
+      },
+      {
+        "identifier": "offline_time",
+        "type": "text",
+        "name": "Offline time",
+        "required": false
+      }
+    ]
+  },
+  "usergroup": {
+    "name": "User group",
+    "table_name": "dm_usergroup",
+    "has_version": false,
+    "name_pattern": "{title}",
+    "has_location": true,
+    "allowed_types": [
+      "usergroup","user"
+    ],
+    "fields": [{
+        "identifier": "title",
+        "type": "text",
+        "name": "Title",
+        "required": true
+      },
+      {
+        "identifier": "summary",
+        "type": "richtext",
+        "name": "Summary",
+        "required": false
+      }
+    ]
+  },
+  "role": {
+    "name": "Role",
+    "table_name": "dm_role",
+    "has_version": false,
+    "name_pattern": "{title}",
+    "has_location": true,
+    "allowed_types": [
+      "role"
+    ],
+    "fields": [{
+        "identifier": "title",
+        "type": "text",
+        "name": "Title",
+        "required": true
+      },
+      {
+        "identifier": "summary",
+        "type": "text",
+        "name": "Summary",
+        "required": false
+      },
+      {
+        "identifier": "identifier",
+        "type": "text",
+        "name": "Role identifier",
+        "required": false
+      }
+    ]
+  },
+  "user": {
+    "name": "User",
+    "table_name": "dm_user",
+    "name_pattern": "{firstname} {lastname}",
+    "has_version": true,
+    "has_location": true,
+    "fields_display": [
+      "login",
+      "password"
+    ],
+    "fields": [{
+        "identifier": "login",
+        "type": "text",
+        "name": "Username",
+        "required": true
+      },
+      {
+        "identifier": "password",
+        "type": "password",
+        "name": "Password",
+        "required": false
+      },
+      {
+        "identifier": "firstname",
+        "type": "text",
+        "name": "First name",
+        "required": true
+      },
+      {
+        "identifier": "lastname",
+        "type": "text",
+        "name": "Last name",
+        "required": true
+      },
+      {
+        "identifier": "email",
+        "type": "text",
+        "name": "Email",
+        "required": true
+      },
+      {
+        "identifier": "preferance",
+        "type": "json",
+        "name": "Preferance",
+        "required": false
+      }
+    ]
+  },
+  "image": {
+    "name": "Image",
+    "table_name": "dm_image",
+    "has_version": false,
+    "has_location": false,
+    "data_fields":[ {"identifier":"location_id", "fieldtype":"int"}, {"identifier":"published", "fieldtype":"int"}, {"identifier":"modified", "fieldtype":"int"}, {"identifier":"cuid", "fieldtype":"string"}],
+    "fields": [
+      {
+        "identifier": "name",
+        "type": "text",
+        "name": "Name",
+        "required": true
+      },
+      {
+        "identifier": "image",
+        "type": "image",
+        "name": "Image",
+        "required": true
+      }
+    ]
+  },
+  "file": {
+    "name": "File",
+    "table_name": "dm_file",
+    "has_version": false,
+    "has_location": false,
+    "fields_display": [
+      "filetype",
+      "title",
+      "path"
+    ],
+    "fields": [{
+        "identifier": "filetype",
+        "type": "text",
+        "name": "Type",
+        "required": false
+      },
+      {
+        "identifier": "title",
+        "type": "text",
+        "name": "Title",
+        "required": true
+      },
+      {
+        "identifier": "path",
+        "type": "text",
+        "name": "Image path",
+        "required": true
+      }
+    ]
+  }
+}
