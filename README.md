@@ -1,4 +1,4 @@
-# dmdemo
+# DM Demo
 A demo project of digimaker CMF. which has minimal setup and works straight forward.
 
 You can just clone this project and do some configuration and it can be your initialized project.
@@ -11,7 +11,7 @@ How to run it?
 - View frontend: visit http://localhost:9200 (the default port)
 - View backend:
   ```
-   git clone https://github.com/digimakergo/eui.git`
+   git clone https://github.com/digimakergo/eui.git
    cd eui
    npm install
    npm start
@@ -20,7 +20,8 @@ How to run it?
 Default admin login info: `admin/Digimaker`
 
 
-### Project structure explained
+Project structure
+-------
 
 A project structure example which follows some recommendation from Go standard project layout: https://github.com/golang-standards/project-layout
 
@@ -42,7 +43,6 @@ Project A
 └───var
 ```
 
-Digimaker recommomands below file structure:
 - cmd/main.go which is the starting point. It can be any nam&any structure as long as it can run as entry point.
 - configs
    - dm.yaml: main configuration
