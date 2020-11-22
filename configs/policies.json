@@ -59,6 +59,12 @@
           }
       },
       {
+        "operation": ["eui/all"],
+        "limited_to": {
+          "view": []
+        }
+      },
+      {
         "operation":["content/read", "content/create", "content/delete", "content/update", "content/move", "content/delete_subtree", "content/copy", "access/assigned-users", "access/assign-user"]
       },
       {

@@ -126,7 +126,7 @@ CREATE TABLE `dm_folder` (
   `status` tinyint(4) NOT NULL DEFAULT '1',
   `author` int(11) DEFAULT '0',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=24 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=26 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -135,7 +135,7 @@ CREATE TABLE `dm_folder` (
 
 LOCK TABLES `dm_folder` WRITE;
 /*!40000 ALTER TABLE `dm_folder` DISABLE KEYS */;
-INSERT INTO `dm_folder` VALUES (1,'','Content','',0,'',1560534265,1560534265,'bk1tpudi6ekibbmo2ch0',0,1,1),(2,'','Users','',0,'',1560534277,1560534277,'bk1tq1di6ekibbmo2ci0',0,1,1),(3,'site','Digimaker.no','',0,'',1560534450,1578398395,'bk1trcli6ekibbmo2cj0',0,1,1);
+INSERT INTO `dm_folder` VALUES (1,'','Content','',0,'',1560534265,1560534265,'bk1tpudi6ekibbmo2ch0',0,1,1),(2,'','Users','',0,'',1560534277,1560534277,'bk1tq1di6ekibbmo2ci0',0,1,1),(3,'site','Demo','',0,'',1560534450,1606001305,'bk1trcli6ekibbmo2cj0',0,1,1),(24,'','Organization','',0,'',1606001434,1606001434,'busq66h8d3bf3fc0hl30',0,1,1),(25,'','Roles','',0,'',1606001458,1606001458,'busq6ch8d3bf3fc0hl40',0,1,1);
 /*!40000 ALTER TABLE `dm_folder` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -197,7 +197,7 @@ CREATE TABLE `dm_location` (
   `section` varchar(50) NOT NULL DEFAULT '',
   `p` varchar(30) NOT NULL DEFAULT 'c',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=451 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=454 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -206,7 +206,7 @@ CREATE TABLE `dm_location` (
 
 LOCK TABLES `dm_location` WRITE;
 /*!40000 ALTER TABLE `dm_location` DISABLE KEYS */;
-INSERT INTO `dm_location` VALUES (1,0,1,'1',1,'content','folder',1,'',0,'Content',0,0,0,'bk1tpudi6ekibbmo2chg','','public',''),(2,0,2,'2',1,'users','folder',2,'',0,'Users',0,0,0,'bk1tq1di6ekibbmo2cig','','',''),(3,1,3,'1/3',2,'content/demosite','folder',3,'',0,'Digimaker.no',0,0,0,'bk1trcli6ekibbmo2cjg','','public',''),(5,433,5,'2/4/5',3,'users/organization/administrator-admin','user',1,'',0,'Administrator Admin',0,0,0,'bk1tsc5i6ekibbmo2clg','','',''),(6,4,6,'2/4/6',3,'users/organization/anonymous-user','user',2,'',0,'Anonymous User',0,0,0,'bk1tstli6ekibbmo2cmg','','',''),(7,2,7,'2/7',2,'users/anonymous','role',1,'',0,'Anonymous',0,0,0,'bk1vutti6ekij1eq9sgg','','',''),(8,7,8,'2/7/8',3,'users/anonymous/editor','role',2,'',0,'Editor',0,0,0,'bk2051di6ekislpnehu0','','',''),(64,7,64,'2/7/64',3,'users/anonymous/','role',3,'',0,'Partner',0,0,0,'bmvh66ot6to17mufvagg','','',''),(68,7,68,'2/7/68',3,'users/anonymous/members','role',7,'',0,'Members',0,0,0,'bmvh88ot6to1b9bl2of0','','','');
+INSERT INTO `dm_location` VALUES (1,0,1,'1',1,'content','folder',1,'',1,'Content',0,0,0,'bk1tpudi6ekibbmo2chg','','public',''),(2,0,2,'2',1,'users','folder',2,'',1,'Users',0,0,0,'bk1tq1di6ekibbmo2cig','','',''),(3,1,3,'1/3',2,'content/demosite','folder',3,'',1,'Demo',0,0,0,'bk1trcli6ekibbmo2cjg','','public',''),(4,2,4,'2/4',2,'users/organization','folder',24,'',1,'Organization',0,0,0,'busq66h8d3bf3fc0hl3g','','',''),(5,4,5,'2/4/5',3,'users/organization/administrator-admin','user',1,'',1,'Administrator Admin',0,0,0,'bk1tsc5i6ekibbmo2clg','','',''),(6,4,6,'2/4/6',3,'users/organization/anonymous-user','user',2,'',1,'Anonymous User',0,0,0,'bk1tstli6ekibbmo2cmg','','',''),(7,2,7,'2/7',2,'roles/anonymous','folder',25,'',1,'Roles',0,0,0,'bk1vutti6ekij1eq9sgg','','',''),(8,7,8,'2/7/8',3,'users/anonymous/editor','role',2,'',1,'Editor',0,0,0,'bk2051di6ekislpnehu0','','',''),(64,7,64,'2/7/64',3,'users/anonymous/','role',3,'',1,'Partner',0,0,0,'bmvh66ot6to17mufvagg','','',''),(68,7,68,'2/7/68',3,'users/anonymous/members','role',7,'',1,'Members',0,0,0,'bmvh88ot6to1b9bl2of0','','',''),(451,7,451,'2/7/451',3,'users/roles/administrator','role',8,'',1,'Administrator',0,0,0,'','','','c'),(453,2,453,'2/453',2,'users/roles','role',1,'',1,'Roles',0,0,0,'busq6ch8d3bf3fc0hl4g','','','');
 /*!40000 ALTER TABLE `dm_location` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -284,8 +284,10 @@ CREATE TABLE `dm_role` (
   `cuid` varchar(30) NOT NULL DEFAULT '',
   `version` int(11) NOT NULL DEFAULT '0',
   `author` int(11) DEFAULT '0',
+  `identifier` varchar(100) NOT NULL DEFAULT '',
+  `status` int(11) DEFAULT '1',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -294,7 +296,7 @@ CREATE TABLE `dm_role` (
 
 LOCK TABLES `dm_role` WRITE;
 /*!40000 ALTER TABLE `dm_role` DISABLE KEYS */;
-INSERT INTO `dm_role` VALUES (1,'Anonymous','',1560543095,1560543095,'bk1vutti6ekij1eq9sg0',0,1),(2,'Editor','',1560543877,1560543877,'bk2051di6ekislpnehtg',0,1),(3,'Partner','',1572803355,1572803355,'bmvh66ot6to17mufvag0',0,1),(7,'Members','',1572803619,1572803619,'bmvh88ot6to1b9bl2oeg',0,1);
+INSERT INTO `dm_role` VALUES (1,'Anonymous','',1560543095,1560543095,'bk1vutti6ekij1eq9sg0',0,1,'',1),(2,'Editor','',1560543877,1560543877,'bk2051di6ekislpnehtg',0,1,'',1),(3,'Partner','',1572803355,1572803355,'bmvh66ot6to17mufvag0',0,1,'',1),(7,'Members','',1572803619,1572803619,'bmvh88ot6to1b9bl2oeg',0,1,'member',1),(8,'Administrator','',1602106747,1602106747,'btv3aup8d3bdq7gq1q3g',0,1,'admin',1);
 /*!40000 ALTER TABLE `dm_role` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -317,6 +319,7 @@ CREATE TABLE `dm_token_state` (
 
 LOCK TABLES `dm_token_state` WRITE;
 /*!40000 ALTER TABLE `dm_token_state` DISABLE KEYS */;
+INSERT INTO `dm_token_state` VALUES ('d38ef51b-2187-4f40-8a9e-b6b25d9547a7',1606009752),('301780da-beee-48be-8b66-46795a6dc875',1606072533);
 /*!40000 ALTER TABLE `dm_token_state` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -333,17 +336,11 @@ CREATE TABLE `dm_user` (
   `firstname` varchar(50) NOT NULL,
   `lastname` varchar(50) DEFAULT NULL,
   `password` binary(60) DEFAULT NULL,
-  `mobile` varchar(50) DEFAULT NULL,
   `published` int(11) NOT NULL DEFAULT '0',
   `modified` int(11) NOT NULL DEFAULT '0',
   `version` int(11) NOT NULL DEFAULT '0',
   `cuid` varchar(30) NOT NULL DEFAULT '',
   `email` varchar(255) NOT NULL DEFAULT '',
-  `company_name` varchar(255) NOT NULL DEFAULT '',
-  `company_logo` varchar(255) NOT NULL DEFAULT '',
-  `registration_date` varchar(255) NOT NULL DEFAULT '',
-  `company_category` varchar(255) NOT NULL DEFAULT '',
-  `company_branch` varchar(255) NOT NULL DEFAULT '',
   `status` tinyint(4) NOT NULL DEFAULT '1',
   `preferance` varchar(255) NOT NULL DEFAULT '',
   `author` int(11) DEFAULT '0',
@@ -357,7 +354,7 @@ CREATE TABLE `dm_user` (
 
 LOCK TABLES `dm_user` WRITE;
 /*!40000 ALTER TABLE `dm_user` DISABLE KEYS */;
-INSERT INTO `dm_user` VALUES (1,'admin','Administrator','Admin',_binary '\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0',NULL,1560534576,1591484517,4,'bk1tsc5i6ekibbmo2cl0','chen@digimaker.com','Digimaker','','','','',1,'',1),(2,'anonymous','Anonymous','User',_binary '\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0',NULL,1560534645,1560534645,1,'bk1tstdi6ekibbmo2cm0','','','','','','',1,'',1);
+INSERT INTO `dm_user` VALUES (1,'admin','Administrator','Admin',_binary '$2a$14$.CDllulymS4HOmejgwrKaOn0N1g1VI.YQP2IZcA3TRQgHMoQ9ovcq',1560534576,1606061706,5,'bk1tsc5i6ekibbmo2cl0','chen@digimaker.com',1,'',1),(2,'anonymous','Anonymous','User',_binary '\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0',1560534645,1560534645,1,'bk1tstdi6ekibbmo2cm0','',1,'',1);
 /*!40000 ALTER TABLE `dm_user` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -373,7 +370,7 @@ CREATE TABLE `dm_user_role` (
   `user_id` int(11) NOT NULL,
   `role_id` int(11) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=149 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=150 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -382,6 +379,7 @@ CREATE TABLE `dm_user_role` (
 
 LOCK TABLES `dm_user_role` WRITE;
 /*!40000 ALTER TABLE `dm_user_role` DISABLE KEYS */;
+INSERT INTO `dm_user_role` VALUES (149,1,8);
 /*!40000 ALTER TABLE `dm_user_role` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -434,7 +432,7 @@ CREATE TABLE `dm_version` (
   `location_id` int(11) NOT NULL DEFAULT '0',
   `created` int(11) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=564 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=565 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -443,6 +441,7 @@ CREATE TABLE `dm_version` (
 
 LOCK TABLES `dm_version` WRITE;
 /*!40000 ALTER TABLE `dm_version` DISABLE KEYS */;
+INSERT INTO `dm_version` VALUES (564,'user',1,5,0,1,'{\"cid\":1,\"version\":4,\"published\":1560534576,\"modified\":1591484517,\"cuid\":\"bk1tsc5i6ekibbmo2cl0\",\"status\":1,\"author\":1,\"author_name\":\"Administrator Admin\",\"relations\":{},\"email\":\"chen@digimaker.com\",\"firstname\":\"Administrator\",\"lastname\":\"Admin\",\"login\":\"admin\",\"preferance\":\"\",\"id\":5,\"parent_id\":4,\"main_id\":5,\"identifier_path\":\"users/organization/administrator-admin\",\"hierarchy\":\"2/4/5\",\"depth\":3,\"content_type\":\"user\",\"content_id\":1,\"language\":\"\",\"name\":\"Administrator Admin\",\"is_hidden\":false,\"is_invisible\":false,\"priority\":0,\"uid\":\"bk1tsc5i6ekibbmo2clg\",\"section\":\"\",\"p\":\"\"}',0,0);
 /*!40000 ALTER TABLE `dm_version` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -455,4 +454,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2020-11-21 21:40:15
+-- Dump completed on 2020-11-22 17:22:14

@@ -8,3 +8,7 @@ How to run it?
 - Clone it: `git clone https://github.com/digimakergo/dmdemo.git`
 - Import database: import datbase from `data/dmdemo.sql`, then change `configs/dm.yaml`'s database connection
 - Run: `cd cmd` and run `go run main.go`
+- View frontend: visit http://localhost:9200 (the default port)
+- View backend: `git clone https://github.com/digimakergo/eui.git` and then `npm install`, then `npm start` you will see the backend
+
+Default admin login info: admin/Digimaker
