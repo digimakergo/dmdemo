@@ -1,0 +1,31 @@
+<!doctype html>
+    <head>
+        <title>{%block title%}{{content.Name}} - dmdemo {% endblock %}</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+        <meta charset="UTF-8">
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+        <link type="text/css" rel="stylesheet" href="/assets/css/dmdemo.css" />
+    </head>
+    <body>
+            <div class="header">
+              <div class="logo">
+                  <a href="/">{{root.Name}}<img src="/assets/images/logo.png" /></a>
+              </div>
+              <ul class="menu">
+                  {% for child in dm.children(root,"folder") %}
+                          <li data-nav-to="nav-{{child.ID}}" {%for i in content.Path()%}{%if i==child.ID%}class='current'{%endif%}{%endfor%}>
+                              <a href="/{{child|dm_niceurl}}">{{child.Location.Name}}</a>
+                          </li>
+                  {%endfor%}
+              </ul>
+            </div>
+
+        <div class="main {%block class%}default{%endblock%}">
+            {%block content%}Default body{% endblock %}
+        </div>
+
+        <div class="bottom">
+               Copyright {company} 2021
+        </div>
+    </body>
+</html>

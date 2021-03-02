@@ -1,0 +1,52 @@
+body{
+  font-family: Arial;
+  color: #333333;
+}
+
+.header, .main, .bottom{
+  max-width: 1280px;
+  margin: auto;
+}
+
+.main{
+  min-height: 300px;
+  background: #fcfcfc;
+  padding: 5px;
+}
+
+.bottom{
+  text-align: center;
+  padding: 50px;
+  color: #66666;
+}
+
+.logo img{
+  height: 80px;
+}
+
+.logo{
+  font-size: 2em
+}
+
+.menu{
+  background: #f0f0f0;
+  margin: 0px;
+}
+
+.menu li{
+  padding: 5px;
+  display: inline-block;
+}
+
+li.current a{
+  font-weight: bold;
+}
+
+a{
+  color: #31ae8b
+}
+
+a:hover{
+  color: #15755a;
+  text-decoration: none
+}

@@ -1,0 +1,21 @@
+content_view:
+#project template override
+
+- contenttype: folder
+  viewmode: full
+  to: folder/full.html
+
+# default template override
+- contenttype: article
+  viewmode: full
+  to: article/full.html
+
+- viewmode: article
+  viewmode: block
+  to: article/block.html
+
+- viewmode: block
+  to: block.html
+
+user/list:
+    - to: viewuser.html

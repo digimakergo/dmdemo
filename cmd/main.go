@@ -1,50 +1,32 @@
 package main
 
 import (
-	"fmt"
 	"net/http"
-	"os"
 
-	_ "dmdemo/entity"
+	_ "github.com/digimakergo/dmdemo/entity"
 
-	"github.com/digimakergo/digimaker/core"
+	"github.com/digimakergo/digimaker"
 	_ "github.com/digimakergo/digimaker/core/handler/handlers"
 	"github.com/digimakergo/digimaker/core/log"
 	"github.com/digimakergo/digimaker/core/util"
-	"github.com/digimakergo/digimaker/rest"
 	_ "github.com/digimakergo/digimaker/rest/tokenmanager"
 	"github.com/gorilla/mux"
 
 	_ "github.com/go-sql-driver/mysql"
+
+	_ "github.com/digimakergo/digimaker/core/handler/handlers"
+	_ "github.com/digimakergo/digimaker/sitekit/filters"
+	_ "github.com/digimakergo/digimaker/sitekit/functions"
 )
 
-//go:generate go run gen_contenttypes/gen.go
-func BootStrap() {
-	if len(os.Args) >= 2 && os.Args[1] != "" {
-		path := os.Args[1]
-		success := core.Bootstrap(path)
-		if !success {
-			fmt.Println("Failed to start. Exiting.")
-			os.Exit(1)
-		}
-	} else {
-		fmt.Println("Need a path parameter. Exiting.")
-		os.Exit(1)
-	}
-}
-
 func main() {
-	BootStrap()
 
 	//host var - can be in another server
-	http.Handle("/var/", http.StripPrefix("/var/", http.FileServer(http.Dir("../var"))))
+	http.Handle("/var/", http.StripPrefix("/var/", http.FileServer(http.Dir(util.HomePath()+"/var"))))
+	http.Handle("/assets/", http.StripPrefix("/assets/", http.FileServer(http.Dir(util.HomePath()+"/web/assets"))))
 
 	r := mux.NewRouter()
-
-	//rest api
-	r.Use(rest.InitRequest)
-	restRouter := r.PathPrefix("/api").Subrouter()
-	rest.HandleRoute(restRouter)
+	digimaker.Bootstrap(r)
 
 	http.Handle("/", r)
 

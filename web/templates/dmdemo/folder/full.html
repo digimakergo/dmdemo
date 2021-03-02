@@ -1,0 +1,26 @@
+{% extends "../base.html" %}
+
+{%block content%}
+<div class="{{content.ContentType}} full">
+
+    <h2>{{content.Name}}</h2>
+    {%if content.Summary.FieldValue()%}
+    <div class="summary">
+        {{content.Summary.FieldValue()|safe}}
+    </div>
+    {%endif%}
+
+    <div class="children">
+        {%set i =0%}
+        {% for child in content|dm_children:"article" %}
+                <div class="{%if i%2==0%}even{%else%}odd{%endif%}">
+                {{output_content( child, "block" )}}
+                </div>
+                                <hr />
+                {%set i=i+1%}
+        {%endfor%}
+    </div>
+    {%block main_bottom%}
+    {%endblock%}
+</div>
+{%endblock%}
