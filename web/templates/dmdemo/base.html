@@ -9,12 +9,12 @@
     <body>
             <div class="header">
               <div class="logo">
-                  <a href="/">{{root.Name}}<img src="/assets/images/logo.png" /></a>
+                  <a href="{{dm.root("/")}}">{{root.Name}}<img src="/assets/images/logo.png" /></a>
               </div>
               <ul class="menu">
                   {% for child in dm.children(root,"folder") %}
                           <li data-nav-to="nav-{{child.ID}}" {%for i in content.Path()%}{%if i==child.ID%}class='current'{%endif%}{%endfor%}>
-                              <a href="/{{child|dm_niceurl}}">{{child.Location.Name}}</a>
+                              <a href="{{dm.niceurl(child)}}">{{child.Location.Name}}</a>
                           </li>
                   {%endfor%}
               </ul>

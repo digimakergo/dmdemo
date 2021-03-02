@@ -15,10 +15,11 @@ database:
    password: dmdemo
    database: dmdemo
 
+#todo: use path
 sites:
   - identifier: dmdemo
-    routes:
-      - host: "localhost:9200"
+    host: "localhost:9200"
+    path: "demo/|demo$|"
     root: 3
     default: 3
     template_folder:
