@@ -11,13 +11,11 @@
     {%endif%}
 
     <div class="children">
-        {%set i =0%}
         {% for child in content|dm_children:"article" %}
-                <div class="{%if i%2==0%}even{%else%}odd{%endif%}">
+                <div>
                 {{output_content( child, "block" )}}
                 </div>
-                                <hr />
-                {%set i=i+1%}
+              <hr />
         {%endfor%}
     </div>
     {%block main_bottom%}
