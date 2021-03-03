@@ -1,6 +1,6 @@
 <!doctype html>
     <head>
-        <title>{%block title%}{{content.Name}} - dmdemo {% endblock %}</title>
+        <title>{%block title%}{{content.Name}} - site2 {% endblock %}</title>
         <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
         <meta charset="UTF-8">
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
@@ -8,15 +8,9 @@
     </head>
     <body>
             <div class="header">
-              <div class="logo">
+              <div class="logo"> Site 2
                   <a href="{{dm.root("/")}}">{{root.Name}}<img src="/assets/images/logo.png" /></a>
               </div>
-              <ul class="menu">
-                  {% for child in dm.children(root,"folder") %}
-                          <li data-nav-to="nav-{{child.ID}}" {%for i in content.Path()%}{%if i==child.ID%}class='current'{%endif%}{%endfor%}>
-                              <a href="{{dm.niceurl(child)}}">{{child.Location.Name}}</a>
-                          </li>
-                  {%endfor%}
               </ul>
             </div>
 
