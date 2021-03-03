@@ -1,5 +1,3 @@
-# DM Demo
-
 
 ***(Note. This demo project is still ongoing so documentation/code might not work.)***
 
@@ -7,13 +5,13 @@ A demo project of digimaker CMF. which has minimal setup and works straight forw
 
 You can just clone this project and do some configuration and it can be your initialized project.
 
-How to run it?
+Run the demo
 -------
 - Clone it: `git clone https://github.com/digimakergo/dmdemo.git`
 - Import database: import datbase from `data/dmdemo.sql`, then change `configs/dm.yaml`'s database connection
 - Run: `cd cmd` and run `dmapp=.. go run main.go`
 - View frontend: visit http://localhost:9200 (the default port)
-- View backend(TBA):
+- View backend:
   ```
    git clone https://github.com/digimakergo/eui.git
    cd eui
@@ -40,10 +38,32 @@ Example:
 #### Template functions/filters/macro
 Built in template functions, filters can be found here: https://github.com/digimakergo/digimaker/tree/master/sitekit
 
+EUI
+--------
+
 Rest api
 -------
 
-Project structure
+Go api
+--------
+#### Query content
+
+#### Operate content
+
+#### Callbacks
+
+#### Manipulate non-content entities(tables)
+
+Permissions
+---------
+
+Log & Debug
+---------
+
+Build & Deploy
+----------
+
+Additional - Project structure
 -------
 
 A project structure example which follows some recommendation from Go standard project layout: https://github.com/golang-standards/project-layout
