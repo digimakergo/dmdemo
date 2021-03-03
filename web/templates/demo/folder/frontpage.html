@@ -1,0 +1,13 @@
+{% extends "../base.html" %}
+
+{%block content%}
+<div class="{{content.ContentType}} full">
+
+  <h2>Welcome</h2>
+    {%if content.Summary.FieldValue()%}
+    <div class="summary">
+        {{content.Summary.FieldValue()|safe}}
+    </div>
+    {%endif%}
+</div>
+{%endblock%}

@@ -1,0 +1,7 @@
+content_view:
+#project template override
+
+- contenttype: folder
+  viewmode: full
+  id: 3
+  to: folder/frontpage.html
