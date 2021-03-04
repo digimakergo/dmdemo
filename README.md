@@ -11,15 +11,14 @@ Run the demo
 - Import database: import datbase from `data/dmdemo.sql`, then change `configs/dm.yaml`'s database connection
 - Run: `cd cmd` and run `dmapp=.. go run main.go`
 - View frontend: visit http://localhost:9200 (the default port)
-- View backend:
+- Backend: (Suggest to clone into web/eui, see project structure in the bottom)
   ```
    git clone https://github.com/digimakergo/eui.git
    cd eui
    npm install
    npm start
    ```
-
-Default admin login info: `admin/Digimaker`
+Visit backend: http://localhost:3000 and Login with `admin/Digimaker`
 
 
 Website Templating
