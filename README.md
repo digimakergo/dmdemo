@@ -7,18 +7,25 @@ You can just clone this project and do some configuration and it can be your ini
 
 Run the demo
 -------
-- Clone it: `git clone https://github.com/digimakergo/dmdemo.git`
-- Import database: import datbase from `data/dmdemo.sql`, then change `configs/dm.yaml`'s database connection
-- Run: `cd cmd` and run `dmapp=.. go run main.go`
-- View frontend: visit http://localhost:9200 (the default port)
-- Backend: (Suggest to clone into web/eui, see project structure in the bottom)
+#### Frontend
+
+ 1. Clone it.
+   `git clone https://github.com/digimakergo/dmdemo.git`
+ 3. Import database: import datbase from data/dmdemo.sql, also change `configs/dm.yaml`'s database connection.
+   `mysql -u {username} -p {database} < data/dmdemo.sql`
+ 4. Run server side with below command line.
+     `dmapp=. go run cmd/main.go`
+  4. View frontend: http://localhost:9200
+
+ #### Backend
+  Suggest to clone eui into web/eui, see project structure in the bottom
   ```
    git clone https://github.com/digimakergo/eui.git
    cd eui
    npm install
    npm start
    ```
-Visit backend: http://localhost:3000 and Login with `admin/Digimaker`
+View backend: http://localhost:3000 and Login with `admin/Digimaker`
 
 
 Website Templating
