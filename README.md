@@ -8,14 +8,18 @@ You can just clone this project and do some configuration and it can be your ini
 Run the demo
 -------
 #### Frontend
+```
+ //clone it.
+ git clone https://github.com/digimakergo/dmdemo.git
 
- 1. Clone it.
-   `git clone https://github.com/digimakergo/dmdemo.git`
- 3. Import database: import datbase from data/dmdemo.sql, also change `configs/dm.yaml`'s database connection.
-   `mysql -u {username} -p {database} < data/dmdemo.sql`
- 4. Run server side with below command line.
-     `dmapp=. go run cmd/main.go`
-  4. View frontend: http://localhost:9200
+ //import database
+ //remember to change configs/dm.yaml's database connection.
+ mysql -u {username} -p {database} < data/dmdemo.sql
+
+ //start server
+ dmapp=. go run cmd/main.go
+```
+  View frontend: http://localhost:9200
 
  #### Backend
   Suggest to clone eui into web/eui, see project structure in the bottom
