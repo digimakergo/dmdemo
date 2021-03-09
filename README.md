@@ -32,8 +32,10 @@ Run the demo
 View backend: http://localhost:3000 and Login with `admin/Digimaker`
 
 
-Website Templating
+Development
 -------
+
+### Website Templating
 
 #### Override rule
 
@@ -48,14 +50,14 @@ Example:
 #### Template functions/filters/macro
 Built in template functions, filters can be found here: https://github.com/digimakergo/digimaker/tree/master/sitekit
 
-EUI
---------
 
-Rest api
--------
+### Define content model
 
-Go api
---------
+### Rest api
+
+
+### Go api
+
 #### Query content
 
 #### Operate content
@@ -64,11 +66,12 @@ Go api
 
 #### Manipulate non-content entities(tables)
 
-Permissions
----------
+### Permissions
 
-Log & Debug
----------
+### Extend EUI
+
+### Log & Debug
+
 
 Build & Deploy
 ----------
