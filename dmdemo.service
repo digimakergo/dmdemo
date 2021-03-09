@@ -1,0 +1,12 @@
+[Unit]
+Description=Digimaker Demo
+
+[Service]
+User=<running user>
+Environment="dmapp=<home path>"
+Environment="GOPATH=<GO path>"
+ExecStart="<PATH>"
+Restart=always
+
+[Install]
+WantedBy=multi-user.target
