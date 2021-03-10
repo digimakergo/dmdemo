@@ -34,6 +34,9 @@ sites:
       - "site2"  #first template folder will be used for base template(layout)
       - "test" # todo: idea to support package like "<packagename>, test"
 
+rest:
+  upload_file_auth: true #auth upload file or not
+
 rest_list_fields:
    report: ["cid", "version", "published", "modified", "author", "author_name", "cuid", "status"]
 
@@ -46,6 +49,3 @@ auth:
    refresh_token_expiry: 180
    access_token_secret_key: "fsfsfsf333333sdf555456"
    access_token_expiry: 50
-
-internal:
-  location_columns: ["id", "parent_id", "main_id","hierarchy", "depth", "content_type","content_id", "language","identifier_path", "name", "is_hidden", "is_invisible","priority", "uid", "section", "p"]
