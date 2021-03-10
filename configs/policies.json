@@ -1,5 +1,12 @@
 {
   "policies": {
+    "anonymous": [{
+          "operation": ["content/read"],
+          "limited_to": {
+            "under": [3, 9]
+          }
+        }
+      ],
     "member": [{
           "operation": ["content/update", "content/read"],
           "limited_to": {
@@ -73,6 +80,7 @@
     ]
   },
   "roles": {
+    "anonymous":["anonymous"],
     "member": ["member"],
     "edit": ["edit"],
     "admin": ["admin"]

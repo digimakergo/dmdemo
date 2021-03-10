@@ -135,7 +135,7 @@ CREATE TABLE `dm_folder` (
 
 LOCK TABLES `dm_folder` WRITE;
 /*!40000 ALTER TABLE `dm_folder` DISABLE KEYS */;
-INSERT INTO `dm_folder` VALUES (1,'','Content','',0,'',1560534265,1560534265,'bk1tpudi6ekibbmo2ch0',0,1,1),(2,'','Users','',0,'',1560534277,1560534277,'bk1tq1di6ekibbmo2ci0',0,1,1),(3,'site','Demo','',0,'<p>This is a demo site.</p>',1560534450,1614682743,'bk1trcli6ekibbmo2cj0',0,1,1),(24,'','Organization','',0,'',1606001434,1606001434,'busq66h8d3bf3fc0hl30',0,1,1),(25,'','Roles','',0,'',1606001458,1606001458,'busq6ch8d3bf3fc0hl40',0,1,1),(26,'','News','',0,'',1614682007,1614682007,'c0v1f5uvvhfup2usch3g',0,0,1),(27,'','About us','',0,'',1614682022,1614682022,'c0v1f9mvvhfup2usch4g',0,0,1),(28,'','Products','',0,'',1614682043,1614682043,'c0v1feuvvhfup2usch5g',0,0,1),(29,'','Resources','',0,'',1614847995,1614847995,'c109vuuvvhfvc1h67skg',0,0,1),(30,'','Images','',0,'',1614848078,1614848078,'c10a0jmvvhfvc1h67slg',0,0,1),(31,'','Files','',0,'',1614848228,1614848228,'c10a1p6vvhfvc1h67smg',0,0,1);
+INSERT INTO `dm_folder` VALUES (1,'','Content','',0,'',1560534265,1560534265,'bk1tpudi6ekibbmo2ch0',0,1,1),(2,'','Users','',0,'',1560534277,1560534277,'bk1tq1di6ekibbmo2ci0',0,1,1),(3,'site','Demo','',0,'<p>This is a demo site 1.</p>',1560534450,1615408247,'bk1trcli6ekibbmo2cj0',0,1,1),(24,'','Organization','',0,'',1606001434,1606001434,'busq66h8d3bf3fc0hl30',0,1,1),(25,'','Roles','',0,'',1606001458,1606001458,'busq6ch8d3bf3fc0hl40',0,1,1),(26,'','News','',0,'',1614682007,1614682007,'c0v1f5uvvhfup2usch3g',0,0,1),(27,'','About us','',0,'',1614682022,1614682022,'c0v1f9mvvhfup2usch4g',0,0,1),(28,'','Products','',0,'',1614682043,1614682043,'c0v1feuvvhfup2usch5g',0,0,1),(29,'','Resources','',0,'',1614847995,1614847995,'c109vuuvvhfvc1h67skg',0,0,1),(30,'','Images','',0,'',1614848078,1614848078,'c10a0jmvvhfvc1h67slg',0,0,1),(31,'','Files','',0,'',1614848228,1614848228,'c10a1p6vvhfvc1h67smg',0,0,1);
 /*!40000 ALTER TABLE `dm_folder` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -206,7 +206,7 @@ CREATE TABLE `dm_location` (
 
 LOCK TABLES `dm_location` WRITE;
 /*!40000 ALTER TABLE `dm_location` DISABLE KEYS */;
-INSERT INTO `dm_location` VALUES (1,0,1,'1',1,'content','folder',1,'',1,'Content',0,0,0,'bk1tpudi6ekibbmo2chg','','public',''),(2,0,2,'2',1,'users','folder',2,'',1,'Users',0,0,0,'bk1tq1di6ekibbmo2cig','','',''),(3,1,3,'1/3',2,'content/demosite','folder',3,'',1,'Demo',0,0,0,'bk1trcli6ekibbmo2cjg','','public',''),(4,2,4,'2/4',2,'users/organization','folder',24,'',1,'Organization',0,0,0,'busq66h8d3bf3fc0hl3g','','',''),(5,4,5,'2/4/5',3,'users/organization/administrator-admin','user',1,'',1,'Administrator Admin',0,0,0,'bk1tsc5i6ekibbmo2clg','','',''),(6,4,6,'2/4/6',3,'users/organization/anonymous-user','user',2,'',1,'Anonymous User',0,0,0,'bk1tstli6ekibbmo2cmg','','',''),(7,2,7,'2/7',2,'roles/anonymous','folder',25,'',1,'Roles',0,0,0,'bk1vutti6ekij1eq9sgg','','',''),(8,7,8,'2/7/8',3,'users/anonymous/editor','role',2,'',1,'Editor',0,0,0,'bk2051di6ekislpnehu0','','',''),(9,1,9,'1/9',2,'content/resources','folder',29,'',0,'Resources',0,0,0,'c109vuuvvhfvc1h67sl0','','public',''),(10,9,10,'1/9/10',3,'content/resources/images','folder',30,'',0,'Images',0,0,0,'c10a0juvvhfvc1h67sm0','','public',''),(64,7,64,'2/7/64',3,'users/anonymous/','role',3,'',1,'Partner',0,0,0,'bmvh66ot6to17mufvagg','','',''),(68,7,68,'2/7/68',3,'users/anonymous/members','role',7,'',1,'Members',0,0,0,'bmvh88ot6to1b9bl2of0','','',''),(451,7,451,'2/7/451',3,'users/roles/administrator','role',8,'',1,'Administrator',0,0,0,'','','','c'),(453,2,453,'2/453',2,'users/roles','role',1,'',1,'Roles',0,0,0,'busq6ch8d3bf3fc0hl4g','','',''),(454,3,454,'1/3/454',3,'content/demosite/news','folder',26,'',0,'News',0,0,0,'c0v1f5uvvhfup2usch40','','public',''),(455,3,455,'1/3/455',3,'content/demosite/about-us','folder',27,'',0,'About us',0,0,0,'c0v1f9mvvhfup2usch50','','public',''),(456,3,456,'1/3/456',3,'content/demosite/products','folder',28,'',0,'Products',0,0,0,'c0v1feuvvhfup2usch60','','public',''),(459,9,459,'1/9/459',3,'content/resources/files','folder',31,'',0,'Files',0,0,0,'c10a1p6vvhfvc1h67sn0','','public','');
+INSERT INTO `dm_location` VALUES (1,0,1,'1',1,'content','folder',1,'',1,'Content',0,0,0,'bk1tpudi6ekibbmo2chg','','public',''),(2,0,2,'2',1,'users','folder',2,'',1,'Users',0,0,0,'bk1tq1di6ekibbmo2cig','','',''),(3,1,3,'1/3',2,'content/demosite','folder',3,'',1,'Demo',0,0,0,'bk1trcli6ekibbmo2cjg','','public',''),(4,2,4,'2/4',2,'users/organization','folder',24,'',1,'Organization',0,0,0,'busq66h8d3bf3fc0hl3g','','',''),(5,4,5,'2/4/5',3,'users/organization/administrator-admin','user',1,'',1,'Administrator Admin',0,0,0,'bk1tsc5i6ekibbmo2clg','','',''),(6,4,6,'2/4/6',3,'users/organization/anonymous-user','user',2,'',1,'Anonymous User',0,0,0,'bk1tstli6ekibbmo2cmg','','',''),(7,2,7,'2/7',2,'roles/anonymous','folder',25,'',1,'Roles',0,0,0,'bk1vutti6ekij1eq9sgg','','',''),(8,7,8,'2/7/8',3,'users/anonymous/editor','role',2,'',1,'Editor',0,0,0,'bk2051di6ekislpnehu0','','',''),(9,1,9,'1/9',2,'content/resources','folder',29,'',0,'Resources',0,0,0,'c109vuuvvhfvc1h67sl0','','public',''),(10,9,10,'1/9/10',3,'content/resources/images','folder',30,'',0,'Images',0,0,0,'c10a0juvvhfvc1h67sm0','','public',''),(64,7,64,'2/7/64',3,'users/anonymous/','role',3,'',1,'Anonymous',0,0,0,'bmvh66ot6to17mufvagg','','',''),(68,7,68,'2/7/68',3,'users/anonymous/members','role',7,'',1,'Members',0,0,0,'bmvh88ot6to1b9bl2of0','','',''),(451,7,451,'2/7/451',3,'users/roles/administrator','role',8,'',1,'Administrator',0,0,0,'','','','c'),(453,2,453,'2/453',2,'users/roles','role',1,'',1,'Roles',0,0,0,'busq6ch8d3bf3fc0hl4g','','',''),(454,3,454,'1/3/454',3,'content/demosite/news','folder',26,'',0,'News',0,0,0,'c0v1f5uvvhfup2usch40','','public',''),(455,3,455,'1/3/455',3,'content/demosite/about-us','folder',27,'',0,'About us',0,0,0,'c0v1f9mvvhfup2usch50','','public',''),(456,3,456,'1/3/456',3,'content/demosite/products','folder',28,'',0,'Products',0,0,0,'c0v1feuvvhfup2usch60','','public',''),(459,9,459,'1/9/459',3,'content/resources/files','folder',31,'',0,'Files',0,0,0,'c10a1p6vvhfvc1h67sn0','','public','');
 /*!40000 ALTER TABLE `dm_location` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -296,7 +296,7 @@ CREATE TABLE `dm_role` (
 
 LOCK TABLES `dm_role` WRITE;
 /*!40000 ALTER TABLE `dm_role` DISABLE KEYS */;
-INSERT INTO `dm_role` VALUES (1,'Anonymous','',1560543095,1560543095,'bk1vutti6ekij1eq9sg0',0,1,'',1),(2,'Editor','',1560543877,1560543877,'bk2051di6ekislpnehtg',0,1,'',1),(3,'Partner','',1572803355,1572803355,'bmvh66ot6to17mufvag0',0,1,'',1),(7,'Members','',1572803619,1572803619,'bmvh88ot6to1b9bl2oeg',0,1,'member',1),(8,'Administrator','',1602106747,1602106747,'btv3aup8d3bdq7gq1q3g',0,1,'admin',1);
+INSERT INTO `dm_role` VALUES (1,'Anonymous','',1560543095,1560543095,'bk1vutti6ekij1eq9sg0',0,1,'',1),(2,'Editor','',1560543877,1560543877,'bk2051di6ekislpnehtg',0,1,'',1),(3,'Anonymous','',1572803355,1615413222,'bmvh66ot6to17mufvag0',0,1,'anonymous',1),(7,'Members','',1572803619,1572803619,'bmvh88ot6to1b9bl2oeg',0,1,'member',1),(8,'Administrator','',1602106747,1602106747,'btv3aup8d3bdq7gq1q3g',0,1,'admin',1);
 /*!40000 ALTER TABLE `dm_role` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -319,7 +319,7 @@ CREATE TABLE `dm_token_state` (
 
 LOCK TABLES `dm_token_state` WRITE;
 /*!40000 ALTER TABLE `dm_token_state` DISABLE KEYS */;
-INSERT INTO `dm_token_state` VALUES ('d38ef51b-2187-4f40-8a9e-b6b25d9547a7',1606009752),('301780da-beee-48be-8b66-46795a6dc875',1606072533),('1489938b-0070-4c32-aef4-9d54f75d97cc',1606090902),('5c84e204-c54f-43ef-8ad3-66bd6c6cfdaa',1606092113),('32312da5-6a5d-4326-a936-30db14b8d29f',1614692748),('29c1ddb2-cc5d-412a-a217-198558a1d13d',1614857550);
+INSERT INTO `dm_token_state` VALUES ('d38ef51b-2187-4f40-8a9e-b6b25d9547a7',1606009752),('301780da-beee-48be-8b66-46795a6dc875',1606072533),('1489938b-0070-4c32-aef4-9d54f75d97cc',1606090902),('5c84e204-c54f-43ef-8ad3-66bd6c6cfdaa',1606092113),('32312da5-6a5d-4326-a936-30db14b8d29f',1614692748),('29c1ddb2-cc5d-412a-a217-198558a1d13d',1614857550),('472c94c7-ef3c-483d-9c36-f54955494dfa',1614872852),('600ed42e-011b-48dc-a07d-0f1efaae9564',1615030883),('e8b58b8a-9389-40cd-b91b-4a2e1646febc',1615422279);
 /*!40000 ALTER TABLE `dm_token_state` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -370,7 +370,7 @@ CREATE TABLE `dm_user_role` (
   `user_id` int(11) NOT NULL,
   `role_id` int(11) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=150 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=151 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -379,7 +379,7 @@ CREATE TABLE `dm_user_role` (
 
 LOCK TABLES `dm_user_role` WRITE;
 /*!40000 ALTER TABLE `dm_user_role` DISABLE KEYS */;
-INSERT INTO `dm_user_role` VALUES (149,1,8);
+INSERT INTO `dm_user_role` VALUES (149,1,8),(150,2,3);
 /*!40000 ALTER TABLE `dm_user_role` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -454,4 +454,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2021-03-04 10:00:05
+-- Dump completed on 2021-03-10 22:59:45
