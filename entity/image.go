@@ -4,6 +4,7 @@
 package entity
 
 import (
+    "context"
     "database/sql"
     "github.com/digimakergo/digimaker/core/db"
     "github.com/digimakergo/digimaker/core/contenttype"
@@ -189,16 +190,16 @@ func (c *Image) SetValue(identifier string, value interface{}) error {
 
 //Store content.
 //Note: it will set id to ID after success
-func (c *Image) Store(transaction ...*sql.Tx) error {
+func (c *Image) Store(ctx context.Context, transaction ...*sql.Tx) error {
 	handler := db.DBHanlder()
 	if c.ID == 0 {
-		id, err := handler.Insert(c.TableName(), c.ToDBValues(), transaction...)
+		id, err := handler.Insert(ctx, c.TableName(), c.ToDBValues(), transaction...)
 		c.ID = id
 		if err != nil {
 			return err
 		}
 	} else {
-		err := handler.Update(c.TableName(), c.ToDBValues(), Cond("id", c.ID), transaction...)
+		err := handler.Update(ctx, c.TableName(), c.ToDBValues(), Cond("id", c.ID), transaction...)
 		return err
 	}
 	return nil
@@ -210,9 +211,9 @@ func (c *Image)StoreWithLocation(){
 }
 
 //Delete content only
-func (c *Image) Delete(transaction ...*sql.Tx) error {
+func (c *Image) Delete(ctx context.Context, transaction ...*sql.Tx) error {
 	handler := db.DBHanlder()
-	contentError := handler.Delete(c.TableName(), Cond("id", c.ID), transaction...)
+	contentError := handler.Delete(ctx, c.TableName(), Cond("id", c.ID), transaction...)
 	return contentError
 }
 

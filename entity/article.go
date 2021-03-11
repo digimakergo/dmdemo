@@ -4,6 +4,7 @@
 package entity
 
 import (
+    "context"
     "database/sql"
     "github.com/digimakergo/digimaker/core/db"
     "github.com/digimakergo/digimaker/core/contenttype"
@@ -346,22 +347,22 @@ func (c *Article) SetValue(identifier string, value interface{}) error {
 
 //Store content.
 //Note: it will set id to CID after success
-func (c *Article) Store(transaction ...*sql.Tx) error {
+func (c *Article) Store(ctx context.Context, transaction ...*sql.Tx) error {
 	handler := db.DBHanlder()
 	if c.CID == 0 {
-		id, err := handler.Insert(c.TableName(), c.ToDBValues(), transaction...)
+		id, err := handler.Insert(ctx, c.TableName(), c.ToDBValues(), transaction...)
 		c.CID = id
 		if err != nil {
 			return err
 		}
 	} else {
-		err := handler.Update(c.TableName(), c.ToDBValues(), Cond("id", c.CID), transaction...)
+		err := handler.Update(ctx, c.TableName(), c.ToDBValues(), Cond("id", c.CID), transaction...)
     if err != nil {
 			return err
 		}
 	}
 
-	err := c.StoreRelations(c.ContentType(), transaction...)
+	err := c.StoreRelations(ctx, c.ContentType(), transaction...)
 	if err != nil {
 		return err
 	}
@@ -374,9 +375,9 @@ func (c *Article)StoreWithLocation(){
 }
 
 //Delete content only
-func (c *Article) Delete(transaction ...*sql.Tx) error {
+func (c *Article) Delete(ctx context.Context, transaction ...*sql.Tx) error {
 	handler := db.DBHanlder()
-	contentError := handler.Delete(c.TableName(), Cond("id", c.CID), transaction...)
+	contentError := handler.Delete(ctx, c.TableName(), Cond("id", c.CID), transaction...)
 	return contentError
 }
 
