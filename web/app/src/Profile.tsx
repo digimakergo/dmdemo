@@ -4,11 +4,11 @@ import {FetchWithAuth} from 'digimaker-ui/util';
 import util from 'digimaker-ui/util';
 import LoadFields from 'digimaker-ui/LoadFields';
 
-export default class Profile extends React.Component<{}, {data:any}> {
+export default class Profile extends React.Component<{}, {mode:string, validation: any, data:any}> {
 
   constructor(props:any){
       super(props);
-      this.state={data:''};
+      this.state={mode:'view',validation:'',data:''};
     }
 
   componentDidMount(){
@@ -25,6 +25,34 @@ export default class Profile extends React.Component<{}, {data:any}> {
         })
   }
 
+  edit(){
+      this.setState({mode: 'edit'});
+    }
+
+  submit(e){
+  e.preventDefault();
+  const form = new FormData(e.target);
+    const dataObject = {};
+    for (let key of Array.from(form.keys())) {
+        dataObject[key] = form.get(key);
+    };
+
+    let url = '/content/update/'+this.state.data.id;
+    FetchWithAuth(process.env.REACT_APP_REMOTE_URL + url, {
+        method: 'POST',
+        body: JSON.stringify(dataObject),
+    }).then((res) => {
+        if (res.ok) {
+          this.setState({mode:'view', data:''});
+          this.fetchProfile();
+        }else {
+            return res.json();
+        }
+    }).then((data)=>{
+        this.setState( {validation: data} )
+    });
+}
+
   render () {
     if( !this.state.data ){
       return '';
@@ -33,8 +61,18 @@ export default class Profile extends React.Component<{}, {data:any}> {
     return (
         <div>
           <h2>My profile</h2>
-          <h3>{this.state.data.name}</h3>
-            <LoadFields mode="view" type={"user"} data={this.state.data}  />
+          <h4>{this.state.data.name}</h4>
+          <form onSubmit={e=>this.submit(e)}>
+            <LoadFields mode={this.state.mode} type={"user"} data={this.state.data} validation={this.state.validation}  />
+              {this.state.mode=='view'&&<div><br />
+                <input type="button" className="btn btn-primary btn-sm" onClick={()=>this.edit()} value="Edit" />
+              </div>}
+              {this.state.mode=='edit'&&<div>
+                <br /><br />
+                <input type="submit" className="btn btn-primary btn-sm" value="Save" /> &nbsp;
+                <input type="button" onClick={()=>this.setState({mode: 'view'})} className="btn btn-light btn-sm" value='Cancel' />
+              </div>}
+            </form>
         </div>
     );
   }
