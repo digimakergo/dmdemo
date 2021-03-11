@@ -53,7 +53,7 @@ Built in template functions, filters can be found here: https://github.com/digim
 
 
 ### Rest api
-See [web/app](blob/master/web/app) for examples.
+See [web/app](web/app) for examples.
 
 [digimaker-ui](https://www.npmjs.com/package/digimaker-ui): To help developing apps, we have created a react library digimaker-ui, which includes some content related components like View, List, Edit, Browse, also some utility components like FileUpload, TreeNode, Fetch etc.
 
@@ -153,7 +153,7 @@ content, validation, err := handler.Create("article", data, 1, 3)
 ### Content model
 Digimaker defines content model in file and generates entities based on the definition. Developers use those entities to manipulate content similar to ORM.
 
-[contenttype.json](blob/master/configs/contenttype.json) defines content model. If there is changes on contenttype.json, run below so it can generate entities under entity folder
+[contenttype.json](configs/contenttype.json) defines content model. If there is changes on contenttype.json, run below so it can generate entities under entity folder
 
 ```
 cd dmdemo
