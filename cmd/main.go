@@ -23,6 +23,9 @@ func main() {
 
 	//host var - can be in another server
 	http.Handle("/var/", http.StripPrefix("/var/", http.FileServer(http.Dir(util.HomePath()+"/var"))))
+
+	http.Handle("/mypage/", http.StripPrefix("/mypage/", http.FileServer(http.Dir(util.HomePath()+"/web/app/build"))))
+
 	http.Handle("/assets/", http.StripPrefix("/assets/", http.FileServer(http.Dir(util.HomePath()+"/web/assets"))))
 
 	//Rest api
