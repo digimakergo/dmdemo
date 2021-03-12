@@ -58,13 +58,6 @@ type User struct{
          
         
     
-         
-         
-         
-            Preferance  fieldtype.JSON `boil:"preferance" json:"preferance" toml:"preferance" yaml:"preferance"`
-         
-        
-    
     
      contenttype.Location `boil:"location,bind"`
     
@@ -138,12 +131,6 @@ func (c *User) ToDBValues() map[string]interface{} {
         
         
     
-        
-        
-            result["preferance"]=c.Preferance
-        
-        
-    
 	for key, value := range c.ContentCommon.ToDBValues() {
 		result[key] = value
 	}
@@ -152,7 +139,7 @@ func (c *User) ToDBValues() map[string]interface{} {
 
 //Get identifier list of fields(NOT including data_fields )
 func (c *User) IdentifierList() []string {
-	return append(c.ContentCommon.IdentifierList(),[]string{ "email","firstname","lastname","login","password","preferance",}...)
+	return append(c.ContentCommon.IdentifierList(),[]string{ "email","firstname","lastname","login","password",}...)
 }
 
 func (c *User) Definition(language ...string) contenttype.ContentType {
@@ -206,13 +193,6 @@ func (c *User) Value(identifier string) interface{} {
         
     
     
-    
-    case "preferance":
-        
-            result = &(c.Preferance)
-        
-    
-    
 	case "cid":
 		result = c.ContentCommon.CID
     default:
@@ -263,14 +243,6 @@ func (c *User) SetValue(identifier string, value interface{}) error {
             
             case "password":
             c.Password = value.(fieldtype.Password)
-            
-            
-        
-            
-            
-            
-            case "preferance":
-            c.Preferance = value.(fieldtype.JSON)
             
             
         

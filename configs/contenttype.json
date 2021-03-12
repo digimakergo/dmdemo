@@ -76,7 +76,7 @@
         "required": false
       }
     ]
-  },  
+  },
   "article": {
     "Name": "Article",
     "table_name": "dm_article",
@@ -254,13 +254,7 @@
         "type": "text",
         "name": "Email",
         "required": true
-      },
-      {
-        "identifier": "preferance",
-        "type": "json",
-        "name": "Preferance",
-        "required": false
-      }
+      }    
     ]
   },
   "image": {
@@ -268,7 +262,7 @@
     "table_name": "dm_image",
     "has_version": false,
     "has_location": false,
-    "data_fields":[ {"identifier":"location_id", "fieldtype":"int"}, {"identifier":"published", "fieldtype":"int"}, {"identifier":"modified", "fieldtype":"int"}, {"identifier":"cuid", "fieldtype":"string"}],
+    "data_fields":[ {"identifier":"location_id", "fieldtype":"int"}, {"identifier":"author", "fieldtype":"int"}, {"identifier":"published", "fieldtype":"int"}, {"identifier":"modified", "fieldtype":"int"}, {"identifier":"cuid", "fieldtype":"string"}],
     "fields": [
       {
         "identifier": "name",

@@ -20,6 +20,8 @@ type Image struct{
      contenttype.ContentEntity `boil:",bind"`
 
      
+          Author  int `boil:"author" json:"author" toml:"author" yaml:"author"`
+     
           Cuid  string `boil:"cuid" json:"cuid" toml:"cuid" yaml:"cuid"`
      
           LocationId  int `boil:"location_id" json:"location_id" toml:"location_id" yaml:"location_id"`
@@ -74,6 +76,8 @@ func (c *Image) ToMap() map[string]interface{}{
 func (c *Image) ToDBValues() map[string]interface{} {
 	result := make(map[string]interface{})
     
+         result["author"]=c.Author
+    
          result["cuid"]=c.Cuid
     
          result["location_id"]=c.LocationId
@@ -115,6 +119,9 @@ func (c *Image) Value(identifier string) interface{} {
     var result interface{}
 	switch identifier {
     
+      case "author":
+         result = c.Author
+    
       case "cuid":
          result = c.Cuid
     
@@ -151,6 +158,9 @@ func (c *Image) Value(identifier string) interface{} {
 //Set value to a field
 func (c *Image) SetValue(identifier string, value interface{}) error {
 	switch identifier {
+        
+          case "author":
+             c.Author = value.(int)
         
           case "cuid":
              c.Cuid = value.(string)
