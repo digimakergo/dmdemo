@@ -31,7 +31,7 @@ export default class Photos extends React.Component<{}, {data:any, showMine:bool
     if( this.state.showMine ){
       showMine='&field.author=1'; //todo: get dynamic
     }
-    FetchWithAuth(process.env.REACT_APP_REMOTE_URL + '/content/list/image?parent='+process.env.REACT_APP_PHOTO_ROOT+'&level=1&sortby=published%20desc&limit=10&offset=0'+showMine)
+    FetchWithAuth(process.env.REACT_APP_REMOTE_URL + '/content/list/image?parent='+process.env.REACT_APP_PHOTO_ROOT+'&level=1&sortby=published%20desc&limit=0&offset=0'+showMine)
         .then(res => res.json())
         .then((data) => {
             this.setState({data: data});
