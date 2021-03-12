@@ -12,13 +12,22 @@ a:hover{
 
 .main{
   max-width: 1280px;
-  min-height: 70vh;
+  min-height: 60vh;
   margin: 20px auto auto auto;
+}
+
+.login{
+  width: 400px;
+  margin: 100px auto 0px auto;
 }
 
 .nav li{
   display:inline-block;
   margin: 5px;
+}
+
+.nav .active{
+  font-weight: bold;
 }
 
 .App-header{
