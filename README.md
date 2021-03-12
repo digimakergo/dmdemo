@@ -66,7 +66,7 @@ See [web/app](web/app) for examples.
 
 - [Photos.tsx](web/app/src/Photos.tsx) Shows how to query images, add content(image) using rest api
 - [Profile.tsx](web/app/src/Profile.tsx) Shows how to show/edit content(user) using components in digimaker-ui
-- [Login.tsx](web/app/src/Profile.tsx) Shows how to get authorization token using rest api
+- [Login.tsx](web/app/src/Login.tsx) Shows how to get authorization token using rest api
 
 [digimaker-ui](https://www.npmjs.com/package/digimaker-ui): To help developing apps, we have created a react library digimaker-ui, which includes some content related components like View, List, Edit, Browse, also some utility components like FileUpload, TreeNode, Fetch etc.
 
