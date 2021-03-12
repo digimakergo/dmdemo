@@ -18,7 +18,7 @@ function App() {
               <h1><Link to="/">Mypage</Link></h1>
               <div className="right"><a href="/">Demo</a></div>
               <ul className="nav">
-                <li><NavLink activeClassName="active" to="/photos">Shared photos</NavLink> </li>
+                <li><NavLink activeClassName="active" to="/">Shared photos</NavLink> </li>
                 <li><NavLink activeClassName="active" to="/profile">Profile</NavLink> </li>
               </ul>
               </div>
@@ -27,7 +27,6 @@ function App() {
               <Switch>
                 <Route path="/login" component={Login}  />
                 <Route path="/profile" component={Profile}  />
-                <Route path="/photos" component={Photos}  />
                 <Route path="/" component={Photos}  />
             </Switch>
               </div>
