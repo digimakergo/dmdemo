@@ -66,7 +66,7 @@ See [web/app](web/app) for examples.
 
 - [Photos.tsx](web/app/src/Photos.tsx) Shows how to query images, add content(image) using rest api
 - [Profile.tsx](web/app/src/Profile.tsx) Shows how to show/edit content(user) using components in digimaker-ui
-- [Login.tsx](web/app/src/Profile.tsx) Shows how to get authorization token using rest api
+- [Login.tsx](web/app/src/Login.tsx) Shows how to get authorization token using rest api
 
 [digimaker-ui](https://www.npmjs.com/package/digimaker-ui): To help developing apps, we have created a react library digimaker-ui, which includes some content related components like View, List, Edit, Browse, also some utility components like FileUpload, TreeNode, Fetch etc.
 
@@ -162,6 +162,29 @@ content, validation, err := handler.Create("article", data, 1, 3)
 #### Manipulate non-content entities(tables)
 
 ### Permissions
+The permission policies is defined under [policies.json](configs/policies.json), and then connect to role and user in the content. policies.json defines permission like 
+ - fetching  based on content type, parent,etc
+ - operations(eg. create content, update, delete) based on content type, parent, author(self)
+ - updated fields when updating - attribute level permission
+ - non-content operation like login, left menu of eui, etc
+
+Example on policies.json:
+```json
+  {
+    "operation": ["content/update", "content/read"],
+    "limited_to": {
+      "contenttype": ["article"],
+      "author": "self"
+    }
+  },
+  {
+      "operation": ["content/create"],
+      "limited_to": {
+      "contenttype": ["image"],
+      "under": [461]
+   }
+  }
+```
 
 ### Content model
 Digimaker defines content model in file and generates entities based on the definition. Developers use those entities to manipulate content similar to ORM.
