@@ -1,4 +1,4 @@
-import React from 'react';
+import React,{Component, useState, useEffect} from 'react';
 import { Switch, HashRouter as Router, Route, NavLink, Link, useLocation } from "react-router-dom";
 import logo from './logo.svg';
 import './App.css';
@@ -7,6 +7,7 @@ import Login from './Login';
 import Profile from './Profile';
 import Photos from './Photos';
 import ErrorBoundary from './ErrorBoundary';
+import {FetchWithAuth} from 'digimaker-ui/util';
 
 function App() {
   return (
@@ -15,11 +16,13 @@ function App() {
         <ErrorBoundary>
               <header className="App-header">
               <div>
+              <div className="right-float">
+                <div><a href="/">Demo home page</a></div><br />
+                <NavLink activeClassName="active" to="/profile"><UserInfo /></NavLink> <br />
+              </div>
               <h1><Link to="/">My page</Link></h1>
-              <div className="right"><a href="/">Demo</a></div>
               <ul className="nav">
                 <li><NavLink activeClassName="active" to="/">Shared photos</NavLink> </li>
-                <li><NavLink activeClassName="active" to="/profile">Profile</NavLink> </li>
               </ul>
               </div>
               </header>
@@ -40,3 +43,20 @@ function App() {
 }
 
 export default App;
+
+const UserInfo=() =>{
+  const [user, setUser] = useState('');
+
+  useEffect(()=>{
+    if( !user ){
+      FetchWithAuth(process.env.REACT_APP_REMOTE_URL + '/user/current/dmdemo').then((res:any)=>res.json())
+         .then((data:any)=>{
+          setUser( data )
+        }).catch(err=>{
+            window.location.href = '/login';
+        });
+    }
+  })
+
+  return user?user['name']:'';
+}

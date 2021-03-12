@@ -13,6 +13,7 @@ a:hover{
 .main{
   max-width: 1280px;
   min-height: 60vh;
+  padding: 0px 10px;
   margin: 20px auto auto auto;
 }
 
@@ -119,4 +120,8 @@ h2{
 
 .file-upload + img{
   max-width: 200px;
+}
+
+.right-float{
+  float: right;
 }
