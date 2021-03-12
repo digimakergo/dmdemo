@@ -2,7 +2,7 @@
 
 ***(Note. This demo project is still ongoing so documentation/code might not work.)***
 
-A demo project of digimaker CMF. which has minimal setup and works straight forward.
+A demo project of digimaker CMF, including a minimal website, web app and editorial backend setup.
 
 You can just clone this project and do some configuration and it can be your initialized project.
 
@@ -21,6 +21,15 @@ Run the demo
  dmapp=. go run cmd/main.go
 ```
   View frontend: http://localhost:9200
+
+Build frontend webapp
+
+```sh
+   cd web/app
+   npm install
+   npm run build
+```
+  View frontend webapp: http://localhost:9200/mypage
 
  #### Backend
   Suggest to clone eui into web/eui, see project structure in the bottom
