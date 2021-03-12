@@ -18,7 +18,7 @@ export default class Profile extends React.Component<{}, {mode:string, validatio
 
   //fetch profile data
   fetchProfile(){
-    FetchWithAuth(process.env.REACT_APP_REMOTE_URL + '/user/current/admin')
+    FetchWithAuth(process.env.REACT_APP_REMOTE_URL + '/user/current/dmdemo')
         .then(res => res.json())
         .then((data) => {
             this.setState({data: data});
@@ -62,7 +62,7 @@ export default class Profile extends React.Component<{}, {mode:string, validatio
     if( !this.state.data ){
       return <Loading />;
     }
-    
+
     return (
         <div>
           <h2>My profile</h2>
