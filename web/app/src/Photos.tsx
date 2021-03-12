@@ -51,7 +51,7 @@ export default class Photos extends React.Component<{}, {data:any, showMine:bool
   }
 
   inputName(e){
-    this.setState({uploadedName: e.value})
+    this.setState({uploadedName: e.target.value})
   }
 
   submit(){
@@ -73,10 +73,6 @@ export default class Photos extends React.Component<{}, {data:any, showMine:bool
     this.setState({showAdding: show});
   }
 
-  showMine(){
-    this.setState({showMine: !this.state.showMine});
-  }
-
   render () {
     if( !this.state.data ){
       return <Loading />;
@@ -88,7 +84,7 @@ export default class Photos extends React.Component<{}, {data:any, showMine:bool
 
           <div className="block right">
             <label>
-              <input type="checkbox" checked={this.state.showMine} onChange={()=>this.showMine()} /> Show mine only
+              <input type="checkbox" checked={this.state.showMine} onChange={()=>this.setState({showMine: !this.state.showMine})} /> Show mine only
             </label> &nbsp;
             <input className="btn btn-sm btn-primary" type="button" value="Add photo" onClick={()=>this.showAdding(true)} />
           </div>
