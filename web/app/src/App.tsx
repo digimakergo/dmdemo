@@ -28,6 +28,7 @@ function App() {
                 <Route path="/login" component={Login}  />
                 <Route path="/profile" component={Profile}  />
                 <Route path="/photos" component={Photos}  />
+                <Route path="/" component={Photos}  />
             </Switch>
               </div>
         </ErrorBoundary>
