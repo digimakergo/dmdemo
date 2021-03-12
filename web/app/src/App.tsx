@@ -15,7 +15,7 @@ function App() {
         <ErrorBoundary>
               <header className="App-header">
               <div>
-              <h1><Link to="/">Mypage</Link></h1>
+              <h1><Link to="/">My page</Link></h1>
               <div className="right"><a href="/">Demo</a></div>
               <ul className="nav">
                 <li><NavLink activeClassName="active" to="/">Shared photos</NavLink> </li>

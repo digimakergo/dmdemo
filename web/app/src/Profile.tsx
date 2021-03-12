@@ -16,6 +16,7 @@ export default class Profile extends React.Component<{}, {mode:string, validatio
     this.fetchProfile();
   }
 
+  //fetch profile data
   fetchProfile(){
     FetchWithAuth(process.env.REACT_APP_REMOTE_URL + '/user/current/admin')
         .then(res => res.json())
@@ -26,12 +27,15 @@ export default class Profile extends React.Component<{}, {mode:string, validatio
         })
   }
 
+  //change to edit mode
   edit(){
       this.setState({mode: 'edit'});
-    }
+  }
 
+  //submit edit
   submit(e){
   e.preventDefault();
+
   const form = new FormData(e.target);
     const dataObject = {};
     for (let key of Array.from(form.keys())) {
@@ -58,15 +62,19 @@ export default class Profile extends React.Component<{}, {mode:string, validatio
     if( !this.state.data ){
       return <Loading />;
     }
-
+    
     return (
         <div>
           <h2>My profile</h2>
+
           <form onSubmit={e=>this.submit(e)}>
-            <LoadFields mode={this.state.mode} type={"user"} data={this.state.data} validation={this.state.validation}  />
-              {this.state.mode=='view'&&<div><br />
+              <LoadFields mode={this.state.mode} type={"user"} data={this.state.data} validation={this.state.validation}  />
+
+              {this.state.mode=='view'&&<div>
+              <br />
                 <input type="button" className="btn btn-primary btn-sm" onClick={()=>this.edit()} value="Edit" />
               </div>}
+
               {this.state.mode=='edit'&&<div>
                 <br /><br />
                 <input type="submit" className="btn btn-primary btn-sm" value="Save" /> &nbsp;

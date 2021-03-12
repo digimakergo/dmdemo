@@ -19,13 +19,13 @@ export default class Photos extends React.Component<{}, {data:any, showMine:bool
   }
 
   componentDidUpdate( prevProps, prevState, snapshot ){
-    //when changing page
     if( prevState.showMine != this.state.showMine)
     {
       this.fetchPhotos();
     }
   }
 
+  //fetch photo data
   fetchPhotos(){
     let showMine = '';
     if( this.state.showMine ){
@@ -40,8 +40,8 @@ export default class Photos extends React.Component<{}, {data:any, showMine:bool
         })
   }
 
-
-  updated(data){
+  //after image is uploaded
+  uploaded(data){
     let name = this.state.uploadedName;
     if( !name ){
       name = data.name;
@@ -50,10 +50,12 @@ export default class Photos extends React.Component<{}, {data:any, showMine:bool
     this.setState({uploadedPath: data.nameUploaded, uploadedName: name})
   }
 
+  //when inputing name
   inputName(e){
     this.setState({uploadedName: e.target.value})
   }
 
+  //submit adding photo
   submit(){
     let dataObject = {'name': this.state.uploadedName, 'image': this.state.uploadedPath};
     FetchWithAuth(process.env.REACT_APP_REMOTE_URL + '/content/new/' + process.env.REACT_APP_PHOTO_ROOT + '/image', {
@@ -69,6 +71,7 @@ export default class Photos extends React.Component<{}, {data:any, showMine:bool
     });
   }
 
+  //show/hide adding panel
   showAdding(show:boolean){
     this.setState({showAdding: show});
   }
@@ -90,39 +93,45 @@ export default class Photos extends React.Component<{}, {data:any, showMine:bool
             <input className="btn btn-sm btn-primary" type="button" value="Add photo" onClick={()=>this.showAdding(true)} />
           </div>
 
-          {this.state.showAdding&&<div className="panel-add">
-            <h3>Add photo</h3>
+          {this.state.showAdding&&
+            <div className="panel-add">
+              <h3>Add photo</h3>
 
-            <div className="block">
-              <label>Upload image: </label>
-              <FileUpload service="content" format="image/*" onSuccess={(data)=>{this.updated(data)}} />
-              {this.state.uploadedPath&&<img src={process.env.REACT_APP_ASSET_URL+"/"+this.state.uploadedPath} />}
-            </div>
-
-            <div className="block">
-              <label>Name: </label>
-              <input className="form-control" type="text" onChange={(e)=>this.inputName(e)} value={this.state.uploadedName} />
-            </div>
-
-            <div className="block">
-              <input className="btn btn-sm btn-primary" type="button" value="Submit" onClick={()=>this.submit()} /> &nbsp;
-              <input className="btn btn-sm btn-secondary" type="button" value="Cancel" onClick={()=>this.showAdding(false)} />
-            </div>
-          </div>}
-
-          <div className="gallery">
-            {this.state.data.list.map( (item) => <div className="gallery-item">
-              <div className="gallery-item-header">{item.name}</div>
-              <div>
-                <a target="_blank" href={process.env.REACT_APP_ASSET_URL+"/"+item.image} >
-                  <img src={process.env.REACT_APP_ASSET_URL+"/images/thumbnail/"+item.image} />
-                </a>
+              <div className="block">
+                <label>Upload image: </label>
+                <FileUpload service="content" format="image/*" onSuccess={(data)=>{this.uploaded(data)}} />
+                {this.state.uploadedPath&&<img src={process.env.REACT_APP_ASSET_URL+"/"+this.state.uploadedPath} />}
               </div>
-              <div className="gallery-item-author">
-                {item.author} on <Moment format="YYYY-MM-DD HH:mm" unix>{item.modified}</Moment>
-                </div>
-              </div> )}
-          </div>
+
+              <div className="block">
+                <label>Name: </label>
+                <input className="form-control" type="text" onChange={(e)=>this.inputName(e)} value={this.state.uploadedName} />
+              </div>
+
+              <div className="block">
+                <input className="btn btn-sm btn-primary" type="button" value="Submit" onClick={()=>this.submit()} /> &nbsp;
+                <input className="btn btn-sm btn-secondary" type="button" value="Cancel" onClick={()=>this.showAdding(false)} />
+              </div>
+            </div>}
+
+            <div className="gallery">
+              {this.state.data.list.map( (item) =>
+                <div className="gallery-item">
+                  <div className="gallery-item-header">{item.name}</div>
+
+                  <div>
+                      <a target="_blank" href={process.env.REACT_APP_ASSET_URL+"/"+item.image} >
+                        <img src={process.env.REACT_APP_ASSET_URL+"/images/thumbnail/"+item.image} />
+                      </a>
+                  </div>
+
+                  <div className="gallery-item-author">
+                    {item.author} on <Moment format="YYYY-MM-DD HH:mm" unix>{item.modified}</Moment>
+                  </div>
+
+                </div> )}
+            </div>
+
         </div>
     );
   }
