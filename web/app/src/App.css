@@ -116,3 +116,7 @@ footer{
 h2{
   margin-bottom: 30px;
 }
+
+.file-upload + img{
+  max-width: 200px;
+}

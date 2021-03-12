@@ -85,20 +85,25 @@ export default class Photos extends React.Component<{}, {data:any, showMine:bool
           <div className="block right">
             <label>
               <input type="checkbox" checked={this.state.showMine} onChange={()=>this.setState({showMine: !this.state.showMine})} /> Show mine only
-            </label> &nbsp;
+            </label>
+            &nbsp;
             <input className="btn btn-sm btn-primary" type="button" value="Add photo" onClick={()=>this.showAdding(true)} />
           </div>
 
           {this.state.showAdding&&<div className="panel-add">
             <h3>Add photo</h3>
+
             <div className="block">
-            <label>Upload image: </label><FileUpload service="content" format="image/*" onSuccess={(data)=>{this.updated(data)}} />
-            {this.state.uploadedPath&&<img src={process.env.REACT_APP_ASSET_URL+"/"+this.state.uploadedPath} />}
+              <label>Upload image: </label>
+              <FileUpload service="content" format="image/*" onSuccess={(data)=>{this.updated(data)}} />
+              {this.state.uploadedPath&&<img src={process.env.REACT_APP_ASSET_URL+"/"+this.state.uploadedPath} />}
             </div>
+
             <div className="block">
-            <label>Name: </label>
-            <input className="form-control" type="text" onChange={(e)=>this.inputName(e)} value={this.state.uploadedName} />
+              <label>Name: </label>
+              <input className="form-control" type="text" onChange={(e)=>this.inputName(e)} value={this.state.uploadedName} />
             </div>
+
             <div className="block">
               <input className="btn btn-sm btn-primary" type="button" value="Submit" onClick={()=>this.submit()} /> &nbsp;
               <input className="btn btn-sm btn-secondary" type="button" value="Cancel" onClick={()=>this.showAdding(false)} />
@@ -108,8 +113,14 @@ export default class Photos extends React.Component<{}, {data:any, showMine:bool
           <div className="gallery">
             {this.state.data.list.map( (item) => <div className="gallery-item">
               <div className="gallery-item-header">{item.name}</div>
-              <div><a target="_blank" href={process.env.REACT_APP_ASSET_URL+"/"+item.image} ><img src={process.env.REACT_APP_ASSET_URL+"/images/thumbnail/"+item.image} /></a></div>
-              <div className="gallery-item-author">{item.author} on <Moment format="YYYY-MM-DD HH:mm" unix>{item.modified}</Moment></div>
+              <div>
+                <a target="_blank" href={process.env.REACT_APP_ASSET_URL+"/"+item.image} >
+                  <img src={process.env.REACT_APP_ASSET_URL+"/images/thumbnail/"+item.image} />
+                </a>
+              </div>
+              <div className="gallery-item-author">
+                {item.author} on <Moment format="YYYY-MM-DD HH:mm" unix>{item.modified}</Moment>
+                </div>
               </div> )}
           </div>
         </div>
