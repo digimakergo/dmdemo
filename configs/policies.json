@@ -32,7 +32,7 @@
           "limited_to": {
             "contenttype": "user",
             "cid": "self",
-            "fields": ["password","firstname", "lastname", "email"]
+            "fields": ["login", "password","firstname", "lastname", "email"]
           }
         },
         {
