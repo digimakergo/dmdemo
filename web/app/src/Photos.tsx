@@ -2,6 +2,8 @@ import * as React from 'react';
 import DMInit from 'digimaker-ui/DMInit'
 import {FetchWithAuth} from 'digimaker-ui/util';
 import util from 'digimaker-ui/util';
+import Moment from 'react-moment';
+import Loading from './Loading';
 import FileUpload from 'digimaker-ui/FileUpload';
 
 
@@ -77,7 +79,7 @@ export default class Photos extends React.Component<{}, {data:any, showMine:bool
 
   render () {
     if( !this.state.data ){
-      return '';
+      return <Loading />;
     }
 
     return (
@@ -92,6 +94,7 @@ export default class Photos extends React.Component<{}, {data:any, showMine:bool
           </div>
 
           {this.state.showAdding&&<div className="panel-add">
+            <h3>Add photo</h3>
             <div className="block">
             <label>Upload image: </label><FileUpload service="content" format="image/*" onSuccess={(data)=>{this.updated(data)}} />
             {this.state.uploadedPath&&<img src={process.env.REACT_APP_ASSET_URL+"/"+this.state.uploadedPath} />}
@@ -101,16 +104,16 @@ export default class Photos extends React.Component<{}, {data:any, showMine:bool
             <input className="form-control" type="text" onChange={(e)=>this.inputName(e)} value={this.state.uploadedName} />
             </div>
             <div className="block">
-              <input className="btn btn-sm btn-primary" type="button" value="Submit" onClick={()=>this.submit()} />
-              <input className="btn btn-sm btn-default" type="button" value="Cancel" onClick={()=>this.showAdding(false)} />
+              <input className="btn btn-sm btn-primary" type="button" value="Submit" onClick={()=>this.submit()} /> &nbsp;
+              <input className="btn btn-sm btn-secondary" type="button" value="Cancel" onClick={()=>this.showAdding(false)} />
             </div>
           </div>}
 
           <div className="gallery">
             {this.state.data.list.map( (item) => <div className="gallery-item">
               <div className="gallery-item-header">{item.name}</div>
-              <div><img src={process.env.REACT_APP_ASSET_URL+"/"+item.image} /></div>
-              <div>{item.author}</div>
+              <div><a target="_blank" href={process.env.REACT_APP_ASSET_URL+"/"+item.image} ><img src={process.env.REACT_APP_ASSET_URL+"/images/thumbnail/"+item.image} /></a></div>
+              <div className="gallery-item-author">{item.author} on <Moment format="YYYY-MM-DD HH:mm" unix>{item.modified}</Moment></div>
               </div> )}
           </div>
         </div>

@@ -1,8 +1,9 @@
 a{
-
+color: #208e41
 }
 
 a:hover{
+  color: #0e5524;
   text-decoration: none;
 }
 
@@ -11,6 +12,7 @@ a:hover{
 
 .main{
   max-width: 1280px;
+  min-height: 70vh;
   margin: 20px auto auto auto;
 }
 
@@ -40,7 +42,9 @@ a:hover{
 .gallery-item{
   display: inline-grid;
   padding: 20px;
-  border: 1px solid #cccccc;
+  border: 1px solid #f0f0f0;
+  box-shadow: 1px 1px 2px #e1e1e1;
+  background: #fcfcfc;
   border-radius: 5px;
   text-align:center;
 }
@@ -57,6 +61,15 @@ a:hover{
   margin: auto
 }
 
+.gallery-item img:hover{
+  filter: brightness(120%);
+}
+
+.gallery-item-author{
+  font-size: 0.9rem;
+  color: #666666;
+}
+
 .block{
   margin: 10px auto 10px auto;
 }
@@ -67,4 +80,30 @@ a:hover{
 
 .right{
   text-align: right;
+}
+
+.loading{
+  width: 50px;
+  margin: 100px auto;
+}
+
+.loading img{
+  max-width: 100%;
+}
+
+footer{
+  margin-top: 20px;
+  border-top: 1px solid #cfcfcf;
+  text-align: center;
+  font-size: 0.9rem;
+  background: #f0f0f0;
+  padding: 40px 0px;
+}
+
+.content-fields > div{
+  margin: 15px auto;
+}
+
+h2{
+  margin-bottom: 30px;
 }

@@ -32,6 +32,9 @@ function App() {
               </div>
         </ErrorBoundary>
         </Router>
+        <footer>
+           Demo based on <a href="http://github.com/digimakergo/digimaker" target="_blank">Digmaker CMF</a> under MIT license
+        </footer>
     </div>
   );
 }

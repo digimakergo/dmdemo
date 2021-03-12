@@ -3,6 +3,7 @@ import DMInit from 'digimaker-ui/DMInit'
 import {FetchWithAuth} from 'digimaker-ui/util';
 import util from 'digimaker-ui/util';
 import LoadFields from 'digimaker-ui/LoadFields';
+import Loading from './Loading';
 
 export default class Profile extends React.Component<{}, {mode:string, validation: any, data:any}> {
 
@@ -55,13 +56,12 @@ export default class Profile extends React.Component<{}, {mode:string, validatio
 
   render () {
     if( !this.state.data ){
-      return '';
+      return <Loading />;
     }
 
     return (
         <div>
           <h2>My profile</h2>
-          <h4>{this.state.data.name}</h4>
           <form onSubmit={e=>this.submit(e)}>
             <LoadFields mode={this.state.mode} type={"user"} data={this.state.data} validation={this.state.validation}  />
               {this.state.mode=='view'&&<div><br />
