@@ -36,7 +36,7 @@ View backend: http://localhost:3000 and Login with `admin/Digimaker`
 Development
 -------
 
-### Website Templating
+### Website, Templating
 
 #### Override rule
 
@@ -52,8 +52,12 @@ Example:
 Built in template functions, filters can be found here: https://github.com/digimakergo/digimaker/tree/master/sitekit
 
 
-### Rest api
+### Web App
 See [web/app](web/app) for examples.
+
+- [Photos.tsx](web/app/src/Photos.tsx) Shows how to query images, add content(image) using rest api
+- [Profile.tsx](web/app/src/Profile.tsx) Shows how to show/edit content(user) using components in digimaker-ui
+- [Login.tsx](web/app/src/Profile.tsx) Shows how to get authorization token using rest api
 
 [digimaker-ui](https://www.npmjs.com/package/digimaker-ui): To help developing apps, we have created a react library digimaker-ui, which includes some content related components like View, List, Edit, Browse, also some utility components like FileUpload, TreeNode, Fetch etc.
 
@@ -113,7 +117,7 @@ Response:
 }
 ```
 
-### Go api
+### Server side Go api
 Go apis include
 - Query content
 - Manipulate content(eg. create, update, delete), version
@@ -144,7 +148,7 @@ handler := ContentHandler{}
 content, validation, err := handler.Create("article", data, 1, 3)
 ```
 
-#### Callbacks
+#### Callbacks(Events)
 
 #### Manipulate non-content entities(tables)
 
