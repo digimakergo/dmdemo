@@ -6,7 +6,7 @@ A demo project of digimaker CMF, including a minimal website, web app and editor
 
 You can just clone this project and do some configuration and it can be your initialized project.
 
-For full documentation and references, please visit [https://doc.digimaker.org](https://doc.digimaker.org)
+For full documentation and references, please visit [https://digimaker.org/doc](https://digimaker.org/doc)
 
 Run the demo
 -------
