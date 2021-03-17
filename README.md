@@ -30,7 +30,7 @@ Build frontend webapp
    cd web/app
    npm install
    npm run build
-   (or just "npm run" and visit http://localhost:3000)
+   (or just "npm start" and visit http://localhost:3000)
 ```
   View frontend webapp: http://localhost:9200/mypage
 
