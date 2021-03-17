@@ -6,6 +6,8 @@ A demo project of digimaker CMF, including a minimal website, web app and editor
 
 You can just clone this project and do some configuration and it can be your initialized project.
 
+For full documentation and references, please visit [https://digimaker.org/doc](https://digimaker.org/doc)
+
 Run the demo
 -------
 #### Frontend
@@ -29,7 +31,7 @@ Build frontend webapp
    npm install
    npm run build
 ```
-  View frontend webapp: http://localhost:9200/mypage
+  View frontend webapp: http://localhost:9200/mypage (login with member/digimaker)
 
  #### Backend
   Suggest to clone eui into web/eui, see project structure in the bottom
