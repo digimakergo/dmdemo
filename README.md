@@ -31,7 +31,7 @@ Build frontend webapp
    npm install
    npm run build
 ```
-  View frontend webapp: http://localhost:9200/mypage
+  View frontend webapp: http://localhost:9200/mypage (login with member/digimaker)
 
  #### Backend
   Suggest to clone eui into web/eui, see project structure in the bottom
