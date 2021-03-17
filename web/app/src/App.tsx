@@ -53,7 +53,7 @@ const UserInfo=() =>{
          .then((data:any)=>{
           setUser( data )
         }).catch(err=>{
-            window.location.href = '/login';
+            window.location.href = '#login';
         });
     }
   })

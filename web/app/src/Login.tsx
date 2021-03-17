@@ -31,7 +31,7 @@ export default class Login extends React.Component<{}, {username:string, passwor
   handleErrors(response) {
     if (!response.ok){
          if( response.status == 400 ){
-             throw new Error( 'Ugyldig brukernavn eller passord.' );
+             throw new Error( 'Not valid username or password' );
           }else{
           throw new Error(response.status);
           }
