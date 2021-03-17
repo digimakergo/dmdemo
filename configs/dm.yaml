@@ -15,6 +15,13 @@ database:
    password: dmdemo
    database: dmdemo
 
+
+user:
+  unique_email: true
+
+site_settings:
+    site_user: 2 ##web site user when visiting
+
 #todo: use path
 sites:
   - identifier: dmdemo
@@ -35,7 +42,7 @@ sites:
       - "test" # todo: idea to support package like "<packagename>, test"
 
 rest:
-  upload_file_auth: true #auth upload file or not
+  upload_file_auth: false #auth upload file or not
 
 rest_list_fields:
    report: ["cid", "version", "published", "modified", "author", "author_name", "cuid", "status"]

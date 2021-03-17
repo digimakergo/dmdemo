@@ -30,8 +30,12 @@ Build frontend webapp
    cd web/app
    npm install
    npm run build
+   (or just "npm run" and visit http://localhost:3000)
 ```
-  View frontend webapp: http://localhost:9200/mypage (login with member/digimaker)
+  View frontend webapp: http://localhost:9200/mypage
+
+  (login with member/digimaker)
+
 
  #### Backend
   Suggest to clone eui into web/eui, see project structure in the bottom
@@ -164,7 +168,7 @@ content, validation, err := handler.Create("article", data, 1, 3)
 #### Manipulate non-content entities(tables)
 
 ### Permissions
-The permission policies is defined under [policies.json](configs/policies.json), and then connect to role and user in the content. policies.json defines permission like 
+The permission policies is defined under [policies.json](configs/policies.json), and then connect to role and user in the content. policies.json defines permission like
  - fetching  based on content type, parent,etc
  - operations(eg. create content, update, delete) based on content type, parent, author(self)
  - updated fields when updating - attribute level permission
