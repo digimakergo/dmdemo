@@ -9,12 +9,13 @@ You can just clone this project and do some configuration and it can be your ini
 For full documentation and references, please visit [https://digimaker.org/doc](https://digimaker.org/doc)
 
 Run the demo
-**Reuirements:**
+-------
+
+#### Requirements:
 - Go version >= 1.2(recommand >= 1.3)
 - Mysql database(only support mysql for now)
 - npm(dev only)
 
--------
 #### Frontend
 ```sh
  //clone it.
