@@ -10,6 +10,12 @@ For full documentation and references, please visit [https://digimaker.org/doc](
 
 Run the demo
 -------
+
+#### Requirements:
+- Go version >= 1.2(recommand >= 1.3)
+- Mysql database(only support mysql for now)
+- npm(dev only)
+
 #### Frontend
 ```sh
  //clone it.
