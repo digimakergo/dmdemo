@@ -126,7 +126,7 @@ export default class Photos extends React.Component<{}, {data:any, showMine:bool
                   </div>
 
                   <div className="gallery-item-author">
-                    {item.author} on <Moment format="YYYY-MM-DD HH:mm" unix>{item.modified}</Moment>
+                    <span className="author">{item.author_name}</span> on <Moment format="YYYY-MM-DD HH:mm" unix>{item.modified}</Moment>
                   </div>
 
                 </div> )}

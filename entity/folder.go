@@ -7,6 +7,7 @@ import (
     "context"
     "database/sql"
     "github.com/digimakergo/digimaker/core/db"
+    "github.com/digimakergo/digimaker/core/definition"
     "github.com/digimakergo/digimaker/core/contenttype"
 	  "github.com/digimakergo/digimaker/core/fieldtype"
     
@@ -107,8 +108,8 @@ func (c *Folder) IdentifierList() []string {
 	return append(c.ContentCommon.IdentifierList(),[]string{ "summary","title",}...)
 }
 
-func (c *Folder) Definition(language ...string) contenttype.ContentType {
-	def, _ := contenttype.GetDefinition( c.ContentType(), language... )
+func (c *Folder) Definition(language ...string) definition.ContentType {
+	def, _ := definition.GetDefinition( c.ContentType(), language... )
     return def
 }
 

@@ -7,6 +7,7 @@ import (
     "context"
     "database/sql"
     "github.com/digimakergo/digimaker/core/db"
+    "github.com/digimakergo/digimaker/core/definition"
     "github.com/digimakergo/digimaker/core/contenttype"
 	  "github.com/digimakergo/digimaker/core/fieldtype"
     
@@ -131,8 +132,8 @@ func (c *Frontpage) IdentifierList() []string {
 	return append(c.ContentCommon.IdentifierList(),[]string{ "mainarea","mainarea_blocks","sidearea","sidearea_blocks","slideshow","title",}...)
 }
 
-func (c *Frontpage) Definition(language ...string) contenttype.ContentType {
-	def, _ := contenttype.GetDefinition( c.ContentType(), language... )
+func (c *Frontpage) Definition(language ...string) definition.ContentType {
+	def, _ := definition.GetDefinition( c.ContentType(), language... )
     return def
 }
 

@@ -76,8 +76,12 @@ a:hover{
 }
 
 .gallery-item-author{
-  font-size: 0.9rem;
+  font-size: 0.85rem;
   color: #666666;
+}
+
+.gallery-item-author .author{
+  color: green;
 }
 
 .block{
