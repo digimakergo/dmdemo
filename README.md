@@ -156,7 +156,7 @@ content, err := query.FetchByID(context, id)
 List:
 ```go
 //20 top articles where author is 5
-list, count, err := query.SubList(ctx, rootContent, "article", 10,  1, db.Cond("author", 5), []int{0, 20}, []string{"modified desc"}, true)
+list, count, err := query.SubList(ctx, rootContent, "article", 10,  1, db.Cond("author", 5).Sortby("modified desc").Limit(0, 20) )
 ```
 
 #### Manipulate content
