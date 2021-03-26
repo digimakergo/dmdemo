@@ -164,8 +164,7 @@ Publish an article by user 1:
 ```go
 data := map[string]interface{}{"title": "title only"}
 // parent is 3, author is 1
-handler := ContentHandler{}
-content, validation, err := handler.Create("article", data, 1, 3)
+content, validation, err := handler.Create(ctx, "article", data, 1, 3)
 ```
 
 #### Callbacks(Events)
