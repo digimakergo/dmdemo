@@ -1,5 +1,4 @@
 
-
 ***(Note. This demo project is still ongoing so documentation/code might not work.)***
 
 A demo project of digimaker CMF, including a minimal website, web app and editorial backend setup.
@@ -155,8 +154,8 @@ content, err := query.FetchByID(context, id)
 
 List:
 ```go
-//20 top articles where author is 5
-list, count, err := query.SubList(ctx, rootContent, "article", 10,  1, db.Cond("author", 5).Sortby("modified desc").Limit(0, 20) )
+//20 top articles where author is 5 under rootContent
+list, count, err := query.SubList(ctx, 1, rootContent, "article", 10, db.Cond("author", 5).Sortby("modified desc").Limit(0, 20) )
 ```
 
 #### Manipulate content
