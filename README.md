@@ -1,5 +1,4 @@
 
-
 ***(Note. This demo project is still ongoing so documentation/code might not work.)***
 
 A demo project of digimaker CMF, including a minimal website, web app and editorial backend setup.
@@ -59,8 +58,6 @@ Development
 
 ### Website, Templating
 
-#### Override rule
-
 First you need to define a template override rule under [configs/template_override.yaml](https://github.com/digimakergo/dmdemo/blob/master/configs/template_override.yaml) (and template_override-dmdemo.yaml), then you can do the templating in that template file.  
 
 Example:
@@ -68,9 +65,9 @@ Example:
 - [Display frontpage](https://github.com/digimakergo/dmdemo/tree/master/web/templates/demo/folder/frontpage.html)
 - [Layout](https://github.com/digimakergo/dmdemo/tree/master/web/templates/demo/base.html)
 
+Check docs to see all template override rules: [https://digimaker.org/doc/references/template-override](https://digimaker.org/doc/references/template-override)
 
-#### Template functions/filters/macro
-Built in template functions, filters can be found here: https://github.com/digimakergo/digimaker/tree/master/sitekit
+Check docs to see all references: [https://digimaker.org/doc/references/template](https://digimaker.org/doc/references/template)
 
 
 ### Web App
@@ -80,100 +77,12 @@ See [web/app](web/app) for examples.
 - [Profile.tsx](web/app/src/Profile.tsx) Shows how to show/edit content(user) using components in digimaker-ui
 - [Login.tsx](web/app/src/Login.tsx) Shows how to get authorization token using rest api
 
-[digimaker-ui](https://www.npmjs.com/package/digimaker-ui): To help developing apps, we have created a react library digimaker-ui, which includes some content related components like View, List, Edit, Browse, also some utility components like FileUpload, TreeNode, Fetch etc.
+Check docs to see rest api: [https://digimaker.org/doc/references/rest](https://digimaker.org/doc/references/rest)
 
-Rest api includes query, manipulating of content, and is extendable.
+Check docs to see full react components: [https://digimaker.org/doc/references/digimaker-ui](https://digimaker.org/doc/references/digimaker-ui)
 
-Get content by id:
-Request: `/content/get/3`
-Response:
-```json
-{
-  "cid": 3,
-  "version": 0,
-  "published": 1560534450,
-  "modified": 1615464230,
-  "cuid": "bk1trcli6ekibbmo2cj0",
-  "status": 1,
-  "author": 1,
-  "author_name": "Administrator Admin",
-  "relations": {},
-  "folder_type": "site",
-  "summary": "<p>This is a demo site.</p>",
-  "title": "Demo",
-  "id": 3,
-  ...
-}
-```
-Get content list:
-Request: `/content/list/folder?parent=3&level=1&sortby=priority%20desc%3Bmodified%20desc&limit=20&offset=0`
-Response:
-```json
-{
-  "list": [
-    {
-      "cid": 28,
-      "version": 0,
-      "published": 1614682043,
-      "modified": 1614682043,
-      "cuid": "c0v1feuvvhfup2usch5g",
-      "status": 0,
-      "author": 1,
-      "author_name": "Administrator Admin",
-      ...
-    },
-    {
-      "cid": 27,
-      "version": 0,
-      "published": 1614682022,
-      "modified": 1614682022,
-      "cuid": "c0v1f9mvvhfup2usch4g",
-      "status": 0,
-      "author": 1,
-      "author_name": "Administrator Admin",
-      ...
-    }
-  ],
-  "count": 2
-}
-```
 
-### Server side Go api
-Go apis include
-- Query content
-- Manipulate content(eg. create, update, delete), version
-- Query/manipulate non-content entities(mapping to table)
-- Permission
-- Log
-
-#### Query content
-
-Query by id:
-```go
-content, err := query.FetchByID(context, id)
-```
-
-List:
-```go
-//20 top articles where author is 5
-list, count, err := query.SubList(ctx, rootContent, "article", 10,  1, db.Cond("author", 5), []int{0, 20}, []string{"modified desc"}, true)
-```
-
-#### Manipulate content
-Publish an article by user 1:
-
-```go
-data := map[string]interface{}{"title": "title only"}
-// parent is 3, author is 1
-handler := ContentHandler{}
-content, validation, err := handler.Create("article", data, 1, 3)
-```
-
-#### Callbacks(Events)
-
-#### Manipulate non-content entities(tables)
-
-### Permissions
+### Permission configure
 The permission policies is defined under [policies.json](configs/policies.json), and then connect to role and user in the content. policies.json defines permission like
  - fetching  based on content type, parent,etc
  - operations(eg. create content, update, delete) based on content type, parent, author(self)
@@ -197,6 +106,8 @@ Example on policies.json:
    }
   }
 ```
+
+Check docs to see policies configuration: [https://digimaker.org/doc/references/policies](https://digimaker.org/doc/references/policies)
 
 ### Content model
 Digimaker defines content model in file and generates entities based on the definition. Developers use those entities to manipulate content similar to ORM.
