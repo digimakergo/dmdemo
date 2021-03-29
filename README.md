@@ -83,40 +83,6 @@ See [web/app](web/app) for examples.
 
 Rest api includes query, manipulating of content, and is extendable.
 
-### Server side Go api
-Go apis include
-- Query content
-- Manipulate content(eg. create, update, delete), version
-- Query/manipulate non-content entities(mapping to table)
-- Permission
-- Log
-
-#### Query content
-
-Query by id:
-```go
-content, err := query.FetchByID(context, id)
-```
-
-List:
-```go
-//20 top articles where author is 5 under rootContent
-list, count, err := query.SubList(ctx, 1, rootContent, "article", 10, db.Cond("author", 5).Sortby("modified desc").Limit(0, 20) )
-```
-
-#### Manipulate content
-Publish an article by user 1:
-
-```go
-data := map[string]interface{}{"title": "title only"}
-// parent is 3, author is 1
-content, validation, err := handler.Create(ctx, "article", data, 1, 3)
-```
-
-#### Callbacks(Events)
-
-#### Manipulate non-content entities(tables)
-
 ### Permissions
 The permission policies is defined under [policies.json](configs/policies.json), and then connect to role and user in the content. policies.json defines permission like
  - fetching  based on content type, parent,etc
