@@ -186,15 +186,14 @@ func (c *Folder) SetValue(identifier string, value interface{}) error {
 //Store content.
 //Note: it will set id to CID after success
 func (c *Folder) Store(ctx context.Context, transaction ...*sql.Tx) error {
-	handler := db.DBHanlder()
 	if c.CID == 0 {
-		id, err := handler.Insert(ctx, c.TableName(), c.ToDBValues(), transaction...)
+		id, err := db.Insert(ctx, c.TableName(), c.ToDBValues(), transaction...)
 		c.CID = id
 		if err != nil {
 			return err
 		}
 	} else {
-		err := handler.Update(ctx, c.TableName(), c.ToDBValues(), Cond("id", c.CID), transaction...)
+		err := db.Update(ctx, c.TableName(), c.ToDBValues(), Cond("id", c.CID), transaction...)
     if err != nil {
 			return err
 		}
@@ -214,8 +213,7 @@ func (c *Folder)StoreWithLocation(){
 
 //Delete content only
 func (c *Folder) Delete(ctx context.Context, transaction ...*sql.Tx) error {
-	handler := db.DBHanlder()
-	contentError := handler.Delete(ctx, c.TableName(), Cond("id", c.CID), transaction...)
+	contentError := db.Delete(ctx, c.TableName(), Cond("id", c.CID), transaction...)
 	return contentError
 }
 
