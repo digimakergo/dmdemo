@@ -58,8 +58,6 @@ Development
 
 ### Website, Templating
 
-#### Override rule
-
 First you need to define a template override rule under [configs/template_override.yaml](https://github.com/digimakergo/dmdemo/blob/master/configs/template_override.yaml) (and template_override-dmdemo.yaml), then you can do the templating in that template file.  
 
 Example:
@@ -67,9 +65,9 @@ Example:
 - [Display frontpage](https://github.com/digimakergo/dmdemo/tree/master/web/templates/demo/folder/frontpage.html)
 - [Layout](https://github.com/digimakergo/dmdemo/tree/master/web/templates/demo/base.html)
 
+Check docs to see all template override rules: [https://digimaker.org/doc/references/template-override](https://digimaker.org/doc/references/template-override)
 
-#### Template functions/filters/macro
-Built in template functions, filters can be found here: https://github.com/digimakergo/digimaker/tree/master/sitekit
+Check docs to see all references: [https://digimaker.org/doc/references/template](https://digimaker.org/doc/references/template)
 
 
 ### Web App
@@ -79,11 +77,12 @@ See [web/app](web/app) for examples.
 - [Profile.tsx](web/app/src/Profile.tsx) Shows how to show/edit content(user) using components in digimaker-ui
 - [Login.tsx](web/app/src/Login.tsx) Shows how to get authorization token using rest api
 
-[digimaker-ui](https://www.npmjs.com/package/digimaker-ui): To help developing apps, we have created a react library digimaker-ui, which includes some content related components like View, List, Edit, Browse, also some utility components like FileUpload, TreeNode, Fetch etc.
+Check docs to see rest api: [https://digimaker.org/doc/references/rest](https://digimaker.org/doc/references/rest)
 
-Rest api includes query, manipulating of content, and is extendable.
+Check docs to see full react components: [https://digimaker.org/doc/references/digimaker-ui](https://digimaker.org/doc/references/digimaker-ui)
 
-### Permissions
+
+### Permission configure
 The permission policies is defined under [policies.json](configs/policies.json), and then connect to role and user in the content. policies.json defines permission like
  - fetching  based on content type, parent,etc
  - operations(eg. create content, update, delete) based on content type, parent, author(self)
@@ -107,6 +106,8 @@ Example on policies.json:
    }
   }
 ```
+
+Check docs to see policies configuration: [https://digimaker.org/doc/references/policies](https://digimaker.org/doc/references/policies)
 
 ### Content model
 Digimaker defines content model in file and generates entities based on the definition. Developers use those entities to manipulate content similar to ORM.
