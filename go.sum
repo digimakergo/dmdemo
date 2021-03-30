@@ -39,8 +39,8 @@ github.com/davecgh/go-spew v1.1.1/go.mod h1:J7Y8YcW2NihsgmVo/mv3lAwl/skON4iLHjSs
 github.com/dgrijalva/jwt-go v3.2.0+incompatible h1:7qlOGliEKZXTDg6OTjfoBKDXWrumCAMpl/TFQ4/5kLM=
 github.com/dgrijalva/jwt-go v3.2.0+incompatible/go.mod h1:E3ru+11k8xSBh+hMPgOLZmtrrCbhqsmaPHjLKYnJCaQ=
 github.com/dgryski/go-sip13 v0.0.0-20181026042036-e10d5fee7954/go.mod h1:vAd38F8PWV+bWy6jNmig1y/TA+kYO4g3RSRF0IAv0no=
-github.com/digimakergo/digimaker v0.0.0-20210329221048-a14a82fb3eff h1:XpOHAAcYncYV+xi5+bh79w29ayB5TCyctsI67kCiG1I=
-github.com/digimakergo/digimaker v0.0.0-20210329221048-a14a82fb3eff/go.mod h1:BMkFBqNDRywfFWqGc01xECarrphxo4F29juz2+HKU40=
+github.com/digimakergo/digimaker v0.0.0-20210330204518-e6d304ba1fcb h1:Pu8Ae5wFEnXpHXtl4oGjnzWI8hWnFTuxgGUq1E8y/bc=
+github.com/digimakergo/digimaker v0.0.0-20210330204518-e6d304ba1fcb/go.mod h1:BMkFBqNDRywfFWqGc01xECarrphxo4F29juz2+HKU40=
 github.com/fatih/color v1.7.0/go.mod h1:Zm6kSWBoL9eyXnKyktHP6abPY2pDugNf5KwzbycvMj4=
 github.com/flosch/pongo2 v0.0.0-20200913210552-0d938eb266f3 h1:fmFk0Wt3bBxxwZnu48jqMdaOR/IZ4vdtJFuaFV8MpIE=
 github.com/flosch/pongo2 v0.0.0-20200913210552-0d938eb266f3/go.mod h1:bJWSKrZyQvfTnb2OudyUjurSG4/edverV7n82+K3JiM=
