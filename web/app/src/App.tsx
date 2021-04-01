@@ -51,7 +51,7 @@ const UserInfo=() =>{
     if( !user ){
       FetchWithAuth(process.env.REACT_APP_REMOTE_URL + '/user/current/dmdemo').then((res:any)=>res.json())
          .then((data:any)=>{
-          setUser( data )
+          setUser( data );
         }).catch(err=>{
             window.location.href = '#login';
         });
