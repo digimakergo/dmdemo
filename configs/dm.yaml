@@ -1,6 +1,6 @@
 ##General settings
 general:
-  var_folder: "/Users/xc/dev/dmtest/var"
+  var_folder: "var"
   upload_tempfolder: "upload_temp"
   send_from: "noreply@test.no"
   host: "127.0.0.1:9200"
