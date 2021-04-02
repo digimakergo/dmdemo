@@ -10,10 +10,10 @@ general:
 
 database:
    type: mysql
-   host: 127.0.0.1
-   username: dmdemo
-   password: dmdemo
-   database: dmdemo
+   host: "127.0.0.1"
+   username: "dmdemo"
+   password: "dmdemo"
+   database: "dmdemo"
 
 
 user:
