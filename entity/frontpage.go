@@ -9,11 +9,12 @@ import (
     "github.com/digimakergo/digimaker/core/db"
     "github.com/digimakergo/digimaker/core/definition"
     "github.com/digimakergo/digimaker/core/contenttype"
-	  "github.com/digimakergo/digimaker/core/fieldtype"
     
     "github.com/digimakergo/digimaker/core/util"
     
 	. "github.com/digimakergo/digimaker/core/db"
+    
+    "github.com/digimakergo/digimaker/core/fieldtype"
     
 )
 
@@ -24,43 +25,39 @@ type Frontpage struct{
 
      
     
+                  
          
-         
-         
-            Mainarea  fieldtype.Text `boil:"mainarea" json:"mainarea" toml:"mainarea" yaml:"mainarea"`
-         
-        
-    
-         
+            Mainarea  string `boil:"mainarea" json:"mainarea" toml:"mainarea" yaml:"mainarea"`
          
     
+                  
          
-         
-         
-            Sidearea  fieldtype.Text `boil:"sidearea" json:"sidearea" toml:"sidearea" yaml:"sidearea"`
-         
-        
-    
-         
+            MainareaBlocks  fieldtype.RelationList `boil:"-" json:"mainarea_blocks" toml:"mainarea_blocks" yaml:"mainarea_blocks"`
          
     
+                  
          
+            Sidearea  string `boil:"sidearea" json:"sidearea" toml:"sidearea" yaml:"sidearea"`
          
     
+                  
          
+            SideareaBlocks  fieldtype.RelationList `boil:"-" json:"sidearea_blocks" toml:"sidearea_blocks" yaml:"sidearea_blocks"`
          
+    
+                  
          
-            Title  fieldtype.Text `boil:"title" json:"title" toml:"title" yaml:"title"`
+            Slideshow  fieldtype.RelationList `boil:"-" json:"slideshow" toml:"slideshow" yaml:"slideshow"`
          
-        
+    
+                  
+         
+            Title  string `boil:"title" json:"title" toml:"title" yaml:"title"`
+         
     
     
      contenttype.Location `boil:"location,bind"`
     
-}
-
-func (c *Frontpage ) TableName() string{
-	 return "dm_frontpage"
 }
 
 func (c *Frontpage ) ContentType() string{
@@ -150,44 +147,32 @@ func (c *Frontpage) Value(identifier string) interface{} {
     
     
     case "mainarea":
-        
-            result = &(c.Mainarea)
-        
+            result = (c.Mainarea)        
     
     
     
     case "mainarea_blocks":
-        
-            result = c.Relations.GetField("mainarea_blocks")
-        
+            result = (c.MainareaBlocks)        
     
     
     
     case "sidearea":
-        
-            result = &(c.Sidearea)
-        
+            result = (c.Sidearea)        
     
     
     
     case "sidearea_blocks":
-        
-            result = c.Relations.GetField("sidearea_blocks")
-        
+            result = (c.SideareaBlocks)        
     
     
     
     case "slideshow":
-        
-            result = c.Relations.GetField("slideshow")
-        
+            result = (c.Slideshow)        
     
     
     
     case "title":
-        
-            result = &(c.Title)
-        
+            result = (c.Title)        
     
     
 	case "cid":
@@ -203,44 +188,44 @@ func (c *Frontpage) SetValue(identifier string, value interface{}) error {
 	switch identifier {
         
         
-            
-            
+                        
             
             case "mainarea":
-            c.Mainarea = value.(fieldtype.Text)
-            
-            
+            c.Mainarea = value.(string)
+                    
         
+                        
             
-            
+            case "mainarea_blocks":
+            c.MainareaBlocks = value.(fieldtype.RelationList)
+                    
         
-            
-            
+                        
             
             case "sidearea":
-            c.Sidearea = value.(fieldtype.Text)
-            
-            
+            c.Sidearea = value.(string)
+                    
         
+                        
             
-            
+            case "sidearea_blocks":
+            c.SideareaBlocks = value.(fieldtype.RelationList)
+                    
         
+                        
             
-            
+            case "slideshow":
+            c.Slideshow = value.(fieldtype.RelationList)
+                    
         
-            
-            
+                        
             
             case "title":
-            c.Title = value.(fieldtype.Text)
-            
-            
+            c.Title = value.(string)
+                    
         
 	default:
-		err := c.ContentCommon.SetValue(identifier, value)
-        if err != nil{
-            return err
-        }
+		return c.ContentCommon.SetValue(identifier, value)        
 	}
 	//todo: check if identifier exist
 	return nil
@@ -250,21 +235,16 @@ func (c *Frontpage) SetValue(identifier string, value interface{}) error {
 //Note: it will set id to CID after success
 func (c *Frontpage) Store(ctx context.Context, transaction ...*sql.Tx) error {
 	if c.CID == 0 {
-		id, err := db.Insert(ctx, c.TableName(), c.ToDBValues(), transaction...)
+		id, err := db.Insert(ctx, "dm_frontpage", c.ToDBValues(), transaction...)
 		c.CID = id
 		if err != nil {
 			return err
 		}
 	} else {
-		err := db.Update(ctx, c.TableName(), c.ToDBValues(), Cond("id", c.CID), transaction...)
+		err := db.Update(ctx, "dm_frontpage", c.ToDBValues(), Cond("id", c.CID), transaction...)
     if err != nil {
 			return err
 		}
-	}
-
-	err := c.StoreRelations(ctx, c.ContentType(), transaction...)
-	if err != nil {
-		return err
 	}
 
 	return nil
@@ -276,7 +256,7 @@ func (c *Frontpage)StoreWithLocation(){
 
 //Delete content only
 func (c *Frontpage) Delete(ctx context.Context, transaction ...*sql.Tx) error {
-	contentError := db.Delete(ctx, c.TableName(), Cond("id", c.CID), transaction...)
+	contentError := db.Delete(ctx, "dm_frontpage", Cond("id", c.CID), transaction...)
 	return contentError
 }
 

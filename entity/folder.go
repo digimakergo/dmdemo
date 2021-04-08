@@ -9,7 +9,6 @@ import (
     "github.com/digimakergo/digimaker/core/db"
     "github.com/digimakergo/digimaker/core/definition"
     "github.com/digimakergo/digimaker/core/contenttype"
-	  "github.com/digimakergo/digimaker/core/fieldtype"
     
     "github.com/digimakergo/digimaker/core/util"
     
@@ -26,27 +25,19 @@ type Folder struct{
           FolderType  string `boil:"folder_type" json:"folder_type" toml:"folder_type" yaml:"folder_type"`
      
     
+                  
          
+            Summary  string `boil:"summary" json:"summary" toml:"summary" yaml:"summary"`
          
-         
-            Summary  fieldtype.RichText `boil:"summary" json:"summary" toml:"summary" yaml:"summary"`
-         
-        
     
+                  
          
+            Title  string `boil:"title" json:"title" toml:"title" yaml:"title"`
          
-         
-            Title  fieldtype.Text `boil:"title" json:"title" toml:"title" yaml:"title"`
-         
-        
     
     
      contenttype.Location `boil:"location,bind"`
     
-}
-
-func (c *Folder ) TableName() string{
-	 return "dm_folder"
 }
 
 func (c *Folder ) ContentType() string{
@@ -129,16 +120,12 @@ func (c *Folder) Value(identifier string) interface{} {
     
     
     case "summary":
-        
-            result = &(c.Summary)
-        
+            result = (c.Summary)        
     
     
     
     case "title":
-        
-            result = &(c.Title)
-        
+            result = (c.Title)        
     
     
 	case "cid":
@@ -157,27 +144,20 @@ func (c *Folder) SetValue(identifier string, value interface{}) error {
              c.FolderType = value.(string)
         
         
-            
-            
+                        
             
             case "summary":
-            c.Summary = value.(fieldtype.RichText)
-            
-            
+            c.Summary = value.(string)
+                    
         
-            
-            
+                        
             
             case "title":
-            c.Title = value.(fieldtype.Text)
-            
-            
+            c.Title = value.(string)
+                    
         
 	default:
-		err := c.ContentCommon.SetValue(identifier, value)
-        if err != nil{
-            return err
-        }
+		return c.ContentCommon.SetValue(identifier, value)        
 	}
 	//todo: check if identifier exist
 	return nil
@@ -187,21 +167,16 @@ func (c *Folder) SetValue(identifier string, value interface{}) error {
 //Note: it will set id to CID after success
 func (c *Folder) Store(ctx context.Context, transaction ...*sql.Tx) error {
 	if c.CID == 0 {
-		id, err := db.Insert(ctx, c.TableName(), c.ToDBValues(), transaction...)
+		id, err := db.Insert(ctx, "dm_folder", c.ToDBValues(), transaction...)
 		c.CID = id
 		if err != nil {
 			return err
 		}
 	} else {
-		err := db.Update(ctx, c.TableName(), c.ToDBValues(), Cond("id", c.CID), transaction...)
+		err := db.Update(ctx, "dm_folder", c.ToDBValues(), Cond("id", c.CID), transaction...)
     if err != nil {
 			return err
 		}
-	}
-
-	err := c.StoreRelations(ctx, c.ContentType(), transaction...)
-	if err != nil {
-		return err
 	}
 
 	return nil
@@ -213,7 +188,7 @@ func (c *Folder)StoreWithLocation(){
 
 //Delete content only
 func (c *Folder) Delete(ctx context.Context, transaction ...*sql.Tx) error {
-	contentError := db.Delete(ctx, c.TableName(), Cond("id", c.CID), transaction...)
+	contentError := db.Delete(ctx, "dm_folder", Cond("id", c.CID), transaction...)
 	return contentError
 }
 

@@ -9,7 +9,6 @@ import (
     "github.com/digimakergo/digimaker/core/db"
     "github.com/digimakergo/digimaker/core/definition"
     "github.com/digimakergo/digimaker/core/contenttype"
-	  "github.com/digimakergo/digimaker/core/fieldtype"
     
     "github.com/digimakergo/digimaker/core/util"
     
@@ -24,34 +23,24 @@ type Role struct{
 
      
     
+                  
          
+            Identifier  string `boil:"identifier" json:"identifier" toml:"identifier" yaml:"identifier"`
          
-         
-            Identifier  fieldtype.Text `boil:"identifier" json:"identifier" toml:"identifier" yaml:"identifier"`
-         
-        
     
+                  
          
+            Summary  string `boil:"summary" json:"summary" toml:"summary" yaml:"summary"`
          
-         
-            Summary  fieldtype.Text `boil:"summary" json:"summary" toml:"summary" yaml:"summary"`
-         
-        
     
+                  
          
+            Title  string `boil:"title" json:"title" toml:"title" yaml:"title"`
          
-         
-            Title  fieldtype.Text `boil:"title" json:"title" toml:"title" yaml:"title"`
-         
-        
     
     
      contenttype.Location `boil:"location,bind"`
     
-}
-
-func (c *Role ) TableName() string{
-	 return "dm_role"
 }
 
 func (c *Role ) ContentType() string{
@@ -135,23 +124,17 @@ func (c *Role) Value(identifier string) interface{} {
     
     
     case "identifier":
-        
-            result = &(c.Identifier)
-        
+            result = (c.Identifier)        
     
     
     
     case "summary":
-        
-            result = &(c.Summary)
-        
+            result = (c.Summary)        
     
     
     
     case "title":
-        
-            result = &(c.Title)
-        
+            result = (c.Title)        
     
     
 	case "cid":
@@ -167,35 +150,26 @@ func (c *Role) SetValue(identifier string, value interface{}) error {
 	switch identifier {
         
         
-            
-            
+                        
             
             case "identifier":
-            c.Identifier = value.(fieldtype.Text)
-            
-            
+            c.Identifier = value.(string)
+                    
         
-            
-            
+                        
             
             case "summary":
-            c.Summary = value.(fieldtype.Text)
-            
-            
+            c.Summary = value.(string)
+                    
         
-            
-            
+                        
             
             case "title":
-            c.Title = value.(fieldtype.Text)
-            
-            
+            c.Title = value.(string)
+                    
         
 	default:
-		err := c.ContentCommon.SetValue(identifier, value)
-        if err != nil{
-            return err
-        }
+		return c.ContentCommon.SetValue(identifier, value)        
 	}
 	//todo: check if identifier exist
 	return nil
@@ -205,21 +179,16 @@ func (c *Role) SetValue(identifier string, value interface{}) error {
 //Note: it will set id to CID after success
 func (c *Role) Store(ctx context.Context, transaction ...*sql.Tx) error {
 	if c.CID == 0 {
-		id, err := db.Insert(ctx, c.TableName(), c.ToDBValues(), transaction...)
+		id, err := db.Insert(ctx, "dm_role", c.ToDBValues(), transaction...)
 		c.CID = id
 		if err != nil {
 			return err
 		}
 	} else {
-		err := db.Update(ctx, c.TableName(), c.ToDBValues(), Cond("id", c.CID), transaction...)
+		err := db.Update(ctx, "dm_role", c.ToDBValues(), Cond("id", c.CID), transaction...)
     if err != nil {
 			return err
 		}
-	}
-
-	err := c.StoreRelations(ctx, c.ContentType(), transaction...)
-	if err != nil {
-		return err
 	}
 
 	return nil
@@ -231,7 +200,7 @@ func (c *Role)StoreWithLocation(){
 
 //Delete content only
 func (c *Role) Delete(ctx context.Context, transaction ...*sql.Tx) error {
-	contentError := db.Delete(ctx, c.TableName(), Cond("id", c.CID), transaction...)
+	contentError := db.Delete(ctx, "dm_role", Cond("id", c.CID), transaction...)
 	return contentError
 }
 

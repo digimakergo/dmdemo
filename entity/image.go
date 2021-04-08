@@ -9,7 +9,6 @@ import (
     "github.com/digimakergo/digimaker/core/db"
     "github.com/digimakergo/digimaker/core/definition"
     "github.com/digimakergo/digimaker/core/contenttype"
-	  "github.com/digimakergo/digimaker/core/fieldtype"
     
 	. "github.com/digimakergo/digimaker/core/db"
     
@@ -32,24 +31,16 @@ type Image struct{
           Published  int `boil:"published" json:"published" toml:"published" yaml:"published"`
      
     
+             
          
-         
-         
-            Image  fieldtype.Image `boil:"image" json:"image" toml:"image" yaml:"image"`
-         
-        
+            Image  string `boil:"image" json:"image" toml:"image" yaml:"image"`
+                 
     
+             
          
-         
-         
-            Name  fieldtype.Text `boil:"name" json:"name" toml:"name" yaml:"name"`
-         
-        
+            Name  string `boil:"name" json:"name" toml:"name" yaml:"name"`
+                 
     
-}
-
-func (c *Image ) TableName() string{
-	 return "dm_image"
 }
 
 func (c *Image ) ContentType() string{
@@ -137,17 +128,13 @@ func (c *Image) Value(identifier string) interface{} {
     
     
     
-    case "image":
-        
-            result = &(c.Image)
-        
+    case "image":        
+            result = (c.Image)        
     
     
     
-    case "name":
-        
-            result = &(c.Name)
-        
+    case "name":        
+            result = (c.Name)        
     
     
 
@@ -178,19 +165,15 @@ func (c *Image) SetValue(identifier string, value interface{}) error {
         
             
             
-            
             case "image":
-            c.Image = value.(fieldtype.Image)
-            
-            
+            c.Image = value.(string)
+                     
         
             
             
-            
             case "name":
-            c.Name = value.(fieldtype.Text)
-            
-            
+            c.Name = value.(string)
+                     
         
 	default:
 
@@ -203,13 +186,13 @@ func (c *Image) SetValue(identifier string, value interface{}) error {
 //Note: it will set id to ID after success
 func (c *Image) Store(ctx context.Context, transaction ...*sql.Tx) error {
 	if c.ID == 0 {
-		id, err := db.Insert(ctx, c.TableName(), c.ToDBValues(), transaction...)
+		id, err := db.Insert(ctx, "dm_image", c.ToDBValues(), transaction...)
 		c.ID = id
 		if err != nil {
 			return err
 		}
 	} else {
-		err := db.Update(ctx, c.TableName(), c.ToDBValues(), Cond("id", c.ID), transaction...)
+		err := db.Update(ctx, "dm_image", c.ToDBValues(), Cond("id", c.ID), transaction...)
 		return err
 	}
 	return nil
@@ -222,7 +205,7 @@ func (c *Image)StoreWithLocation(){
 
 //Delete content only
 func (c *Image) Delete(ctx context.Context, transaction ...*sql.Tx) error {
-	contentError := db.Delete(ctx, c.TableName(), Cond("id", c.ID), transaction...)
+	contentError := db.Delete(ctx, "dm_image", Cond("id", c.ID), transaction...)
 	return contentError
 }
 

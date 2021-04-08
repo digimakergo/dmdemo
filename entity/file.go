@@ -9,7 +9,6 @@ import (
     "github.com/digimakergo/digimaker/core/db"
     "github.com/digimakergo/digimaker/core/definition"
     "github.com/digimakergo/digimaker/core/contenttype"
-	  "github.com/digimakergo/digimaker/core/fieldtype"
     
 	. "github.com/digimakergo/digimaker/core/db"
     
@@ -22,31 +21,21 @@ type File struct{
 
      
     
+             
          
-         
-         
-            Filetype  fieldtype.Text `boil:"filetype" json:"filetype" toml:"filetype" yaml:"filetype"`
-         
-        
+            Filetype  string `boil:"filetype" json:"filetype" toml:"filetype" yaml:"filetype"`
+                 
     
+             
          
-         
-         
-            Path  fieldtype.Text `boil:"path" json:"path" toml:"path" yaml:"path"`
-         
-        
+            Path  string `boil:"path" json:"path" toml:"path" yaml:"path"`
+                 
     
+             
          
-         
-         
-            Title  fieldtype.Text `boil:"title" json:"title" toml:"title" yaml:"title"`
-         
-        
+            Title  string `boil:"title" json:"title" toml:"title" yaml:"title"`
+                 
     
-}
-
-func (c *File ) TableName() string{
-	 return "dm_file"
 }
 
 func (c *File ) ContentType() string{
@@ -115,24 +104,18 @@ func (c *File) Value(identifier string) interface{} {
     
     
     
-    case "filetype":
-        
-            result = &(c.Filetype)
-        
+    case "filetype":        
+            result = (c.Filetype)        
     
     
     
-    case "path":
-        
-            result = &(c.Path)
-        
+    case "path":        
+            result = (c.Path)        
     
     
     
-    case "title":
-        
-            result = &(c.Title)
-        
+    case "title":        
+            result = (c.Title)        
     
     
 
@@ -148,27 +131,21 @@ func (c *File) SetValue(identifier string, value interface{}) error {
         
             
             
-            
             case "filetype":
-            c.Filetype = value.(fieldtype.Text)
-            
-            
+            c.Filetype = value.(string)
+                     
         
-            
             
             
             case "path":
-            c.Path = value.(fieldtype.Text)
-            
-            
+            c.Path = value.(string)
+                     
         
             
             
-            
             case "title":
-            c.Title = value.(fieldtype.Text)
-            
-            
+            c.Title = value.(string)
+                     
         
 	default:
 
@@ -181,13 +158,13 @@ func (c *File) SetValue(identifier string, value interface{}) error {
 //Note: it will set id to ID after success
 func (c *File) Store(ctx context.Context, transaction ...*sql.Tx) error {
 	if c.ID == 0 {
-		id, err := db.Insert(ctx, c.TableName(), c.ToDBValues(), transaction...)
+		id, err := db.Insert(ctx, "dm_file", c.ToDBValues(), transaction...)
 		c.ID = id
 		if err != nil {
 			return err
 		}
 	} else {
-		err := db.Update(ctx, c.TableName(), c.ToDBValues(), Cond("id", c.ID), transaction...)
+		err := db.Update(ctx, "dm_file", c.ToDBValues(), Cond("id", c.ID), transaction...)
 		return err
 	}
 	return nil
@@ -200,7 +177,7 @@ func (c *File)StoreWithLocation(){
 
 //Delete content only
 func (c *File) Delete(ctx context.Context, transaction ...*sql.Tx) error {
-	contentError := db.Delete(ctx, c.TableName(), Cond("id", c.ID), transaction...)
+	contentError := db.Delete(ctx, "dm_file", Cond("id", c.ID), transaction...)
 	return contentError
 }
 

@@ -5,3 +5,7 @@ content_view:
   viewmode: full
   id: 3
   to: folder/frontpage.html
+
+- contenttype: folder
+  viewmode: full
+  to: folder/full.html  

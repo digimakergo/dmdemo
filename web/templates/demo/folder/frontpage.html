@@ -4,9 +4,9 @@
 <div class="{{content.ContentType}} full">
 
   <h2>Welcome</h2>
-    {%if content.Summary.FieldValue()%}
+    {%if content.Summary%}
     <div class="summary">
-        {{content.Summary.FieldValue()|safe}}
+        {{content.Summary|safe}}
     </div>
     {%endif%}
 </div>

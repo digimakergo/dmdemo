@@ -87,6 +87,9 @@
         "identifier": "title",
         "type": "text",
         "name": "Title",
+        "parameters": {
+          "max_length": 300
+        },
         "required": true
       },
       {
@@ -148,19 +151,7 @@
             }
           }
         ]
-      },
-      {
-        "identifier": "online_time",
-        "type": "text",
-        "name": "Online time",
-        "required": false
-      },
-      {
-        "identifier": "offline_time",
-        "type": "text",
-        "name": "Offline time",
-        "required": false
-      }
+      }      
     ]
   },
   "usergroup": {
@@ -274,7 +265,7 @@
         "identifier": "image",
         "type": "image",
         "name": "Image",
-        "required": true
+        "required": true       
       }
     ]
   },

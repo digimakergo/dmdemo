@@ -9,7 +9,6 @@ import (
     "github.com/digimakergo/digimaker/core/db"
     "github.com/digimakergo/digimaker/core/definition"
     "github.com/digimakergo/digimaker/core/contenttype"
-	  "github.com/digimakergo/digimaker/core/fieldtype"
     
     "github.com/digimakergo/digimaker/core/util"
     
@@ -24,27 +23,19 @@ type Usergroup struct{
 
      
     
+                  
          
+            Summary  string `boil:"summary" json:"summary" toml:"summary" yaml:"summary"`
          
-         
-            Summary  fieldtype.RichText `boil:"summary" json:"summary" toml:"summary" yaml:"summary"`
-         
-        
     
+                  
          
+            Title  string `boil:"title" json:"title" toml:"title" yaml:"title"`
          
-         
-            Title  fieldtype.Text `boil:"title" json:"title" toml:"title" yaml:"title"`
-         
-        
     
     
      contenttype.Location `boil:"location,bind"`
     
-}
-
-func (c *Usergroup ) TableName() string{
-	 return "dm_usergroup"
 }
 
 func (c *Usergroup ) ContentType() string{
@@ -122,16 +113,12 @@ func (c *Usergroup) Value(identifier string) interface{} {
     
     
     case "summary":
-        
-            result = &(c.Summary)
-        
+            result = (c.Summary)        
     
     
     
     case "title":
-        
-            result = &(c.Title)
-        
+            result = (c.Title)        
     
     
 	case "cid":
@@ -147,27 +134,20 @@ func (c *Usergroup) SetValue(identifier string, value interface{}) error {
 	switch identifier {
         
         
-            
-            
+                        
             
             case "summary":
-            c.Summary = value.(fieldtype.RichText)
-            
-            
+            c.Summary = value.(string)
+                    
         
-            
-            
+                        
             
             case "title":
-            c.Title = value.(fieldtype.Text)
-            
-            
+            c.Title = value.(string)
+                    
         
 	default:
-		err := c.ContentCommon.SetValue(identifier, value)
-        if err != nil{
-            return err
-        }
+		return c.ContentCommon.SetValue(identifier, value)        
 	}
 	//todo: check if identifier exist
 	return nil
@@ -177,21 +157,16 @@ func (c *Usergroup) SetValue(identifier string, value interface{}) error {
 //Note: it will set id to CID after success
 func (c *Usergroup) Store(ctx context.Context, transaction ...*sql.Tx) error {
 	if c.CID == 0 {
-		id, err := db.Insert(ctx, c.TableName(), c.ToDBValues(), transaction...)
+		id, err := db.Insert(ctx, "dm_usergroup", c.ToDBValues(), transaction...)
 		c.CID = id
 		if err != nil {
 			return err
 		}
 	} else {
-		err := db.Update(ctx, c.TableName(), c.ToDBValues(), Cond("id", c.CID), transaction...)
+		err := db.Update(ctx, "dm_usergroup", c.ToDBValues(), Cond("id", c.CID), transaction...)
     if err != nil {
 			return err
 		}
-	}
-
-	err := c.StoreRelations(ctx, c.ContentType(), transaction...)
-	if err != nil {
-		return err
 	}
 
 	return nil
@@ -203,7 +178,7 @@ func (c *Usergroup)StoreWithLocation(){
 
 //Delete content only
 func (c *Usergroup) Delete(ctx context.Context, transaction ...*sql.Tx) error {
-	contentError := db.Delete(ctx, c.TableName(), Cond("id", c.CID), transaction...)
+	contentError := db.Delete(ctx, "dm_usergroup", Cond("id", c.CID), transaction...)
 	return contentError
 }
 

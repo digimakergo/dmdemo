@@ -9,7 +9,6 @@ import (
     "github.com/digimakergo/digimaker/core/db"
     "github.com/digimakergo/digimaker/core/definition"
     "github.com/digimakergo/digimaker/core/contenttype"
-	  "github.com/digimakergo/digimaker/core/fieldtype"
     
     "github.com/digimakergo/digimaker/core/util"
     
@@ -24,48 +23,34 @@ type User struct{
 
      
     
+                  
          
+            Email  string `boil:"email" json:"email" toml:"email" yaml:"email"`
          
-         
-            Email  fieldtype.Text `boil:"email" json:"email" toml:"email" yaml:"email"`
-         
-        
     
+                  
          
+            Firstname  string `boil:"firstname" json:"firstname" toml:"firstname" yaml:"firstname"`
          
-         
-            Firstname  fieldtype.Text `boil:"firstname" json:"firstname" toml:"firstname" yaml:"firstname"`
-         
-        
     
+                  
          
+            Lastname  string `boil:"lastname" json:"lastname" toml:"lastname" yaml:"lastname"`
          
-         
-            Lastname  fieldtype.Text `boil:"lastname" json:"lastname" toml:"lastname" yaml:"lastname"`
-         
-        
     
+                  
          
+            Login  string `boil:"login" json:"login" toml:"login" yaml:"login"`
          
-         
-            Login  fieldtype.Text `boil:"login" json:"login" toml:"login" yaml:"login"`
-         
-        
     
+                  
          
+            Password  string `boil:"password" json:"-" toml:"password" yaml:"password"`
          
-         
-            Password  fieldtype.Password `boil:"password" json:"-" toml:"password" yaml:"password"`
-         
-        
     
     
      contenttype.Location `boil:"location,bind"`
     
-}
-
-func (c *User ) TableName() string{
-	 return "dm_user"
 }
 
 func (c *User ) ContentType() string{
@@ -161,37 +146,27 @@ func (c *User) Value(identifier string) interface{} {
     
     
     case "email":
-        
-            result = &(c.Email)
-        
+            result = (c.Email)        
     
     
     
     case "firstname":
-        
-            result = &(c.Firstname)
-        
+            result = (c.Firstname)        
     
     
     
     case "lastname":
-        
-            result = &(c.Lastname)
-        
+            result = (c.Lastname)        
     
     
     
     case "login":
-        
-            result = &(c.Login)
-        
+            result = (c.Login)        
     
     
     
     case "password":
-        
-            result = &(c.Password)
-        
+            result = (c.Password)        
     
     
 	case "cid":
@@ -207,51 +182,38 @@ func (c *User) SetValue(identifier string, value interface{}) error {
 	switch identifier {
         
         
-            
-            
+                        
             
             case "email":
-            c.Email = value.(fieldtype.Text)
-            
-            
+            c.Email = value.(string)
+                    
         
-            
-            
+                        
             
             case "firstname":
-            c.Firstname = value.(fieldtype.Text)
-            
-            
+            c.Firstname = value.(string)
+                    
         
-            
-            
+                        
             
             case "lastname":
-            c.Lastname = value.(fieldtype.Text)
-            
-            
+            c.Lastname = value.(string)
+                    
         
-            
-            
+                        
             
             case "login":
-            c.Login = value.(fieldtype.Text)
-            
-            
+            c.Login = value.(string)
+                    
         
-            
-            
+                        
             
             case "password":
-            c.Password = value.(fieldtype.Password)
-            
-            
+            c.Password = value.(string)
+                    
         
 	default:
-		err := c.ContentCommon.SetValue(identifier, value)
-        if err != nil{
-            return err
-        }
+		return c.ContentCommon.SetValue(identifier, value)        
 	}
 	//todo: check if identifier exist
 	return nil
@@ -261,21 +223,16 @@ func (c *User) SetValue(identifier string, value interface{}) error {
 //Note: it will set id to CID after success
 func (c *User) Store(ctx context.Context, transaction ...*sql.Tx) error {
 	if c.CID == 0 {
-		id, err := db.Insert(ctx, c.TableName(), c.ToDBValues(), transaction...)
+		id, err := db.Insert(ctx, "dm_user", c.ToDBValues(), transaction...)
 		c.CID = id
 		if err != nil {
 			return err
 		}
 	} else {
-		err := db.Update(ctx, c.TableName(), c.ToDBValues(), Cond("id", c.CID), transaction...)
+		err := db.Update(ctx, "dm_user", c.ToDBValues(), Cond("id", c.CID), transaction...)
     if err != nil {
 			return err
 		}
-	}
-
-	err := c.StoreRelations(ctx, c.ContentType(), transaction...)
-	if err != nil {
-		return err
 	}
 
 	return nil
@@ -287,7 +244,7 @@ func (c *User)StoreWithLocation(){
 
 //Delete content only
 func (c *User) Delete(ctx context.Context, transaction ...*sql.Tx) error {
-	contentError := db.Delete(ctx, c.TableName(), Cond("id", c.CID), transaction...)
+	contentError := db.Delete(ctx, "dm_user", Cond("id", c.CID), transaction...)
 	return contentError
 }
 

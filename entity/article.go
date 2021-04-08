@@ -9,11 +9,12 @@ import (
     "github.com/digimakergo/digimaker/core/db"
     "github.com/digimakergo/digimaker/core/definition"
     "github.com/digimakergo/digimaker/core/contenttype"
-	  "github.com/digimakergo/digimaker/core/fieldtype"
     
     "github.com/digimakergo/digimaker/core/util"
     
 	. "github.com/digimakergo/digimaker/core/db"
+    
+    "github.com/digimakergo/digimaker/core/fieldtype"
     
 )
 
@@ -24,69 +25,47 @@ type Article struct{
 
      
     
+                  
          
-         
-         
-            Body  fieldtype.RichText `boil:"body" json:"body" toml:"body" yaml:"body"`
-         
-        
-    
-         
-         
-         
-            Coverimage  fieldtype.Image `boil:"coverimage" json:"coverimage" toml:"coverimage" yaml:"coverimage"`
-         
-        
-    
-         
+            Body  string `boil:"body" json:"body" toml:"body" yaml:"body"`
          
     
+                  
          
-         
-         
-            OfflineTime  fieldtype.Text `boil:"offline_time" json:"offline_time" toml:"offline_time" yaml:"offline_time"`
-         
-        
-    
-         
-         
-         
-            OnlineTime  fieldtype.Text `boil:"online_time" json:"online_time" toml:"online_time" yaml:"online_time"`
-         
-        
-    
-         
+            Coverimage  string `boil:"coverimage" json:"coverimage" toml:"coverimage" yaml:"coverimage"`
          
     
+                  
          
+            Editors  fieldtype.RelationList `boil:"-" json:"editors" toml:"editors" yaml:"editors"`
          
-         
-        
     
+                  
          
+            RelatedArticles  fieldtype.RelationList `boil:"-" json:"related_articles" toml:"related_articles" yaml:"related_articles"`
          
-         
-            Summary  fieldtype.RichText `boil:"summary" json:"summary" toml:"summary" yaml:"summary"`
-         
-        
     
+                  
          
-         
-         
-            Title  fieldtype.Text `boil:"title" json:"title" toml:"title" yaml:"title"`
-         
-        
     
+                  
          
+            Summary  string `boil:"summary" json:"summary" toml:"summary" yaml:"summary"`
+         
+    
+                  
+         
+            Title  string `boil:"title" json:"title" toml:"title" yaml:"title"`
+         
+    
+                  
+         
+            UsefulResources  fieldtype.RelationList `boil:"-" json:"useful_resources" toml:"useful_resources" yaml:"useful_resources"`
          
     
     
      contenttype.Location `boil:"location,bind"`
     
-}
-
-func (c *Article ) TableName() string{
-	 return "dm_article"
 }
 
 func (c *Article ) ContentType() string{
@@ -138,18 +117,6 @@ func (c *Article) ToDBValues() map[string]interface{} {
         
     
         
-        
-            result["offline_time"]=c.OfflineTime
-        
-        
-    
-        
-        
-            result["online_time"]=c.OnlineTime
-        
-        
-    
-        
     
         
         
@@ -177,7 +144,7 @@ func (c *Article) ToDBValues() map[string]interface{} {
 
 //Get identifier list of fields(NOT including data_fields )
 func (c *Article) IdentifierList() []string {
-	return append(c.ContentCommon.IdentifierList(),[]string{ "body","coverimage","editors","offline_time","online_time","related_articles","summary","title","useful_resources",}...)
+	return append(c.ContentCommon.IdentifierList(),[]string{ "body","coverimage","editors","related_articles","summary","title","useful_resources",}...)
 }
 
 func (c *Article) Definition(language ...string) definition.ContentType {
@@ -198,67 +165,39 @@ func (c *Article) Value(identifier string) interface{} {
     
     
     case "body":
-        
-            result = &(c.Body)
-        
+            result = (c.Body)        
     
     
     
     case "coverimage":
-        
-            result = &(c.Coverimage)
-        
+            result = (c.Coverimage)        
     
     
     
     case "editors":
-        
-            result = c.Relations.GetField("editors")
-        
-    
-    
-    
-    case "offline_time":
-        
-            result = &(c.OfflineTime)
-        
-    
-    
-    
-    case "online_time":
-        
-            result = &(c.OnlineTime)
-        
+            result = (c.Editors)        
     
     
     
     case "related_articles":
-        
-            result = c.Relations.GetField("related_articles")
-        
+            result = (c.RelatedArticles)        
     
     
     
     
     
     case "summary":
-        
-            result = &(c.Summary)
-        
+            result = (c.Summary)        
     
     
     
     case "title":
-        
-            result = &(c.Title)
-        
+            result = (c.Title)        
     
     
     
     case "useful_resources":
-        
-            result = c.Relations.GetField("useful_resources")
-        
+            result = (c.UsefulResources)        
     
     
 	case "cid":
@@ -274,73 +213,53 @@ func (c *Article) SetValue(identifier string, value interface{}) error {
 	switch identifier {
         
         
-            
-            
+                        
             
             case "body":
-            c.Body = value.(fieldtype.RichText)
-            
-            
+            c.Body = value.(string)
+                    
         
-            
-            
+                        
             
             case "coverimage":
-            c.Coverimage = value.(fieldtype.Image)
-            
-            
+            c.Coverimage = value.(string)
+                    
         
+                        
             
-            
+            case "editors":
+            c.Editors = value.(fieldtype.RelationList)
+                    
         
+                        
             
-            
-            
-            case "offline_time":
-            c.OfflineTime = value.(fieldtype.Text)
-            
-            
+            case "related_articles":
+            c.RelatedArticles = value.(fieldtype.RelationList)
+                    
         
-            
-            
-            
-            case "online_time":
-            c.OnlineTime = value.(fieldtype.Text)
-            
-            
+                        
+                    
         
-            
-            
-        
-            
-            
-            
-            
-        
-            
-            
+                        
             
             case "summary":
-            c.Summary = value.(fieldtype.RichText)
-            
-            
+            c.Summary = value.(string)
+                    
         
-            
-            
+                        
             
             case "title":
-            c.Title = value.(fieldtype.Text)
-            
-            
+            c.Title = value.(string)
+                    
         
+                        
             
-            
+            case "useful_resources":
+            c.UsefulResources = value.(fieldtype.RelationList)
+                    
         
 	default:
-		err := c.ContentCommon.SetValue(identifier, value)
-        if err != nil{
-            return err
-        }
+		return c.ContentCommon.SetValue(identifier, value)        
 	}
 	//todo: check if identifier exist
 	return nil
@@ -350,21 +269,16 @@ func (c *Article) SetValue(identifier string, value interface{}) error {
 //Note: it will set id to CID after success
 func (c *Article) Store(ctx context.Context, transaction ...*sql.Tx) error {
 	if c.CID == 0 {
-		id, err := db.Insert(ctx, c.TableName(), c.ToDBValues(), transaction...)
+		id, err := db.Insert(ctx, "dm_article", c.ToDBValues(), transaction...)
 		c.CID = id
 		if err != nil {
 			return err
 		}
 	} else {
-		err := db.Update(ctx, c.TableName(), c.ToDBValues(), Cond("id", c.CID), transaction...)
+		err := db.Update(ctx, "dm_article", c.ToDBValues(), Cond("id", c.CID), transaction...)
     if err != nil {
 			return err
 		}
-	}
-
-	err := c.StoreRelations(ctx, c.ContentType(), transaction...)
-	if err != nil {
-		return err
 	}
 
 	return nil
@@ -376,7 +290,7 @@ func (c *Article)StoreWithLocation(){
 
 //Delete content only
 func (c *Article) Delete(ctx context.Context, transaction ...*sql.Tx) error {
-	contentError := db.Delete(ctx, c.TableName(), Cond("id", c.CID), transaction...)
+	contentError := db.Delete(ctx, "dm_article", Cond("id", c.CID), transaction...)
 	return contentError
 }
 
