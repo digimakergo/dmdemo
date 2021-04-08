@@ -1,25 +1,27 @@
 vendor
 
+var
+
 # See https://help.github.com/articles/ignoring-files/ for more about ignoring files.
 
 # dependencies
-web/mypage/node_modules
-web/mypage/.pnp
-web/mypage/.pnp.js
+web/app/node_modules
+web/app/.pnp
+web/app/.pnp.js
 
 # testing
-web/mypage/coverage
+web/app/coverage
 
 # production
-web/mypage/build
+web/app/build
 
 # misc
 .DS_Store
-web/mypage/.env.local
-web/mypage/.env.development.local
-web/mypage/.env.test.local
-web/mypage/.env.production.local
+web/app/.env.local
+web/app/.env.development.local
+web/app/.env.test.local
+web/app/.env.production.local
 
-web/mypage/npm-debug.log*
-web/mypage/yarn-debug.log*
-web/mypage/yarn-error.log*
+web/app/npm-debug.log*
+web/app/yarn-debug.log*
+web/app/yarn-error.log*
