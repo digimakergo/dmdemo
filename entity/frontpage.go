@@ -14,8 +14,6 @@ import (
     
 	. "github.com/digimakergo/digimaker/core/db"
     
-    "github.com/digimakergo/digimaker/core/fieldtype"
-    
 )
 
 
@@ -32,7 +30,7 @@ type Frontpage struct{
     
                   
          
-            MainareaBlocks  fieldtype.RelationList `boil:"-" json:"mainarea_blocks" toml:"mainarea_blocks" yaml:"mainarea_blocks"`
+            MainareaBlocks  contenttype.RelationList `boil:"-" json:"mainarea_blocks" toml:"mainarea_blocks" yaml:"mainarea_blocks"`
          
     
                   
@@ -42,12 +40,12 @@ type Frontpage struct{
     
                   
          
-            SideareaBlocks  fieldtype.RelationList `boil:"-" json:"sidearea_blocks" toml:"sidearea_blocks" yaml:"sidearea_blocks"`
+            SideareaBlocks  contenttype.RelationList `boil:"-" json:"sidearea_blocks" toml:"sidearea_blocks" yaml:"sidearea_blocks"`
          
     
                   
          
-            Slideshow  fieldtype.RelationList `boil:"-" json:"slideshow" toml:"slideshow" yaml:"slideshow"`
+            Slideshow  contenttype.RelationList `boil:"-" json:"slideshow" toml:"slideshow" yaml:"slideshow"`
          
     
                   
@@ -197,7 +195,7 @@ func (c *Frontpage) SetValue(identifier string, value interface{}) error {
                         
             
             case "mainarea_blocks":
-            c.MainareaBlocks = value.(fieldtype.RelationList)
+            c.MainareaBlocks = value.(contenttype.RelationList)
                     
         
                         
@@ -209,13 +207,13 @@ func (c *Frontpage) SetValue(identifier string, value interface{}) error {
                         
             
             case "sidearea_blocks":
-            c.SideareaBlocks = value.(fieldtype.RelationList)
+            c.SideareaBlocks = value.(contenttype.RelationList)
                     
         
                         
             
             case "slideshow":
-            c.Slideshow = value.(fieldtype.RelationList)
+            c.Slideshow = value.(contenttype.RelationList)
                     
         
                         

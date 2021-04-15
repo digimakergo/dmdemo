@@ -14,8 +14,6 @@ import (
     
 	. "github.com/digimakergo/digimaker/core/db"
     
-    "github.com/digimakergo/digimaker/core/fieldtype"
-    
 )
 
 
@@ -37,12 +35,12 @@ type Article struct{
     
                   
          
-            Editors  fieldtype.RelationList `boil:"-" json:"editors" toml:"editors" yaml:"editors"`
+            Editors  contenttype.RelationList `boil:"-" json:"editors" toml:"editors" yaml:"editors"`
          
     
                   
          
-            RelatedArticles  fieldtype.RelationList `boil:"-" json:"related_articles" toml:"related_articles" yaml:"related_articles"`
+            RelatedArticles  contenttype.RelationList `boil:"-" json:"related_articles" toml:"related_articles" yaml:"related_articles"`
          
     
                   
@@ -60,7 +58,7 @@ type Article struct{
     
                   
          
-            UsefulResources  fieldtype.RelationList `boil:"-" json:"useful_resources" toml:"useful_resources" yaml:"useful_resources"`
+            UsefulResources  contenttype.RelationList `boil:"-" json:"useful_resources" toml:"useful_resources" yaml:"useful_resources"`
          
     
     
@@ -228,13 +226,13 @@ func (c *Article) SetValue(identifier string, value interface{}) error {
                         
             
             case "editors":
-            c.Editors = value.(fieldtype.RelationList)
+            c.Editors = value.(contenttype.RelationList)
                     
         
                         
             
             case "related_articles":
-            c.RelatedArticles = value.(fieldtype.RelationList)
+            c.RelatedArticles = value.(contenttype.RelationList)
                     
         
                         
@@ -255,7 +253,7 @@ func (c *Article) SetValue(identifier string, value interface{}) error {
                         
             
             case "useful_resources":
-            c.UsefulResources = value.(fieldtype.RelationList)
+            c.UsefulResources = value.(contenttype.RelationList)
                     
         
 	default:

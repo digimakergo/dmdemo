@@ -6,6 +6,7 @@ import (
 	_ "github.com/digimakergo/dmdemo/entity"
 
 	_ "github.com/digimakergo/digimaker/core/auth/tokenmanager"
+        _ "github.com/digimakergo/digimaker/core/fieldtype/fieldtypes"
 	_ "github.com/digimakergo/digimaker/core/handler/handlers"
 	"github.com/digimakergo/digimaker/core/log"
 	"github.com/digimakergo/digimaker/core/util"
