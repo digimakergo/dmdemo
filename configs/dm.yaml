@@ -2,6 +2,7 @@
 general:
   var_folder: "var" # support absoluate or relative under dmapp
   upload_tempfolder: "upload_temp" #temporary folder for file upload. under var_folder
+  var_baseurl: "/var/"
   send_from: "noreply@test.com"
   host: "127.0.0.1:9200" #serve host
   image_thumbnail_size: "600x400"
