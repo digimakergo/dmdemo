@@ -43,11 +43,12 @@ Build frontend webapp
 
 
  #### Backend
-  Suggest to clone eui into web/eui, see project structure in the bottom
-  ```sh
-   git clone https://github.com/digimakergo/eui.git
-   cd eui
+  The backend client is under web/admin
+  ```sh   
+   cd web/admin
    npm install
+   mkdir assets ## For beta version only   
+   cp -r node_module/tinymce assets/ ## For beta version only
    npm start
    ```
 View backend: http://localhost:3000 and Login with `admin/Digimaker`
