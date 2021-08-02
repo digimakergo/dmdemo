@@ -14,6 +14,8 @@ import (
     
 	. "github.com/digimakergo/digimaker/core/db"
     
+    "github.com/digimakergo/digimaker/core/fieldtype/fieldtypes"
+    
 )
 
 
@@ -26,6 +28,11 @@ type Role struct{
                   
          
             Identifier  string `boil:"identifier" json:"identifier" toml:"identifier" yaml:"identifier"`
+         
+    
+                  
+         
+            Parameters  fieldtypes.Map `boil:"parameters" json:"parameters" toml:"parameters" yaml:"parameters"`
          
     
                   
@@ -85,6 +92,12 @@ func (c *Role) ToDBValues() map[string]interface{} {
     
         
         
+            result["parameters"]=c.Parameters
+        
+        
+    
+        
+        
             result["summary"]=c.Summary
         
         
@@ -103,7 +116,7 @@ func (c *Role) ToDBValues() map[string]interface{} {
 
 //Get identifier list of fields(NOT including data_fields )
 func (c *Role) IdentifierList() []string {
-	return append(c.ContentCommon.IdentifierList(),[]string{ "identifier","summary","title",}...)
+	return append(c.ContentCommon.IdentifierList(),[]string{ "identifier","parameters","summary","title",}...)
 }
 
 func (c *Role) Definition(language ...string) definition.ContentType {
@@ -125,6 +138,11 @@ func (c *Role) Value(identifier string) interface{} {
     
     case "identifier":
             result = (c.Identifier)        
+    
+    
+    
+    case "parameters":
+            result = (c.Parameters)        
     
     
     
@@ -154,6 +172,12 @@ func (c *Role) SetValue(identifier string, value interface{}) error {
             
             case "identifier":
             c.Identifier = value.(string)
+                    
+        
+                        
+            
+            case "parameters":
+            c.Parameters = value.(fieldtypes.Map)
                     
         
                         

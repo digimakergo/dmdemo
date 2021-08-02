@@ -203,6 +203,12 @@
         "type": "text",
         "name": "Role identifier",
         "required": false
+      },
+      {
+        "identifier": "parameters",
+        "type": "map",
+        "name": "Role parameters",
+        "required": false
       }
     ]
   },
