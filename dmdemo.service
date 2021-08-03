@@ -3,9 +3,9 @@ Description=Digimaker Demo
 
 [Service]
 User=<running user>
-Environment="dmapp=<home path>"
-Environment="GOPATH=<GO path>"
-ExecStart="<PATH>"
+Environment="dmapp=<App path>"
+Environment="GOPATH=<GOPATH, normally in <HOME>/go>"
+ExecStart="<Start command with absolute path>"
 Restart=always
 
 [Install]
