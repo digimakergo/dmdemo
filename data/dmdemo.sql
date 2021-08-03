@@ -1,13 +1,13 @@
--- MySQL dump 10.13  Distrib 8.0.17, for osx10.15 (x86_64)
+-- MySQL dump 10.13  Distrib 5.7.33, for Linux (x86_64)
 --
--- Host: 127.0.0.1    Database: dmdemo
+-- Host: localhost    Database: dmdemo_pub
 -- ------------------------------------------------------
 -- Server version	5.7.33-0ubuntu0.16.04.1
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
 /*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
 /*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
-/*!50503 SET NAMES utf8mb4 */;
+/*!40101 SET NAMES utf8 */;
 /*!40103 SET @OLD_TIME_ZONE=@@TIME_ZONE */;
 /*!40103 SET TIME_ZONE='+00:00' */;
 /*!40014 SET @OLD_UNIQUE_CHECKS=@@UNIQUE_CHECKS, UNIQUE_CHECKS=0 */;
@@ -21,7 +21,7 @@
 
 DROP TABLE IF EXISTS `dm_activation`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!50503 SET character_set_client = utf8mb4 */;
+/*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `dm_activation` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `hash` varchar(60) NOT NULL DEFAULT '',
@@ -47,7 +47,7 @@ UNLOCK TABLES;
 
 DROP TABLE IF EXISTS `dm_article`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!50503 SET character_set_client = utf8mb4 */;
+/*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `dm_article` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `status` int(11) NOT NULL DEFAULT '0',
@@ -84,7 +84,7 @@ UNLOCK TABLES;
 
 DROP TABLE IF EXISTS `dm_draft`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!50503 SET character_set_client = utf8mb4 */;
+/*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `dm_draft` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `author` int(11) NOT NULL,
@@ -111,7 +111,7 @@ UNLOCK TABLES;
 
 DROP TABLE IF EXISTS `dm_folder`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!50503 SET character_set_client = utf8mb4 */;
+/*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `dm_folder` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `folder_type` varchar(30) NOT NULL DEFAULT '',
@@ -145,7 +145,7 @@ UNLOCK TABLES;
 
 DROP TABLE IF EXISTS `dm_image`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!50503 SET character_set_client = utf8mb4 */;
+/*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `dm_image` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `author` int(11) NOT NULL DEFAULT '0',
@@ -180,7 +180,7 @@ UNLOCK TABLES;
 
 DROP TABLE IF EXISTS `dm_location`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!50503 SET character_set_client = utf8mb4 */;
+/*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `dm_location` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `parent_id` int(11) NOT NULL DEFAULT '-1',
@@ -210,7 +210,7 @@ CREATE TABLE `dm_location` (
 
 LOCK TABLES `dm_location` WRITE;
 /*!40000 ALTER TABLE `dm_location` DISABLE KEYS */;
-INSERT INTO `dm_location` VALUES (1,0,1,'1',1,'content','folder',1,'',1,'Content',0,0,0,'bk1tpudi6ekibbmo2chg','','public',''),(2,0,2,'2',1,'users','folder',2,'',1,'Users',0,0,0,'bk1tq1di6ekibbmo2cig','','',''),(3,1,3,'1/3',2,'content/demosite','folder',3,'',1,'Demo',0,0,0,'bk1trcli6ekibbmo2cjg','','public',''),(4,2,4,'2/4',2,'users/organization','folder',24,'',1,'Organization',0,0,0,'busq66h8d3bf3fc0hl3g','','',''),(5,4,5,'2/4/5',3,'users/organization/administrator-admin','user',1,'',1,'Administrator Admin',0,0,0,'bk1tsc5i6ekibbmo2clg','','',''),(6,4,6,'2/4/6',3,'users/organization/anonymous-user','user',2,'',1,'Anonymous User',0,0,0,'bk1tstli6ekibbmo2cmg','','',''),(7,2,7,'2/7',2,'roles/anonymous','folder',25,'',1,'Roles',0,0,0,'bk1vutti6ekij1eq9sgg','','',''),(8,7,8,'2/7/8',3,'users/anonymous/editor','role',2,'',1,'Editor',0,0,0,'bk2051di6ekislpnehu0','','',''),(9,1,9,'1/9',2,'content/resources','folder',29,'',0,'Resources',0,0,0,'c109vuuvvhfvc1h67sl0','','public',''),(10,9,10,'1/9/10',3,'content/resources/images','folder',30,'',0,'Images',0,0,0,'c10a0juvvhfvc1h67sm0','','public',''),(64,7,64,'2/7/64',3,'users/anonymous/','role',3,'',1,'Anonymous',0,0,0,'bmvh66ot6to17mufvagg','','',''),(68,7,68,'2/7/68',3,'users/anonymous/members','role',7,'',1,'Members',0,0,0,'bmvh88ot6to1b9bl2of0','','',''),(451,7,451,'2/7/451',3,'users/roles/administrator','role',8,'',1,'Administrator',0,0,0,'','','','c'),(453,2,453,'2/453',2,'users/roles','role',1,'',1,'Roles',0,0,0,'busq6ch8d3bf3fc0hl4g','','',''),(454,3,454,'1/3/454',3,'content/demosite/news','folder',26,'',0,'News',0,0,0,'c0v1f5uvvhfup2usch40','','public',''),(455,3,455,'1/3/455',3,'content/demosite/about-us','folder',27,'',0,'About us',0,0,0,'c0v1f9mvvhfup2usch50','','public',''),(456,3,456,'1/3/456',3,'content/demosite/products','folder',28,'',0,'Products',0,0,0,'c0v1feuvvhfup2usch60','','public',''),(459,9,459,'1/9/459',3,'content/resources/files','folder',31,'',0,'Files',0,0,0,'c10a1p6vvhfvc1h67sn0','','public',''),(460,1,460,'1/460',2,'content/shared','folder',32,'',0,'Shared',0,0,0,'c158ejmvvhfle47bafgg','','public',''),(461,460,461,'1/460/461',3,'content/shared/images','folder',33,'',0,'Photos',0,0,0,'c158f0evvhfle47bafhg','','public',''),(462,4,462,'2/4/462',3,'users/organization/member-name','user',3,'',0,'Test Member',0,0,0,'c15kltevvhfo4ero31ig','','','');
+INSERT INTO `dm_location` VALUES (1,0,1,'1',1,'content','folder',1,'',1,'Content',0,0,0,'bk1tpudi6ekibbmo2chg','','public',''),(2,0,2,'2',1,'users','folder',2,'',1,'Users',0,0,0,'bk1tq1di6ekibbmo2cig','','',''),(3,1,3,'1/3',2,'content/demosite','folder',3,'',1,'Demo',0,0,0,'bk1trcli6ekibbmo2cjg','','public',''),(4,2,4,'2/4',2,'users/organization','folder',24,'',1,'Organization',0,0,0,'busq66h8d3bf3fc0hl3g','','',''),(5,4,5,'2/4/5',3,'users/organization/administrator-admin','user',1,'',1,'Administrator Admin',0,0,0,'bk1tsc5i6ekibbmo2clg','','',''),(6,4,6,'2/4/6',3,'users/organization/anonymous-user','user',2,'',1,'Anonymous User',0,0,0,'bk1tstli6ekibbmo2cmg','','',''),(7,2,7,'2/7',2,'roles/anonymous','folder',25,'',1,'Roles',0,0,0,'bk1vutti6ekij1eq9sgg','','',''),(9,1,9,'1/9',2,'content/resources','folder',29,'',0,'Resources',0,0,0,'c109vuuvvhfvc1h67sl0','','public',''),(10,9,10,'1/9/10',3,'content/resources/images','folder',30,'',0,'Images',0,0,0,'c10a0juvvhfvc1h67sm0','','public',''),(454,3,454,'1/3/454',3,'content/demosite/news','folder',26,'',0,'News',0,0,0,'c0v1f5uvvhfup2usch40','','public',''),(455,3,455,'1/3/455',3,'content/demosite/about-us','folder',27,'',0,'About us',0,0,0,'c0v1f9mvvhfup2usch50','','public',''),(456,3,456,'1/3/456',3,'content/demosite/products','folder',28,'',0,'Products',0,0,0,'c0v1feuvvhfup2usch60','','public',''),(459,9,459,'1/9/459',3,'content/resources/files','folder',31,'',0,'Files',0,0,0,'c10a1p6vvhfvc1h67sn0','','public',''),(460,1,460,'1/460',2,'content/shared','folder',32,'',0,'Shared',0,0,0,'c158ejmvvhfle47bafgg','','public',''),(461,460,461,'1/460/461',3,'content/shared/images','folder',33,'',0,'Photos',0,0,0,'c158f0evvhfle47bafhg','','public',''),(462,4,462,'2/4/462',3,'users/organization/member-name','user',3,'',0,'Test Member',0,0,0,'c15kltevvhfo4ero31ig','','','');
 /*!40000 ALTER TABLE `dm_location` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -220,7 +220,7 @@ UNLOCK TABLES;
 
 DROP TABLE IF EXISTS `dm_log_operation`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!50503 SET character_set_client = utf8mb4 */;
+/*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `dm_log_operation` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `user` int(11) NOT NULL DEFAULT '0',
@@ -246,7 +246,7 @@ UNLOCK TABLES;
 
 DROP TABLE IF EXISTS `dm_relation`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!50503 SET character_set_client = utf8mb4 */;
+/*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `dm_relation` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `to_content_id` int(11) NOT NULL DEFAULT '0',
@@ -278,18 +278,16 @@ UNLOCK TABLES;
 
 DROP TABLE IF EXISTS `dm_role`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!50503 SET character_set_client = utf8mb4 */;
+/*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `dm_role` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
-  `title` varchar(255) NOT NULL DEFAULT '',
+  `name` varchar(255) NOT NULL DEFAULT '',
   `summary` text NOT NULL,
   `published` int(11) NOT NULL DEFAULT '0',
   `modified` int(11) NOT NULL DEFAULT '0',
-  `cuid` varchar(30) NOT NULL DEFAULT '',
-  `version` int(11) NOT NULL DEFAULT '0',
   `author` int(11) DEFAULT '0',
   `identifier` varchar(100) NOT NULL DEFAULT '',
-  `status` int(11) DEFAULT '1',
+  `parameters` json DEFAULT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
@@ -300,7 +298,7 @@ CREATE TABLE `dm_role` (
 
 LOCK TABLES `dm_role` WRITE;
 /*!40000 ALTER TABLE `dm_role` DISABLE KEYS */;
-INSERT INTO `dm_role` VALUES (1,'Anonymous','',1560543095,1560543095,'bk1vutti6ekij1eq9sg0',0,1,'',1),(2,'Editor','',1560543877,1560543877,'bk2051di6ekislpnehtg',0,1,'',1),(3,'Anonymous','',1572803355,1615413222,'bmvh66ot6to17mufvag0',0,1,'anonymous',1),(7,'Members','',1572803619,1572803619,'bmvh88ot6to1b9bl2oeg',0,1,'member',1),(8,'Administrator','',1602106747,1602106747,'btv3aup8d3bdq7gq1q3g',0,1,'admin',1);
+INSERT INTO `dm_role` VALUES (1,'Anonymous','',1560543095,1560543095,1,'',NULL),(2,'Editor','',1560543877,1560543877,1,'',NULL),(3,'Anonymous','',1572803355,1615413222,1,'anonymous',NULL),(7,'Members','',1572803619,1572803619,1,'member',NULL),(8,'Administrator','',1602106747,1602106747,1,'admin',NULL);
 /*!40000 ALTER TABLE `dm_role` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -310,7 +308,7 @@ UNLOCK TABLES;
 
 DROP TABLE IF EXISTS `dm_token_state`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!50503 SET character_set_client = utf8mb4 */;
+/*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `dm_token_state` (
   `guid` varchar(50) NOT NULL DEFAULT '',
   `expiry` int(11) NOT NULL DEFAULT '0'
@@ -323,7 +321,7 @@ CREATE TABLE `dm_token_state` (
 
 LOCK TABLES `dm_token_state` WRITE;
 /*!40000 ALTER TABLE `dm_token_state` DISABLE KEYS */;
-INSERT INTO `dm_token_state` VALUES ('d38ef51b-2187-4f40-8a9e-b6b25d9547a7',1606009752),('301780da-beee-48be-8b66-46795a6dc875',1606072533),('1489938b-0070-4c32-aef4-9d54f75d97cc',1606090902),('5c84e204-c54f-43ef-8ad3-66bd6c6cfdaa',1606092113),('32312da5-6a5d-4326-a936-30db14b8d29f',1614692748),('29c1ddb2-cc5d-412a-a217-198558a1d13d',1614857550),('472c94c7-ef3c-483d-9c36-f54955494dfa',1614872852),('600ed42e-011b-48dc-a07d-0f1efaae9564',1615030883),('e8b58b8a-9389-40cd-b91b-4a2e1646febc',1615422279),('960fbab6-33b2-493c-b377-70dbe0fc09b5',1615460787),('9d08f9f9-f2a3-4c57-ab36-eb5ac78bdc64',1615472356),('41fd9bf9-82e2-4020-ba12-1abf19385fff',1615485609),('357c8570-b220-4a1f-8802-e33ff41308e3',1615494626),('dfe66769-9104-486d-a58e-f5003eaf4df0',1615506999),('73e89082-90db-4127-bca9-cc409a41fc05',1615507805),('18ad36c9-3d9b-4ee7-912d-463dd8fdd3bd',1615542842),('13b6c72e-4318-4795-8142-d1403a42a68f',1615547730),('f62ce6e6-a369-46d9-860f-62f2a99b9ce5',1615552822),('3ecbf947-bf6a-4557-bdec-e41e6c5a7e88',1615554681),('088b64a3-2610-45e9-959d-b153d277edfa',1615558030),('44979603-ec37-4ccb-90a3-cbb485f90ebd',1615558103),('0f15c3f8-9e15-4fb9-8da4-775307fafda6',1615893136),('8f8d3ee3-91bd-4328-98e5-b08f73e09d63',1615894701),('c196caf5-5b59-4e95-87b3-06aebbc85172',1615977881),('572bd97e-a00b-4dfc-b4cb-d15559c21670',1615980909),('b5f76f03-daca-49ac-b895-a4fbc68ad789',1615984872),('b699e62d-4d93-4d16-ba0f-bf74a081f259',1616089401),('63234db6-aa09-448d-98a2-8012dcf03682',1616089482),('e91fa7cf-e9e5-40bd-8a71-91d1f9e3547f',1616154262),('0079a5d5-c395-455d-bebb-4d549d3da8ca',1616154366),('3c598dc2-2e54-40c9-86c6-6ef3797c69c9',1616164126),('3c1822a8-c6c7-4628-bfa9-64e39d268034',1616250290),('6a591ffa-6035-453b-b373-501410f37464',1616250342),('1125be2a-9e01-4075-a069-e7caf91d5b64',1616595034),('49274899-0cbe-48f1-afd2-ac33dada4ce3',1616678180),('fa3f4727-9179-40cb-9a18-c4c5295c7689',1617148659),('c5fa0c5d-1b7b-471a-878b-b955836e21fd',1617279469),('6f47e3c1-009b-44da-8b1e-88efcb177885',1617281071);
+INSERT INTO `dm_token_state` VALUES ('d38ef51b-2187-4f40-8a9e-b6b25d9547a7',1606009752),('301780da-beee-48be-8b66-46795a6dc875',1606072533),('1489938b-0070-4c32-aef4-9d54f75d97cc',1606090902),('5c84e204-c54f-43ef-8ad3-66bd6c6cfdaa',1606092113),('32312da5-6a5d-4326-a936-30db14b8d29f',1614692748),('29c1ddb2-cc5d-412a-a217-198558a1d13d',1614857550),('472c94c7-ef3c-483d-9c36-f54955494dfa',1614872852),('600ed42e-011b-48dc-a07d-0f1efaae9564',1615030883),('e8b58b8a-9389-40cd-b91b-4a2e1646febc',1615422279),('960fbab6-33b2-493c-b377-70dbe0fc09b5',1615460787),('9d08f9f9-f2a3-4c57-ab36-eb5ac78bdc64',1615472356),('41fd9bf9-82e2-4020-ba12-1abf19385fff',1615485609),('357c8570-b220-4a1f-8802-e33ff41308e3',1615494626),('dfe66769-9104-486d-a58e-f5003eaf4df0',1615506999),('73e89082-90db-4127-bca9-cc409a41fc05',1615507805),('18ad36c9-3d9b-4ee7-912d-463dd8fdd3bd',1615542842),('13b6c72e-4318-4795-8142-d1403a42a68f',1615547730),('f62ce6e6-a369-46d9-860f-62f2a99b9ce5',1615552822),('3ecbf947-bf6a-4557-bdec-e41e6c5a7e88',1615554681),('088b64a3-2610-45e9-959d-b153d277edfa',1615558030),('44979603-ec37-4ccb-90a3-cbb485f90ebd',1615558103),('0f15c3f8-9e15-4fb9-8da4-775307fafda6',1615893136),('8f8d3ee3-91bd-4328-98e5-b08f73e09d63',1615894701),('c196caf5-5b59-4e95-87b3-06aebbc85172',1615977881),('572bd97e-a00b-4dfc-b4cb-d15559c21670',1615980909),('b5f76f03-daca-49ac-b895-a4fbc68ad789',1615984872),('b699e62d-4d93-4d16-ba0f-bf74a081f259',1616089401),('63234db6-aa09-448d-98a2-8012dcf03682',1616089482),('e91fa7cf-e9e5-40bd-8a71-91d1f9e3547f',1616154262),('0079a5d5-c395-455d-bebb-4d549d3da8ca',1616154366),('3c598dc2-2e54-40c9-86c6-6ef3797c69c9',1616164126),('3c1822a8-c6c7-4628-bfa9-64e39d268034',1616250290),('6a591ffa-6035-453b-b373-501410f37464',1616250342),('1125be2a-9e01-4075-a069-e7caf91d5b64',1616595034),('49274899-0cbe-48f1-afd2-ac33dada4ce3',1616678180),('fa3f4727-9179-40cb-9a18-c4c5295c7689',1617148659),('c5fa0c5d-1b7b-471a-878b-b955836e21fd',1617279469),('6f47e3c1-009b-44da-8b1e-88efcb177885',1617281071),('77053383-ddf2-45c8-b41a-05429a725878',1627996005),('394f7b08-378b-4638-b992-c2a58e751d6b',1628008941);
 /*!40000 ALTER TABLE `dm_token_state` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -333,7 +331,7 @@ UNLOCK TABLES;
 
 DROP TABLE IF EXISTS `dm_user`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!50503 SET character_set_client = utf8mb4 */;
+/*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `dm_user` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `login` varchar(50) DEFAULT NULL,
@@ -368,7 +366,7 @@ UNLOCK TABLES;
 
 DROP TABLE IF EXISTS `dm_user_role`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!50503 SET character_set_client = utf8mb4 */;
+/*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `dm_user_role` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `user_id` int(11) NOT NULL,
@@ -393,7 +391,7 @@ UNLOCK TABLES;
 
 DROP TABLE IF EXISTS `dm_usergroup`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!50503 SET character_set_client = utf8mb4 */;
+/*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `dm_usergroup` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `title` varchar(255) NOT NULL DEFAULT '',
@@ -424,7 +422,7 @@ UNLOCK TABLES;
 
 DROP TABLE IF EXISTS `dm_version`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!50503 SET character_set_client = utf8mb4 */;
+/*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `dm_version` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `content_type` varchar(50) NOT NULL,
@@ -458,4 +456,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2021-04-01 11:50:44
+-- Dump completed on 2021-08-03 15:45:34
