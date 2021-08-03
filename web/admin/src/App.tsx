@@ -24,7 +24,7 @@ const App: React.FC = () => {
     return (
         <ContextProvider> {/*context between right and left area */}
         <ErrorBoundary>
-        <Router>
+        <Router basename={process.env.PUBLIC_URL}>
           <Switch>
             <Route path="/login" component={Login}  />
             <Route path="/logout" component={Logout}  />           
