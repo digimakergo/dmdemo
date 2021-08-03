@@ -75,7 +75,7 @@
       {
         "operation": ["eui/all"],
         "limited_to": {
-          "view": []
+          "view": ["main/7"]
         }
       },
       {

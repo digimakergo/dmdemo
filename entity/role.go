@@ -10,8 +10,6 @@ import (
     "github.com/digimakergo/digimaker/core/definition"
     "github.com/digimakergo/digimaker/core/contenttype"
     
-    "github.com/digimakergo/digimaker/core/util"
-    
 	. "github.com/digimakergo/digimaker/core/db"
     
     "github.com/digimakergo/digimaker/core/fieldtype/fieldtypes"
@@ -21,32 +19,35 @@ import (
 
 
 type Role struct{
-     contenttype.ContentCommon `boil:",bind"`
+     contenttype.ContentEntity `boil:",bind"`
 
      
+          Author  int `boil:"author" json:"author" toml:"author" yaml:"author"`
+     
+          Modified  int `boil:"modified" json:"modified" toml:"modified" yaml:"modified"`
+     
+          Published  int `boil:"published" json:"published" toml:"published" yaml:"published"`
+     
     
-                  
+             
          
             Identifier  string `boil:"identifier" json:"identifier" toml:"identifier" yaml:"identifier"`
-         
+                 
     
-                  
+             
+         
+            Name  string `boil:"name" json:"name" toml:"name" yaml:"name"`
+                 
+    
+             
          
             Parameters  fieldtypes.Map `boil:"parameters" json:"parameters" toml:"parameters" yaml:"parameters"`
-         
+                 
     
-                  
+             
          
             Summary  string `boil:"summary" json:"summary" toml:"summary" yaml:"summary"`
-         
-    
-                  
-         
-            Title  string `boil:"title" json:"title" toml:"title" yaml:"title"`
-         
-    
-    
-     contenttype.Location `boil:"location,bind"`
+                 
     
 }
 
@@ -55,18 +56,11 @@ func (c *Role ) ContentType() string{
 }
 
 func (c *Role ) GetName() string{
-	 location := c.GetLocation()
-     if location != nil{
-         return location.Name
-     }else{
-         return ""
-     }
+	 return ""
 }
 
 func (c *Role) GetLocation() *contenttype.Location{
-    
-    return &c.Location
-    
+    return nil
 }
 
 func (c *Role) ToMap() map[string]interface{}{
@@ -82,11 +76,23 @@ func (c *Role) ToMap() map[string]interface{}{
 func (c *Role) ToDBValues() map[string]interface{} {
 	result := make(map[string]interface{})
     
+         result["author"]=c.Author
+    
+         result["modified"]=c.Modified
+    
+         result["published"]=c.Published
+    
 
     
         
         
             result["identifier"]=c.Identifier
+        
+        
+    
+        
+        
+            result["name"]=c.Name
         
         
     
@@ -102,21 +108,12 @@ func (c *Role) ToDBValues() map[string]interface{} {
         
         
     
-        
-        
-            result["title"]=c.Title
-        
-        
-    
-	for key, value := range c.ContentCommon.ToDBValues() {
-		result[key] = value
-	}
 	return result
 }
 
 //Get identifier list of fields(NOT including data_fields )
 func (c *Role) IdentifierList() []string {
-	return append(c.ContentCommon.IdentifierList(),[]string{ "identifier","parameters","summary","title",}...)
+	return []string{ "identifier","name","parameters","summary",}
 }
 
 func (c *Role) Definition(language ...string) definition.ContentType {
@@ -127,38 +124,41 @@ func (c *Role) Definition(language ...string) definition.ContentType {
 //Get field value
 func (c *Role) Value(identifier string) interface{} {
     
-    if util.Contains( c.Location.IdentifierList(), identifier ) {
-        return c.Location.Field( identifier )
-    }
-    
     var result interface{}
 	switch identifier {
     
+      case "author":
+         result = c.Author
+    
+      case "modified":
+         result = c.Modified
+    
+      case "published":
+         result = c.Published
     
     
-    case "identifier":
+    
+    case "identifier":        
             result = (c.Identifier)        
     
     
     
-    case "parameters":
+    case "name":        
+            result = (c.Name)        
+    
+    
+    
+    case "parameters":        
             result = (c.Parameters)        
     
     
     
-    case "summary":
+    case "summary":        
             result = (c.Summary)        
     
     
-    
-    case "title":
-            result = (c.Title)        
-    
-    
-	case "cid":
-		result = c.ContentCommon.CID
+
     default:
-    	result = c.ContentCommon.Value( identifier )
     }
 	return result
 }
@@ -167,56 +167,63 @@ func (c *Role) Value(identifier string) interface{} {
 func (c *Role) SetValue(identifier string, value interface{}) error {
 	switch identifier {
         
+          case "author":
+             c.Author = value.(int)
         
-                        
+          case "modified":
+             c.Modified = value.(int)
+        
+          case "published":
+             c.Published = value.(int)
+        
+        
+            
             
             case "identifier":
             c.Identifier = value.(string)
-                    
+                     
         
-                        
+            
+            
+            case "name":
+            c.Name = value.(string)
+                     
+        
+            
             
             case "parameters":
             c.Parameters = value.(fieldtypes.Map)
-                    
+                     
         
-                        
+            
             
             case "summary":
             c.Summary = value.(string)
-                    
-        
-                        
-            
-            case "title":
-            c.Title = value.(string)
-                    
+                     
         
 	default:
-		return c.ContentCommon.SetValue(identifier, value)        
+
 	}
 	//todo: check if identifier exist
 	return nil
 }
 
 //Store content.
-//Note: it will set id to CID after success
+//Note: it will set id to ID after success
 func (c *Role) Store(ctx context.Context, transaction ...*sql.Tx) error {
-	if c.CID == 0 {
+	if c.ID == 0 {
 		id, err := db.Insert(ctx, "dm_role", c.ToDBValues(), transaction...)
-		c.CID = id
+		c.ID = id
 		if err != nil {
 			return err
 		}
 	} else {
-		err := db.Update(ctx, "dm_role", c.ToDBValues(), Cond("id", c.CID), transaction...)
-    if err != nil {
-			return err
-		}
+		err := db.Update(ctx, "dm_role", c.ToDBValues(), Cond("id", c.ID), transaction...)
+		return err
 	}
-
 	return nil
 }
+
 
 func (c *Role)StoreWithLocation(){
 
@@ -224,13 +231,15 @@ func (c *Role)StoreWithLocation(){
 
 //Delete content only
 func (c *Role) Delete(ctx context.Context, transaction ...*sql.Tx) error {
-	contentError := db.Delete(ctx, "dm_role", Cond("id", c.CID), transaction...)
+	contentError := db.Delete(ctx, "dm_role", Cond("id", c.ID), transaction...)
 	return contentError
 }
 
 func init() {
 	new := func() contenttype.ContentTyper {
-		return &Role{}
+    entity := &Role{}
+    entity.ContentEntity.ContentType = "Role"
+    return entity
 	}
 
 	newList := func() interface{} {

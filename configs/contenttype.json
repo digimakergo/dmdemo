@@ -182,14 +182,15 @@
     "table_name": "dm_role",
     "has_version": false,
     "name_pattern": "{title}",
-    "has_location": true,
+    "has_location": false,
     "allowed_types": [
       "role"
     ],
+    "data_fields":[{"identifier":"author", "fieldtype":"int"}, {"identifier":"published", "fieldtype":"int"}, {"identifier":"modified", "fieldtype":"int"}],
     "fields": [{
-        "identifier": "title",
+        "identifier": "name",
         "type": "text",
-        "name": "Title",
+        "name": "Name",
         "required": true
       },
       {
