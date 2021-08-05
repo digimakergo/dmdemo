@@ -9,7 +9,7 @@ export default class ErrorBoundary extends React.Component<{}, {error:any, error
   }
 
   componentDidCatch(error, errorInfo) {
-    if( error.code=='0001' && window.location.pathname == config.default_url ){
+    if( error.code=='0001' && window.location.pathname == process.env.PUBLIC_URL+ config.default_url ){
       window.location.href = process.env.PUBLIC_URL+'/login';
       return;
     }
