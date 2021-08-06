@@ -25,6 +25,7 @@ Run the demo
  mysql -u {username} -p {database} < data/dmdemo.sql
 
  //start server
+ cd dmdemo
  dmapp=. go run cmd/main.go
 ```
   View frontend: http://localhost:9200
