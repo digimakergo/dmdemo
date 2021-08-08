@@ -11,11 +11,11 @@ Run the demo
 -------
 
 #### Requirements:
-- Go version >= 1.2(recommand >= 1.5)
+- Go version >= 1.2(recommand >= 1.6)
 - Mysql database(only support mysql for now)
 - npm(dev only)
 
-#### Frontend
+#### Run server
 ```sh
  //clone it.
  git clone https://github.com/digimakergo/dmdemo.git
@@ -24,13 +24,17 @@ Run the demo
  //remember to change configs/dm.yaml's database connection.
  mysql -u {username} -p {database} < data/dmdemo.sql
 
+//install dmcli, optional
+go install github.com/digimakergo/digimaker/dmcli
+
  //start server
  cd dmdemo
  dmapp=. go run cmd/main.go
 ```
   View frontend: http://localhost:9200
 
-Build frontend webapp
+
+#### Run frontend webapp
 
 ```sh
    cd web/app
@@ -43,7 +47,7 @@ Build frontend webapp
   (login with member/digimaker)
 
 
- #### Backend
+ #### Backend webapp
   The backend client is under web/admin
   ```sh   
    cd web/admin
@@ -55,7 +59,31 @@ Build frontend webapp
 View backend: http://localhost:3000 and Login with `admin/Digimaker`
 
 
-Development
+
+Create new project based on dmdemo
+---------
+create a new project folder eg. project-a
+```sh   
+cd ..
+mkdir project-a
+cp -a dmdemo/configs project-a/
+cp -a dmdemo/cmd project-a
+cp -a entity project-a  
+```
+### Update entities
+After changing config/contenttype.json, you can run below to update entity
+```sh   
+cd project-a
+dmcli entity
+```
+
+### Run project-a
+```sh
+cd project-a
+dmapp=. go run cmd/main.go
+```
+
+Explaination of dmdemo
 -------
 
 ### Website, Templating
