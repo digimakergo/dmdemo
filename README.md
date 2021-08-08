@@ -146,7 +146,7 @@ Digimaker defines content model in file and generates entities based on the defi
 
 ```
 cd dmdemo
-dmapp=. go run /Users/xc/go/src/github.com/digimakergo/digimaker/codegen/contenttypes/gen.go
+dmcli entity
 ```
 
 Default output example after run
