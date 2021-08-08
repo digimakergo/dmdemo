@@ -139,30 +139,6 @@ Example on policies.json:
 
 Check docs to see policies configuration: [https://digimaker.org/doc/references/policies](https://digimaker.org/doc/references/policies)
 
-### Content model
-Digimaker defines content model in file and generates entities based on the definition. Developers use those entities to manipulate content similar to ORM.
-
-[contenttype.json](configs/contenttype.json) defines content model. If there is changes on contenttype.json, run below so it can generate entities under entity folder
-
-```
-cd dmdemo
-dmcli entity
-```
-
-Default output example after run
-
-```
-Generating content entities for /Users/xc/go/src/github.com/digimakergo/dmdemo
-Generating article
-Generating usergroup
-Generating role
-Generating user
-Generating image
-Generating file
-Generating folder
-Generating frontpage
-```
-
 
 ### Extend EUI
 
