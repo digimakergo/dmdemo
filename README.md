@@ -71,7 +71,7 @@ cp -a dmdemo/cmd project-a
 cp -a entity project-a  
 ```
 ### Update entities
-After changing config/contenttype.json, you can run below to update entity
+If you have changes on config/contenttype.json, you can run below to update entity
 ```sh   
 cd project-a
 dmcli entity
