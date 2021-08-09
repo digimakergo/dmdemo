@@ -111,41 +111,16 @@ Check docs to see rest api: [https://digimaker.org/doc/references/rest](https://
 Check docs to see full react components: [https://digimaker.org/doc/references/digimaker-ui](https://digimaker.org/doc/references/digimaker-ui)
 
 
-### Permission configure
-The permission policies is defined under [policies.json](configs/policies.json), and then connect to role and user in the content. policies.json defines permission like
- - fetching  based on content type, parent,etc
- - operations(eg. create content, update, delete) based on content type, parent, author(self)
- - updated fields when updating - attribute level permission
- - non-content operation like login, left menu of eui, etc
-
-Example on policies.json:
-```json
-  {
-    "operation": ["content/update", "content/read"],
-    "limited_to": {
-      "contenttype": ["article"],
-      "author": "self"
-    }
-  },
-  {
-      "operation": ["content/create"],
-      "limited_to": {
-      "contenttype": ["image"],
-      "under": [461]
-   }
-  }
-```
-
-Check docs to see policies configuration: [https://digimaker.org/doc/references/policies](https://digimaker.org/doc/references/policies)
-
-
-### Extend EUI
-
-### Log & Debug
-
-
 Build & Deploy
 ----------
+```
+#build for linux
+env GOOS=linux GOARCH=amd64 go build ./cmd/main.go
+
+#run on production, see dmdemo.service to deploy as a linux service
+#need to deploy all(except .go files) into production.
+./main
+```
 
 Additional - Project structure
 -------
