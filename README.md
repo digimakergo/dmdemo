@@ -11,7 +11,7 @@ Run the demo
 -------
 
 #### Requirements:
-- Go version >= 1.2(recommand >= 1.6)
+- Go version >= 1.5(recommand >= 1.6 to use website templating)
 - Mysql database(only support mysql for now)
 - npm(dev only)
 
