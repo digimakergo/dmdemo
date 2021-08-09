@@ -34,7 +34,18 @@ go install github.com/digimakergo/digimaker/dmcli
   View frontend: http://localhost:9200
 
 
-#### Run frontend webapp
+ #### Admin webapp
+  The admin client is under web/admin
+  ```sh   
+   cd web/admin
+   npm install
+   mkdir assets ## For beta version only   
+   cp -r node_module/tinymce assets/ ## For beta version only
+   npm start
+   ```
+View admin: http://localhost:3000 and Login with `admin/Digimaker`
+
+#### [optional]Run frontend webapp
 
 ```sh
    cd web/app
@@ -45,18 +56,6 @@ go install github.com/digimakergo/digimaker/dmcli
   View frontend webapp: http://localhost:9200/mypage
 
   (login with member/digimaker)
-
-
- #### Backend webapp
-  The backend client is under web/admin
-  ```sh   
-   cd web/admin
-   npm install
-   mkdir assets ## For beta version only   
-   cp -r node_module/tinymce assets/ ## For beta version only
-   npm start
-   ```
-View backend: http://localhost:3000 and Login with `admin/Digimaker`
 
 
 
