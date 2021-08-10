@@ -27,6 +27,8 @@ For full documentation and references, please visit [https://digimaker.org/doc](
  //install dmcli, optional
  go install github.com/digimakergo/digimaker/dmcli
 
+ //change database connection information on config/dm.yaml/database 
+
  //start server
  cd dmdemo
  dmapp=. go run cmd/main.go
