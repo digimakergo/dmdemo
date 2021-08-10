@@ -7,8 +7,8 @@ You can just clone this project and do some configuration and it can be your ini
 
 For full documentation and references, please visit [https://digimaker.org/doc](https://digimaker.org/doc)
 
-Run the demo
--------
+## Run the demo
+
 
 #### Requirements:
 - Go version >= 1.15(recommand >= 1.16 to use website templating)
@@ -59,8 +59,8 @@ View admin: http://localhost:3000 and Login with `admin/Digimaker`
 
 
 
-Create new project based on dmdemo
----------
+## Create new project from dmdemo
+
 create a new project folder eg. project-a
 ```sh   
 cd ..
@@ -69,50 +69,23 @@ cp -a dmdemo/configs project-a/
 cp -a dmdemo/cmd project-a
 cp -a entity project-a  
 ```
-### Update entities
+#### Update entities
 If you have changes on config/contenttype.json, you can run below to update entity
 ```sh   
 cd project-a
 dmcli entity
 ```
 
-### Run project-a
+#### Run project-a
 ```sh
 cd project-a
 dmapp=. go run cmd/main.go
 ```
 
-Explaination of dmdemo
--------
-
-### Website, Templating
-
-First you need to define a template override rule under [configs/template_override.yaml](https://github.com/digimakergo/dmdemo/blob/master/configs/template_override.yaml) (and template_override-dmdemo.yaml), then you can do the templating in that template file.  
-
-Example:
-- [Display a folder](https://github.com/digimakergo/dmdemo/tree/master/web/templates/demo/folder/full.html)
-- [Display frontpage](https://github.com/digimakergo/dmdemo/tree/master/web/templates/demo/folder/frontpage.html)
-- [Layout](https://github.com/digimakergo/dmdemo/tree/master/web/templates/demo/base.html)
-
-Check docs to see all template override rules: [https://digimaker.org/doc/references/template-override](https://digimaker.org/doc/references/template-override)
-
-Check docs to see all references: [https://digimaker.org/doc/references/template](https://digimaker.org/doc/references/template)
 
 
-### Web App
-See [web/app](web/app) for examples.
+#### Build & Deploy
 
-- [Photos.tsx](web/app/src/Photos.tsx) Shows how to query images, add content(image) using rest api
-- [Profile.tsx](web/app/src/Profile.tsx) Shows how to show/edit content(user) using components in digimaker-ui
-- [Login.tsx](web/app/src/Login.tsx) Shows how to get authorization token using rest api
-
-Check docs to see rest api: [https://digimaker.org/doc/references/rest](https://digimaker.org/doc/references/rest)
-
-Check docs to see full react components: [https://digimaker.org/doc/references/digimaker-ui](https://digimaker.org/doc/references/digimaker-ui)
-
-
-Build & Deploy
-----------
 ```
 #build for linux
 env GOOS=linux GOARCH=amd64 go build ./cmd/main.go
@@ -122,8 +95,28 @@ env GOOS=linux GOARCH=amd64 go build ./cmd/main.go
 ./main
 ```
 
-Additional - Project structure
--------
+## Code overview
+
+#### Website, Templating
+
+First you need to define a template override rule under [configs/template_override.yaml](https://github.com/digimakergo/dmdemo/blob/master/configs/template_override.yaml) (and template_override-dmdemo.yaml), then you can do the templating in that template file.  
+
+Example:
+- [Display a folder](https://github.com/digimakergo/dmdemo/tree/master/web/templates/demo/folder/full.html)
+- [Display frontpage](https://github.com/digimakergo/dmdemo/tree/master/web/templates/demo/folder/frontpage.html)
+- [Layout](https://github.com/digimakergo/dmdemo/tree/master/web/templates/demo/base.html)
+
+
+#### Web App
+See [web/app](web/app) for examples.
+
+- [Photos.tsx](web/app/src/Photos.tsx) Shows how to query images, add content(image) using rest api
+- [Profile.tsx](web/app/src/Profile.tsx) Shows how to show/edit content(user) using components in digimaker-ui
+- [Login.tsx](web/app/src/Login.tsx) Shows how to get authorization token using rest api
+
+
+## Additional - Project structure
+
 
 A project structure example which follows some recommendation from Go standard project layout: https://github.com/golang-standards/project-layout
 
