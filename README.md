@@ -24,8 +24,8 @@ Run the demo
  //remember to change configs/dm.yaml's database connection.
  mysql -u {username} -p {database} < data/dmdemo.sql
 
-//install dmcli, optional
-go install github.com/digimakergo/digimaker/dmcli
+ //install dmcli, optional
+ go install github.com/digimakergo/digimaker/dmcli
 
  //start server
  cd dmdemo
