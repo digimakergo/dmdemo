@@ -25,7 +25,7 @@ For full documentation and references, please visit [https://digimaker.org/doc](
  mysql -u {username} -p {database} < data/dmdemo.sql
 
  //install dmcli, optional
- go install github.com/digimakergo/digimaker/dmcli
+ go install github.com/digimakergo/digimaker/dmcli@latest
 
  //change database connection information on config/dm.yaml/database 
 
