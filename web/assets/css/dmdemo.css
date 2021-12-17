@@ -55,3 +55,9 @@ a:hover{
   color: #15755a;
   text-decoration: none
 }
+
+.article-author{
+  font-size: 90%;
+  color: #666666;
+  margin: 5px 0px;
+}

@@ -1,0 +1,20 @@
+{% extends "../base.html" %}
+
+{%block content%}
+<div class="{{content.ContentType}} full">
+    <h2>{{content.Name}}</h2>
+    <div class="article-author">created by {{content.AuthorName}}</div>
+
+    {%if content.Summary%}
+    <div class="summary">
+        {{content.Summary|safe}}
+    </div>
+    {%endif%} 
+    
+    {%if content.Body%}
+    <div class="body">
+        {{content.Body|safe}}
+    </div>
+    {%endif%} 
+</div>
+{%endblock%}
