@@ -19,9 +19,8 @@ export default class Profile extends React.Component<{}, {mode:string, validatio
   //fetch profile data
   fetchProfile(){
     FetchWithAuth(process.env.REACT_APP_REMOTE_URL + '/user/current/dmdemo')
-        .then(res => res.json())
         .then((data) => {
-            this.setState({data: data});
+            this.setState({data: data.data});
         }).catch(err=>{
           this.setState(()=>{throw err});
         })
@@ -46,16 +45,14 @@ export default class Profile extends React.Component<{}, {mode:string, validatio
     FetchWithAuth(process.env.REACT_APP_REMOTE_URL + url, {
         method: 'POST',
         body: JSON.stringify(dataObject),
-    }).then((res) => {
-        if (res.ok) {
+    }).then((data) => {
+        if (data.error==false) {
           this.setState({mode:'view', data:''});
           this.fetchProfile();
         }else {
-            return res.json();
+          this.setState( {validation: data.data} )
         }
-    }).then((data)=>{
-        this.setState( {validation: data} )
-    });
+    })
 }
 
   render () {

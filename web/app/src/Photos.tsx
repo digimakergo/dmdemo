@@ -32,9 +32,8 @@ export default class Photos extends React.Component<{}, {data:any, showMine:bool
       showMine='&author=self';
     }
     FetchWithAuth(process.env.REACT_APP_REMOTE_URL + '/content/list/image?parent='+process.env.REACT_APP_PHOTO_ROOT+'&level=1&sortby=published%20desc&limit=0&offset=0'+showMine)
-        .then(res => res.json())
         .then((data) => {
-            this.setState({data: data});
+            this.setState({data: data.data});
         }).catch(err=>{
           this.setState(()=>{throw err});
         })
@@ -61,12 +60,12 @@ export default class Photos extends React.Component<{}, {data:any, showMine:bool
     FetchWithAuth(process.env.REACT_APP_REMOTE_URL + '/content/new/' + process.env.REACT_APP_PHOTO_ROOT + '/image', {
         method: 'POST',
         body: JSON.stringify(dataObject),
-    }).then((res) => {
-        if (res.ok) {
+    }).then((data) => {
+        if (data.error===false) {
           this.setState({uploadedPath: '', uploadedName:'', showAdding: false});
           this.fetchPhotos();
         } else {
-            console.log(res)
+            console.log(data)
         }
     });
   }
