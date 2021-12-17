@@ -31,7 +31,7 @@ For full documentation and references, please visit [https://digimaker.org/doc](
 
  //start server
  cd dmdemo
- dmapp=. go run cmd/main.go
+ go run cmd/main.go
 ```
   View frontend: http://localhost:9200
 
@@ -41,8 +41,6 @@ For full documentation and references, please visit [https://digimaker.org/doc](
   ```sh   
    cd web/admin
    npm install
-   mkdir assets ## For beta version only   
-   cp -r node_module/tinymce assets/ ## For beta version only
    npm start
    ```
 View admin: http://localhost:3000 and Login with `admin/Digimaker`
