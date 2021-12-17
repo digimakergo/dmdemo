@@ -53,6 +53,8 @@ permission:
   rest_allowed_operations: ["eui/all"]
 
 auth:
+   rememberme_token_expiry: 30
+   rememberme_enabled: false
    refresh_token_secret_key: "1223123dfsldsfbsdfbsfsf-fdsfdsfl"
    refresh_token_expiry: 180
    access_token_secret_key: "fsfsfsf333333sdf555456"

@@ -78,11 +78,11 @@
      },
     "folder": {
       "list": [
-        "article:3",
-        "image:583",
-        "image:461",
-        "user:4",
-        "role:7"
+        "3:article",
+        "583:image",
+        "461:image",
+        "4:user",
+        "7:role"
       ],
       "actions": [{
         "com": "action:delete",
