@@ -24,6 +24,9 @@ For full documentation and references, please visit [https://digimaker.org/doc](
  //remember to change configs/dm.yaml's database connection.
  mysql -u {username} -p {database} < data/dmdemo.sql
 
+ //run this under mysql root 
+ SET GLOBAL sql_mode=(SELECT REPLACE(@@sql_mode,'ONLY_FULL_GROUP_BY',''));
+
  //install dmcli, optional
  go install github.com/digimakergo/digimaker/dmcli@latest
 
