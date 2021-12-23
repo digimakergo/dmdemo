@@ -1,1 +1,5 @@
-<a href={{dm.niceurl(content)}}>{{content.Name}}</a>
+<a href={{dm.niceurl(content)}}>
+<div class="block block-{{content.ContentType()}}">
+    {{content.Name}}
+</div>
+</a>

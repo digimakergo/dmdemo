@@ -19,8 +19,7 @@ content_view:
 
 field:
 #available keys for field override: fieldtype, field, contenttype, site
-- fieldtype: richtext
-  to: fieldtype/richtext.html
+- to: fieldtype/{fieldtype}.html
 
 user/list:
     - to: viewuser.html

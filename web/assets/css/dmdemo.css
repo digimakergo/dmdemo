@@ -61,3 +61,14 @@ a:hover{
   color: #666666;
   margin: 5px 0px;
 }
+
+.block{
+  display: inline-block;
+  border: 1px solid #cccccc;
+  background-color: #f0f0f0;
+  padding: 10px;
+}
+
+.block-article{
+  width: 30%;
+}

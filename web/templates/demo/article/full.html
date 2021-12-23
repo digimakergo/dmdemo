@@ -5,16 +5,9 @@
     <h2>{{content.Name}}</h2>
     <div class="article-author">created by {{content.AuthorName}}</div>
 
-    {%if content.Summary%}
-    <div class="summary">
-        {{content.Summary|safe}}
-    </div>
-    {%endif%} 
-    
-    {%if content.Body%}
-    <div class="body">
-        {{content.Body|safe}}
-    </div>
-    {%endif%} 
+    {{output_field( "summary", content )}}
+
+    {{output_field( "body", content )}}
+
 </div>
 {%endblock%}

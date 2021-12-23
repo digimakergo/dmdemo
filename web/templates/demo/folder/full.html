@@ -4,18 +4,12 @@
 <div class="{{content.ContentType}} full">
 
     <h2>{{content.Name}}</h2>
-    {%if content.Summary%}
-    <div class="summary">
-        {{content.Summary|safe}}
-    </div>
-    {%endif%}
+    
+    {{output_field("summary", content)}}
 
     <div class="children">
         {% for child in content|dm_children:"article" %}
-                <div>
                 {{output_content( child, "block" )}}
-                </div>
-              <hr />
         {%endfor%}
     </div>
 </div>
