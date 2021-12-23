@@ -17,5 +17,10 @@ content_view:
 - viewmode: block
   to: block.html
 
+field:
+#available keys for field override: fieldtype, field, contenttype, site
+- fieldtype: richtext
+  to: fieldtype/richtext.html
+
 user/list:
     - to: viewuser.html

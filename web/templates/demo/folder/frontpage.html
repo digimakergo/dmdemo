@@ -3,11 +3,7 @@
 {%block content%}
 <div class="{{content.ContentType}} full">
 
-  <h2>Welcome</h2>
-    {%if content.Summary%}
-    <div class="summary">
-        {{content.Summary|safe}}
-    </div>
-    {%endif%}
+  <h2>Welcome</h2>   
+  {{output_field( "summary", content )}}
 </div>
 {%endblock%}
