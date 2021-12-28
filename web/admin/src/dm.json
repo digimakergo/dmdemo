@@ -84,11 +84,16 @@
         "4:user",
         "7:role"
       ],
-      "actions": [{
-        "com": "action:delete",
-        "icon": "fas fa-trash",
-        "name": "delete"
-      }],
+      "actions": [
+        {
+          "com": "action:delete",
+          "icon": "fas fa-trash",
+          "name": "delete"
+        },
+        {
+          "com":"action:set_priority"
+        }        
+      ],
       "new": [
         "article",
         "folder",
