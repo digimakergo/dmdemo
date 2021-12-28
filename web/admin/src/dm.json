@@ -147,6 +147,7 @@
     },
     "user": {
       "view": true,
+      "view_com": "view:user_roles",
       "actions": [{
         "link": "/edit/{id}",
         "com": "action:delete",
