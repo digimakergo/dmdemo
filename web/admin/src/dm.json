@@ -280,6 +280,11 @@
         "name": "Detail",        
         "icon": "fa-arrow-right"},
         {
+          "link": "/edit/role/{cid}?from=/main/7",
+          "icon": "fas fa-edit",
+          "name": "Edit"
+        },
+        {
           "com": "action:delete",
           "icon": "fas fa-trash",
           "name": "delete"
