@@ -20,18 +20,12 @@
               "contenttype": ["image"],
               "under": [461]
             }
-        },
+        },      
         {
           "operation": ["content/update"],
           "limited_to": {
-            "contenttype": ["user"]
-          }
-        },
-        {
-          "operation": ["content/update_fields"],
-          "limited_to": {
             "contenttype": "user",
-            "cid": "self",
+            "user": "self",
             "fields": ["login", "password","firstname", "lastname", "email"]
           }
         },
@@ -57,10 +51,7 @@
           "limited_to": {
             "contenttype": ["article", "image"]
           }
-        },
-        {
-          "operation": ["content/update_fields"]
-        },
+        },        
         {
           "operation": ["access/assigned-users"]
         }
@@ -80,9 +71,6 @@
       },
       {
         "operation":["content/read", "content/create", "content/delete", "content/update", "content/move", "content/delete_subtree", "content/copy", "access/assigned-users", "access/assign-user"]
-      },
-      {
-        "operation": ["content/update_fields"]
       }
     ]
   },

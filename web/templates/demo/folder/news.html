@@ -1,0 +1,17 @@
+{% extends "../base.html" %}
+
+{%block content%}
+<div class="{{content.ContentType}} full">
+    
+    <h2>{{content.Name}}</h2>
+    Below is the news list
+    
+    {{output_field("summary", content)}}
+
+    <div class="children">
+        {% for child in content|dm_children:"article" %}
+                {{output_content( child, "block" )}}
+        {%endfor%}
+    </div>
+</div>
+{%endblock%}

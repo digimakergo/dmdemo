@@ -21,6 +21,17 @@
         "required": true
       },
       {
+        "identifier": "display_type",
+        "type": "select",
+        "name": "Display type",
+        "parameters":{
+          "list": [
+            {"text":"News", "value":"news"}
+          ]
+        },
+        "required": false
+      },
+      {
         "identifier": "summary",
         "type": "richtext",
         "name": "Summary",

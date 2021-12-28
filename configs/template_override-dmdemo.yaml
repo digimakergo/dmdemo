@@ -8,4 +8,10 @@ content_view:
 
 - contenttype: folder
   viewmode: full
+  field_display_type: news
+  to: folder/news.html
+
+
+- contenttype: folder
+  viewmode: full
   to: folder/full.html  

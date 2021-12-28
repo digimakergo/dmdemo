@@ -27,6 +27,11 @@ type Folder struct{
     
                   
          
+            DisplayType  string `boil:"display_type" json:"display_type" toml:"display_type" yaml:"display_type"`
+         
+    
+                  
+         
             Summary  string `boil:"summary" json:"summary" toml:"summary" yaml:"summary"`
          
     
@@ -78,6 +83,12 @@ func (c *Folder) ToDBValues() map[string]interface{} {
     
         
         
+            result["display_type"]=c.DisplayType
+        
+        
+    
+        
+        
             result["summary"]=c.Summary
         
         
@@ -96,7 +107,7 @@ func (c *Folder) ToDBValues() map[string]interface{} {
 
 //Get identifier list of fields(NOT including data_fields )
 func (c *Folder) IdentifierList() []string {
-	return append(c.ContentCommon.IdentifierList(),[]string{ "summary","title",}...)
+	return append(c.ContentCommon.IdentifierList(),[]string{ "display_type","summary","title",}...)
 }
 
 func (c *Folder) Definition(language ...string) definition.ContentType {
@@ -116,6 +127,11 @@ func (c *Folder) Value(identifier string) interface{} {
     
       case "folder_type":
          result = c.FolderType
+    
+    
+    
+    case "display_type":
+            result = (c.DisplayType)        
     
     
     
@@ -143,6 +159,12 @@ func (c *Folder) SetValue(identifier string, value interface{}) error {
           case "folder_type":
              c.FolderType = value.(string)
         
+        
+                        
+            
+            case "display_type":
+            c.DisplayType = value.(string)
+                    
         
                         
             

@@ -148,7 +148,7 @@ func (c *File) SetValue(identifier string, value interface{}) error {
                      
         
 	default:
-
+          return c.ContentEntity.SetValue(identifier, value)        
 	}
 	//todo: check if identifier exist
 	return nil
