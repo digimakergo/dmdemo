@@ -275,6 +275,7 @@
     "table_name": "dm_image",
     "has_version": false,
     "has_location": false,
+    "has_location_id": true,
     "data_fields":[ {"identifier":"location_id", "fieldtype":"int"}, {"identifier":"author", "fieldtype":"int"}, {"identifier":"published", "fieldtype":"int"}, {"identifier":"modified", "fieldtype":"int"}, {"identifier":"cuid", "fieldtype":"string"}],
     "fields": [
       {
@@ -296,6 +297,7 @@
     "table_name": "dm_file",
     "has_version": false,
     "has_location": false,
+    "has_location_id": true,
     "fields_display": [
       "filetype",
       "title",
