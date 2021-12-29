@@ -44,16 +44,17 @@
           }
         },
        {
-          "operation": ["content/read"]
+          "operation": ["content/read"],
+          "limited_to": {
+            "under":"{under_folder}"
+          }
         },
         {
           "operation": ["content/create", "content/delete", "content/update"],
           "limited_to": {
-            "contenttype": ["article", "image"]
+            "contenttype": ["article", "image"],
+            "under":"{under_folder}"
           }
-        },        
-        {
-          "operation": ["access/assigned-users"]
         }
       ],
     "admin": [
@@ -79,5 +80,6 @@
     "member": ["member"],
     "edit": ["edit"],
     "admin": ["admin"]
-  }
+  },
+  "role_variables": ["under_folder"]
 }

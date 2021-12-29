@@ -12,8 +12,6 @@ import (
     
 	. "github.com/digimakergo/digimaker/core/db"
     
-    "github.com/digimakergo/digimaker/core/fieldtype/fieldtypes"
-    
 )
 
 
@@ -41,12 +39,12 @@ type Role struct{
     
              
          
-            Parameters  fieldtypes.Map `boil:"parameters" json:"parameters" toml:"parameters" yaml:"parameters"`
+            Summary  string `boil:"summary" json:"summary" toml:"summary" yaml:"summary"`
                  
     
              
          
-            Summary  string `boil:"summary" json:"summary" toml:"summary" yaml:"summary"`
+            UnderFolder  int `boil:"under_folder" json:"under_folder" toml:"under_folder" yaml:"under_folder"`
                  
     
 }
@@ -98,13 +96,13 @@ func (c *Role) ToDBValues() map[string]interface{} {
     
         
         
-            result["parameters"]=c.Parameters
+            result["summary"]=c.Summary
         
         
     
         
         
-            result["summary"]=c.Summary
+            result["under_folder"]=c.UnderFolder
         
         
     
@@ -113,7 +111,7 @@ func (c *Role) ToDBValues() map[string]interface{} {
 
 //Get identifier list of fields(NOT including data_fields )
 func (c *Role) IdentifierList() []string {
-	return []string{ "identifier","name","parameters","summary",}
+	return []string{ "identifier","name","summary","under_folder",}
 }
 
 func (c *Role) Definition(language ...string) definition.ContentType {
@@ -148,13 +146,13 @@ func (c *Role) Value(identifier string) interface{} {
     
     
     
-    case "parameters":        
-            result = (c.Parameters)        
-    
-    
-    
     case "summary":        
             result = (c.Summary)        
+    
+    
+    
+    case "under_folder":        
+            result = (c.UnderFolder)        
     
     
 
@@ -191,14 +189,14 @@ func (c *Role) SetValue(identifier string, value interface{}) error {
         
             
             
-            case "parameters":
-            c.Parameters = value.(fieldtypes.Map)
+            case "summary":
+            c.Summary = value.(string)
                      
         
             
             
-            case "summary":
-            c.Summary = value.(string)
+            case "under_folder":
+            c.UnderFolder = value.(int)
                      
         
 	default:

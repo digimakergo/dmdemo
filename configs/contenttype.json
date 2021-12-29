@@ -217,9 +217,13 @@
         "required": false
       },
       {
-        "identifier": "parameters",
-        "type": "map",
-        "name": "Role parameters",
+        "identifier": "under_folder",
+        "type": "relation",
+        "name": "Under folder",
+        "parameters":{
+          "type":"folder",
+          "value":"id"
+        },
         "required": false
       }
     ]
