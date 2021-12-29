@@ -47,7 +47,9 @@ For full documentation and references, please visit [https://digimaker.org/doc](
    npm start
    ```
 View admin: http://localhost:3000
+
 Login as admin `admin/Digimaker`
+
 Login as editor: `editor/Digimaker`
 
 #### [optional]Run frontend webapp
