@@ -2,12 +2,12 @@
 general:
   var_folder: "var" # support absoluate or relative under dmapp
   upload_tempfolder: "upload_temp" #temporary folder for file upload. under var_folder
-  var_baseurl: "/var/"
-  send_from: "noreply@test.com"
+  var_baseurl: "/var/" #used to wash image in richtext only
+  send_from: "noreply@test.com" 
   host: "127.0.0.1:9200" #serve host
-  image_thumbnail_size: "600x400"
-  image_thumbnail_folder: "images/thumbnail"
-  template_folder: "web/templates"
+  image_thumbnail_size: "600x400" 
+  image_thumbnail_folder: "images/thumbnail" #thumbnail under var_folder
+  template_folder: "web/templates" #template folder for website
 
 database:
    type: mysql
@@ -53,9 +53,9 @@ permission:
   rest_allowed_operations: ["eui/all"]
 
 auth:
-   rememberme_token_expiry: 30
+   rememberme_token_expiry: 30 #days
    rememberme_enabled: false
    refresh_token_secret_key: "1223123dfsldsfbsdfbsfsf-fdsfdsfl"
-   refresh_token_expiry: 180
+   refresh_token_expiry: 180 #minutes
    access_token_secret_key: "fsfsfsf333333sdf555456"
-   access_token_expiry: 50
+   access_token_expiry: 50 #minutes
