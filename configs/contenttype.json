@@ -4,15 +4,7 @@
     "table_name": "dm_folder",
     "name_pattern": "{title}",
     "has_version": false,
-    "has_location": true,
-    "allowed_types": [
-      "folder",
-      "article",
-      "report",
-      "usergroup",
-      "user",
-      "image"
-    ],
+    "has_location": true,    
     "data_fields":[{"identifier":"folder_type", "fieldtype":"string"}],
     "fields": [{
         "identifier": "title",
@@ -43,13 +35,7 @@
     "name": "Frontpage",
     "table_name": "dm_frontpage",
     "has_version": false,
-    "has_location": true,
-    "allowed_types": [
-      "folder",
-      "article",
-      "image",
-      "file"
-    ],
+    "has_location": true,    
     "fields": [{
         "identifier": "title",
         "type": "text",
@@ -170,10 +156,7 @@
     "table_name": "dm_usergroup",
     "has_version": false,
     "name_pattern": "{title}",
-    "has_location": true,
-    "allowed_types": [
-      "usergroup","user"
-    ],
+    "has_location": true,   
     "fields": [{
         "identifier": "title",
         "type": "text",
@@ -193,10 +176,7 @@
     "table_name": "dm_role",
     "has_version": false,
     "name_pattern": "{title}",
-    "has_location": false,
-    "allowed_types": [
-      "role"
-    ],
+    "has_location": false,   
     "data_fields":[{"identifier":"author", "fieldtype":"int"}, {"identifier":"published", "fieldtype":"int"}, {"identifier":"modified", "fieldtype":"int"}],
     "fields": [{
         "identifier": "name",
