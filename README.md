@@ -86,7 +86,7 @@ dmcli entity
 #### Run project-a
 ```sh
 cd project-a
-dmapp=. go run cmd/main.go
+go run cmd/main.go
 ```
 
 
