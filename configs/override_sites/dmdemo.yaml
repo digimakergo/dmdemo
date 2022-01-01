@@ -11,6 +11,9 @@ content_view:
   field_display_type: news
   to: folder/news.html
 
+- contenttype: article
+  viewmode: full
+  to: article/full.html
 
 - contenttype: folder
   viewmode: full

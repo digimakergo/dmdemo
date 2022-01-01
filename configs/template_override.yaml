@@ -2,26 +2,19 @@
 ##Note: position of "include" doesn't matter, the system will proceed included file first.
 include:
     - site: dmdemo
+      template_folder: "sites/demo" # will use template under template_folder unless it starts from ~/
       file: "override_sites/dmdemo" # don't include file suffix since it support yaml, json
 
 content_view:
 #project template override
-- contenttype: folder
-  viewmode: full
-  to: folder/full.html
 
 # default template override
-- contenttype: article
-  viewmode: full
-  to: article/full.html
-
-- viewmode: article
-  viewmode: block
-  to: article/block.html
-
 - viewmode: block
-  to: block.html
+  to: viewmode/block.html
+
+# Note: it will be useful to have this
+#- to: default.html
 
 field:
 #available keys for field override: fieldtype, field, contenttype, site
-- to: ~/fieldtype/{fieldtype}.html
+- to: fieldtype/{fieldtype}.html
