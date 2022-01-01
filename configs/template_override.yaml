@@ -2,7 +2,7 @@
 ##Note: position of "include" doesn't matter, the system will proceed included file first.
 include:
     - site: dmdemo
-      file: "override_sites/dmdemo" # don't include file format since it support yaml, json
+      file: "override_sites/dmdemo" # don't include file suffix since it support yaml, json
 
 content_view:
 #project template override
@@ -24,4 +24,4 @@ content_view:
 
 field:
 #available keys for field override: fieldtype, field, contenttype, site
-- to: fieldtype/{fieldtype}.html
+- to: ~/fieldtype/{fieldtype}.html
