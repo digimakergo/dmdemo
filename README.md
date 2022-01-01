@@ -102,6 +102,10 @@ env GOOS=linux GOARCH=amd64 go build ./cmd/main.go
 ./main
 ```
 
+See dmdemo.service file to deploy as service in production. 
+
+Note: in production, you will still need `configs`, `web/templates`(configurable), `var`(configurable) from running folder.
+
 ## Code overview
 
 #### Website, Templating
