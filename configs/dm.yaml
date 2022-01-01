@@ -30,13 +30,11 @@ sites:
     #path: "demo"
     root: 3
     default: 3
-    template_folder: "demo" #under general/template_folder
   - identifier: site2
     host: "localhost:9201"
     path: "site2"
     root: 3
     default: 3
-    template_folder: "site2" #under general/template_folder
 
 rest:
   upload_file_auth: false #auth upload file or not
