@@ -30,7 +30,7 @@ For full documentation and references, please visit [https://digimaker.org/doc](
  //install dmcli, optional
  go install github.com/digimakergo/digimaker/dmcli@latest
 
- //change database connection information on config/dm.yaml/database 
+ //change database connection information on configs/dm.yaml/database 
 
  //start server
  cd dmdemo
