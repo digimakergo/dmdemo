@@ -22,7 +22,7 @@ For full documentation and references, please visit [https://digimaker.org/doc](
 
  //import database
  //remember to change configs/dm.yaml's database connection.
- mysql -u {username} -p {database} < data/dmdemo.sql
+ mysql -h {host} -u {username} -p {database} < data/dmdemo.sql
 
  //run this under mysql root 
  SET GLOBAL sql_mode=(SELECT REPLACE(@@sql_mode,'ONLY_FULL_GROUP_BY',''));
