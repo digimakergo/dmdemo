@@ -2,14 +2,16 @@ package main
 
 import (
 	"net/http"
+	"os"
 
-	_ "github.com/digimakergo/dmdemo/entity"
+	_ "dmdemo/entity"
 
 	_ "github.com/digimakergo/digimaker/core/auth/tokenmanager"
-        _ "github.com/digimakergo/digimaker/core/fieldtype/fieldtypes"
+	_ "github.com/digimakergo/digimaker/core/fieldtype/fieldtypes"
 	_ "github.com/digimakergo/digimaker/core/handler/handlers"
 	"github.com/digimakergo/digimaker/core/log"
 	"github.com/digimakergo/digimaker/core/util"
+
 	"github.com/digimakergo/digimaker/rest"
 	"github.com/digimakergo/digimaker/sitekit"
 	"github.com/gorilla/mux"
@@ -21,9 +23,13 @@ import (
 )
 
 func main() {
-
-	//host var - can be in another server
+	//host var - remember to override in proxy server
 	http.Handle("/var/", http.StripPrefix("/var/", http.FileServer(http.Dir(util.HomePath()+"/var"))))
+
+	//remember: remove this in real project
+	if envValue := os.Getenv("env"); envValue == "dev" {
+		http.Handle("/debug/", http.StripPrefix("/debug/", http.FileServer(http.Dir(util.HomePath()+"/debug"))))
+	}
 
 	http.Handle("/mypage/", http.StripPrefix("/mypage/", http.FileServer(http.Dir(util.HomePath()+"/web/app/build"))))
 

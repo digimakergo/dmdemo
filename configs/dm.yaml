@@ -3,11 +3,25 @@ general:
   var_folder: "var" # support absoluate or relative under dmapp
   upload_tempfolder: "upload_temp" #temporary folder for file upload. under var_folder
   var_baseurl: "/var/" #used to wash image in richtext only
-  send_from: "noreply@test.com" 
+
+  #mail related
+  mail_host: "127.0.0.1:25" #office365: smtp.office365.com:587
+  send_from: "noreply@test.com"  #send from
+  mail_password: "" # empty if sent from local server
+
+  #listen   
   host: "127.0.0.1:9200" #serve host
+
+  #image
   image_thumbnail_size: "600x400" 
   image_thumbnail_folder: "images/thumbnail" #thumbnail under var_folder
+  
+  #template
   template_folder: "web/templates" #template folder for website
+
+  #debug
+  debug_header: "_dm_debug" #putting this to header with debug token will enable debug for this request
+  debug_token_last: "10m" #debug token's lasting time.
 
 database:
    type: mysql

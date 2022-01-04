@@ -71,7 +71,7 @@
         }
       },
       {
-        "operation":["content/read", "content/create", "content/delete", "content/update", "content/move", "content/delete_subtree", "content/copy", "access/assigned-users", "access/assign-user", "access/manage"]
+        "operation":["content/read", "content/create", "content/delete", "content/update", "content/move", "content/delete_subtree", "content/copy", "access/assigned-users", "access/assign-user", "access/manage", "util/debug"]
       }
     ]
   },
