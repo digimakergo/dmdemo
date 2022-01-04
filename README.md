@@ -20,9 +20,11 @@ For full documentation and references, please visit [https://digimaker.org/doc](
  //clone it.
  git clone https://github.com/digimakergo/dmdemo.git
 
+ cd dmdemo
+
  //import database
  //remember to change configs/dm.yaml's database connection.
- mysql -u {username} -p {database} < data/dmdemo.sql
+ mysql -h {host} -u {username} -p {database} < data/dmdemo.sql
 
  //run this under mysql root 
  SET GLOBAL sql_mode=(SELECT REPLACE(@@sql_mode,'ONLY_FULL_GROUP_BY',''));
@@ -30,10 +32,9 @@ For full documentation and references, please visit [https://digimaker.org/doc](
  //install dmcli, optional
  go install github.com/digimakergo/digimaker/dmcli@latest
 
- //change database connection information on config/dm.yaml/database 
+ //change database connection information on configs/dm.yaml/database 
 
  //start server
- cd dmdemo
  go run cmd/main.go
 ```
   View frontend: http://localhost:9200
