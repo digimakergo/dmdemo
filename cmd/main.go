@@ -12,6 +12,8 @@ import (
 	"github.com/digimakergo/digimaker/core/log"
 	"github.com/digimakergo/digimaker/core/util"
 
+	_ "github.com/digimakergo/digimaker/core/util/localmail"
+
 	"github.com/digimakergo/digimaker/rest"
 	"github.com/digimakergo/digimaker/sitekit"
 	"github.com/gorilla/mux"

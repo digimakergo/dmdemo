@@ -1,0 +1,117 @@
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script> 
+
+
+<div style="position:fixed; right:15px;top:60vh">
+    <button class="_dm-debug-trigger">Debug</button>
+</div>
+<div id="_dm-debug">
+    <h2>Debug info</h2>
+    <table class="debug-table">
+        <tr class="debug-header"><th>Time</th>
+        <th>Category</th>
+        <th>Message</th>
+        <th></th>        
+    </tr>
+    </table>
+</div>
+
+<style>
+    #_dm-debug{
+        display: none;
+    }
+
+    ._dm-debug-trigger{
+        background: #f0f0f0;
+        border:1px solid #cccccc;
+        font-size: 12px; 
+        padding: 3px 10px;
+        border-radius: 4px;
+        opacity: 0.8;
+    }
+
+    ._dm-debug-trigger:hover, ._dm-debug-trigger:active{
+        outline: none;
+        border-color: #999999;
+    }
+
+    .debug-table{
+        font-size: 13px;
+        color: #333333;
+    }
+
+    .debug-table td{
+        padding: 4px;
+    }
+
+    .debug-table tr:nth-child(even){
+        border-top: 1px solid #cccccc;
+        border-bottom: 1px solid #cccccc;
+    }
+
+    .debug-message{
+        width: 50%;
+        white-space: pre-wrap;
+    }
+
+    .debug-header{
+        background: #181c4a;
+        color: white;
+    }
+
+    ._dmdebug-template:hover{
+        border: 1px dotted red;
+        z-index: 1000;
+    }
+
+    ._dm-debug-template-path{
+        display: none;
+        color: green;
+        font-size: 12px;
+    }
+</style>
+<script>
+
+    var comments = $("*").contents().filter(function(){ return this.nodeType == 8;} );
+    
+    for( var item of comments ){
+        var text = item.data.trim();
+        if( text.startsWith('dm-template') ){
+            $("<div class='_dm-debug-template-path'>"+text+"</div>").insertBefore($(item).next());
+        }
+    }
+
+    $('._dm-debug-trigger').click(function(){
+        if( $( '#_dm-debug' ).is(':visible')){
+            $('#_dm-debug').hide();
+            $('._dm-debug-template-path').hide();
+        }else{
+            $('#_dm-debug').show();
+            $('._dm-debug-template-path').show();
+        }
+    });
+
+    $.ajax("/debug/request-debug.log").done(function(data){
+        var lines = data.split("\n");
+        var requestId = '{{dm.request_id()}}';
+        for( var line of lines ){
+            try{
+                var obj = JSON.parse(line);
+            }catch(e){
+                continue;
+            }
+
+            if(obj['request_id']!= requestId){
+                continue;
+            }
+            var time = new Date(obj["time"]);
+            var timeStr = time.getFullYear()+"-"+time.getMonth()+"-"+time.getDay()+" "+time.getHours()+":"+time.getMinutes()+":"+time.getSeconds()+"."+time.getMilliseconds();
+            var lineHtml = "<tr><td>"+
+                    timeStr+"</td><td>"+
+                        obj["category"]+
+                        "</td><td class='debug-message'>"+
+                        obj["message"]+"</td><td></td></tr>"
+            $("#_dm-debug > table").append(lineHtml);
+        }
+    });
+
+</script>
