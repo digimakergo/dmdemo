@@ -20,7 +20,7 @@ general:
   template_folder: "web/templates" #template folder for website
 
   #debug
-  debug_header: "_dm_debug" #putting this to header with debug token will enable debug for this request
+  debug_header: "DMDebug" #putting this to header with debug token will enable debug for this request
   debug_token_last: "10m" #debug token's lasting time.
 
 database:
