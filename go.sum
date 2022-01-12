@@ -65,6 +65,8 @@ github.com/digimakergo/digimaker v0.1.0-beta.3.0.20220105095642-a2000c6c56c8 h1:
 github.com/digimakergo/digimaker v0.1.0-beta.3.0.20220105095642-a2000c6c56c8/go.mod h1:OTA+Adbz4dwdJb0xuR9zWRIYESxK+Vo+7jSIs+flAWY=
 github.com/digimakergo/digimaker v0.1.0-beta.3.0.20220105145904-71bd2199e51c h1:1/1T1zr51vXDv2jvBlGiIQJ7NLsTy7o0Q2YOVo2/6go=
 github.com/digimakergo/digimaker v0.1.0-beta.3.0.20220105145904-71bd2199e51c/go.mod h1:OTA+Adbz4dwdJb0xuR9zWRIYESxK+Vo+7jSIs+flAWY=
+github.com/digimakergo/digimaker v0.1.0-beta.3.0.20220112115844-21cadfe814b5 h1:SQWlEqsAp9As8zM2qz3g3MZA1pVfil+N7/XBLc04gzs=
+github.com/digimakergo/digimaker v0.1.0-beta.3.0.20220112115844-21cadfe814b5/go.mod h1:OTA+Adbz4dwdJb0xuR9zWRIYESxK+Vo+7jSIs+flAWY=
 github.com/envoyproxy/go-control-plane v0.9.0/go.mod h1:YTl/9mNaCwkRvm6d1a2C3ymFceY/DCBVvsKhRF0iEA4=
 github.com/envoyproxy/go-control-plane v0.9.1-0.20191026205805-5f8ba28d4473/go.mod h1:YTl/9mNaCwkRvm6d1a2C3ymFceY/DCBVvsKhRF0iEA4=
 github.com/envoyproxy/go-control-plane v0.9.4/go.mod h1:6rpuAdCZL397s3pYoYcLgu1mIlRU8Am5FuJP05cCM98=

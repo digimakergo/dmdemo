@@ -64,6 +64,6 @@ auth:
    rememberme_token_expiry: 30 #days
    rememberme_enabled: false
    refresh_token_secret_key: "1223123dfsldsfbsdfbsfsf-fdsfdsfl"
-   refresh_token_expiry: 180 #minutes
+   refresh_token_expiry: "3h"
    access_token_secret_key: "fsfsfsf333333sdf555456"
-   access_token_expiry: 50 #minutes
+   access_token_expiry: "30m"
