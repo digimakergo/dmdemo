@@ -22,8 +22,9 @@ For full documentation and references, please visit [https://digimaker.org/doc](
 
  cd dmdemo
 
- //import database
- //remember to change configs/dm.yaml's database connection. Replace {host}, {username} {database} to your real host, username and database
+ //Import database
+ //Remember to change configs/dm.yaml's database connection.
+ //Replace {host}, {username} {database} with your real host, username and database
  mysql -h {host} -u {username} -p {database} < data/dmdemo.sql
 
  //run this under mysql root 
