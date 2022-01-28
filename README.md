@@ -23,7 +23,7 @@ For full documentation and references, please visit [https://digimaker.org/doc](
  cd dmdemo
 
  //import database
- //remember to change configs/dm.yaml's database connection.
+ //remember to change configs/dm.yaml's database connection. Replace {host}, {username} {database} to your real host, username and database
  mysql -h {host} -u {username} -p {database} < data/dmdemo.sql
 
  //run this under mysql root 
@@ -53,15 +53,15 @@ Login as admin `admin/Digimaker`
 
 Login as editor: `editor/Digimaker`
 
-#### [optional]Run frontend webapp
+#### [Optional]Run frontend web app
 
 ```sh
    cd web/app
    npm install
-   npm run build
-   (or just "npm start" and visit http://localhost:3000)
+   npm start
+   (if 3000 is used, choose Yes when prompt up to change port, to use port 3001)
 ```
-  View frontend webapp: http://localhost:9200/mypage
+  View frontend web app: http://localhost:3001 (or 3000 if admin app is not running)
 
   (login with member/digimaker)
 
@@ -75,7 +75,9 @@ cd ..
 mkdir project-a
 cp -a dmdemo/configs project-a/
 cp -a dmdemo/cmd project-a
-cp -a entity project-a  
+cp -a dmdemo/entity project-a  
+cp -a dmdemo/go.* project-a/
+
 ```
 #### Update entities
 If you have changes on config/contenttype.json, you can run below to update entity
@@ -83,14 +85,15 @@ If you have changes on config/contenttype.json, you can run below to update enti
 cd project-a
 dmcli entity
 ```
+#### Update module name
+- Change `dmdemo` in `cmd/main.go` to `project-a`
+- Change `dmdemo` in go.mod to `project-a`
+- Run `go mod tidy` to update go modules
 
 #### Run project-a
 ```sh
-cd project-a
 go run cmd/main.go
 ```
-
-
 
 #### Build & Deploy
 
