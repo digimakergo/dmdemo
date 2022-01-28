@@ -6,6 +6,8 @@ import (
 
 	_ "dmdemo/entity"
 
+	_ "dmdemo/pkg/controller"
+
 	_ "github.com/digimakergo/digimaker/core/auth/tokenmanager"
 	_ "github.com/digimakergo/digimaker/core/fieldtype/fieldtypes"
 	_ "github.com/digimakergo/digimaker/core/handler/handlers"
