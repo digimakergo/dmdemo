@@ -63,7 +63,7 @@ Login as editor: `editor/Digimaker`
 ```
   View frontend web app: http://localhost:3001 (or 3000 if admin app is not running)
 
-  (login with member/digimaker)
+  (login with `member/digimaker`)
 
 
 
