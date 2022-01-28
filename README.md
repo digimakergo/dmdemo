@@ -63,10 +63,32 @@ Login: admin user `admin/Digimaker` or editor user: `editor/Digimaker`
 
   Login: member `member/digimaker` or `admin/Digimaker`
 
+## Code overview
+
+#### Website, Templating
+
+First you need to define a template override rule under [configs/template_override.yaml](https://github.com/digimakergo/dmdemo/blob/master/configs/template_override.yaml) (and template_override-dmdemo.yaml), then you can do the templating in that template file.  
+
+Example:
+- [Display a folder](https://github.com/digimakergo/dmdemo/tree/master/web/templates/demo/folder/full.html)
+- [Display frontpage](https://github.com/digimakergo/dmdemo/tree/master/web/templates/demo/folder/frontpage.html)
+- [Layout](https://github.com/digimakergo/dmdemo/tree/master/web/templates/demo/base.html)
+
+
+#### Rest API
+In [pkg/controller/statistics.go](https://github.com/digimakergo/dmdemo/blob/master/pkg/controller/statistics.go), it provides an example of registering rest api and output how many article it has.
+
+
+
+#### Web App
+See [web/app](web/app) for examples.
+
+- [Photos.tsx](web/app/src/Photos.tsx) Shows how to query images, add content(image) using rest api
+- [Profile.tsx](web/app/src/Profile.tsx) Shows how to show/edit content(user) using components in digimaker-ui
+- [Login.tsx](web/app/src/Login.tsx) Shows how to get authorization token using rest api
 
 
 ## Create new project from dmdemo
-
 create a new project folder eg. project-a
 ```sh   
 cd ..
@@ -93,7 +115,8 @@ dmcli entity
 go run cmd/main.go
 ```
 
-#### Build & Deploy
+## Build & Deploy
+Deploy to linux: 
 
 ```
 #build for linux
@@ -107,26 +130,6 @@ env GOOS=linux GOARCH=amd64 go build ./cmd/main.go
 See dmdemo.service file to deploy as service in production. 
 
 Note: in production, you will still need folder `configs`, `web/templates`(configurable), `var`(configurable) under running folder.
-
-## Code overview
-
-#### Website, Templating
-
-First you need to define a template override rule under [configs/template_override.yaml](https://github.com/digimakergo/dmdemo/blob/master/configs/template_override.yaml) (and template_override-dmdemo.yaml), then you can do the templating in that template file.  
-
-Example:
-- [Display a folder](https://github.com/digimakergo/dmdemo/tree/master/web/templates/demo/folder/full.html)
-- [Display frontpage](https://github.com/digimakergo/dmdemo/tree/master/web/templates/demo/folder/frontpage.html)
-- [Layout](https://github.com/digimakergo/dmdemo/tree/master/web/templates/demo/base.html)
-
-
-#### Web App
-See [web/app](web/app) for examples.
-
-- [Photos.tsx](web/app/src/Photos.tsx) Shows how to query images, add content(image) using rest api
-- [Profile.tsx](web/app/src/Profile.tsx) Shows how to show/edit content(user) using components in digimaker-ui
-- [Login.tsx](web/app/src/Login.tsx) Shows how to get authorization token using rest api
-
 
 ## Additional - Project structure
 
