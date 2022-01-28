@@ -49,9 +49,7 @@ For full documentation and references, please visit [https://digimaker.org/doc](
    ```
 View admin: http://localhost:3000
 
-Login as admin `admin/Digimaker`
-
-Login as editor: `editor/Digimaker`
+Login: admin user `admin/Digimaker` or editor user: `editor/Digimaker`
 
 #### [Optional]Run frontend web app
 
@@ -63,7 +61,7 @@ Login as editor: `editor/Digimaker`
 ```
   View frontend web app: http://localhost:3001 (or 3000 if admin app is not running)
 
-  (login with `member/digimaker`)
+  Login: member `member/digimaker` or `admin/Digimaker`
 
 
 
