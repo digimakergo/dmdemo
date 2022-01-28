@@ -10,12 +10,12 @@ For full documentation and references, please visit [https://digimaker.org/doc](
 ## Run the demo
 
 
-#### Requirements:
+### Requirements:
 - Go version >= 1.15(recommand >= 1.16 to use website templating)
 - Mysql database(only support mysql for now)
 - npm(dev only)
 
-#### Run server
+### Run server
 ```sh
  //clone it.
  git clone https://github.com/digimakergo/dmdemo.git
@@ -40,7 +40,7 @@ For full documentation and references, please visit [https://digimaker.org/doc](
   View frontend: http://localhost:9200
 
 
- #### Admin webapp
+ ### Admin webapp
   The admin client is under web/admin
   ```sh   
    cd web/admin
@@ -51,7 +51,7 @@ View admin: http://localhost:3000
 
 Login: admin user `admin/Digimaker` or editor user: `editor/Digimaker`
 
-#### [Optional]Run frontend web app
+### Run frontend web app[Optional]
 
 ```sh
    cd web/app
@@ -65,7 +65,7 @@ Login: admin user `admin/Digimaker` or editor user: `editor/Digimaker`
 
 ## Code overview
 
-#### Website, Templating
+### Website, Templating
 
 First you need to define a template override rule under [configs/template_override.yaml](https://github.com/digimakergo/dmdemo/blob/master/configs/template_override.yaml) (and template_override-dmdemo.yaml), then you can do the templating in that template file.  
 
@@ -75,12 +75,12 @@ Example:
 - [Layout](https://github.com/digimakergo/dmdemo/tree/master/web/templates/demo/base.html)
 
 
-#### Rest API
+### Rest API
 In [pkg/controller/statistics.go](https://github.com/digimakergo/dmdemo/blob/master/pkg/controller/statistics.go), it provides an example of registering rest api and output how many article it has.
 
 
 
-#### Web App
+### Web App
 See [web/app](web/app) for examples.
 
 - [Photos.tsx](web/app/src/Photos.tsx) Shows how to query images, add content(image) using rest api
@@ -99,18 +99,18 @@ cp -a dmdemo/entity project-a
 cp -a dmdemo/go.* project-a/
 
 ```
-#### Update entities
+### Update entities
 If you have changes on config/contenttype.json, you can run below to update entity
 ```sh   
 cd project-a
 dmcli entity
 ```
-#### Update module name
+### Update module name
 - Change `dmdemo` in `cmd/main.go` to `project-a`
 - Change `dmdemo` in go.mod to `project-a`
 - Run `go mod tidy` to update go modules
 
-#### Run project-a
+### Run project-a
 ```sh
 go run cmd/main.go
 ```
