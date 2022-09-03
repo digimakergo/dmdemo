@@ -2,7 +2,6 @@ import * as React from 'react';
 import { BrowserRouter as Router, Route, Link, NavLink, useLocation } from "react-router-dom";
 import Registry from 'digimaker-ui/Registry'
 import {ContentContext} from '../Context';
-import { Permission } from './Permission';
 import { useState, useContext } from 'react';
 
 //A menu container which list all the menus from top to down.
@@ -29,7 +28,6 @@ export const MenuList = (props:{config:any, index?:number}) => {
         {menus.map((menu) => {
                 return(
                     !menu.type?
-                      <Permission key={menu.path} access={menu.path}>
                        <div className="menuitem">
                         <div className="menuitem-head">
                          <NavLink to={menu.path} activeClassName="selected">
@@ -37,7 +35,6 @@ export const MenuList = (props:{config:any, index?:number}) => {
                          </NavLink>
                          </div>
                        </div>
-                     </Permission>
                     :(()=>{
                         const Com:React.ReactType = Registry.getComponent(menu.type);
                           return (<Com key={menu.name} current={current} config={menu} />)

@@ -19,7 +19,7 @@ import Move from 'digimaker-ui/actions/Move'
 import SetToTop from 'digimaker-ui/actions/SetToTop'
 import AssignRole from 'digimaker-ui/actions/user/AssignRole'
 import SetPriority from 'digimaker-ui/actions/SetPriority';
-import UserRoles from './main/view/UserRoles';
+import UserRoles from 'digimaker-ui/view/UserRoles';
 
 
 Registry.register( 'action', 'copy', Copy );
