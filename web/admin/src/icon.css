@@ -1,0 +1,110 @@
+.icon{
+    font-family: "Font Awesome 5 Free";
+    font-style: normal;
+    font-weight: 900;
+    margin-left: 0.1rem;
+    margin-right: 0.1rem;
+}
+.icon-folder::before{
+    font-weight: 400;
+    content: '\f07b'
+}
+
+
+.icon-frontpage::before{
+    content: '\f015'
+}
+
+.icon-user::before{
+    content: '\f007'
+}
+
+.icon-article::before{
+    content: '\f1ea'
+}
+
+.icon-usergroup:before{
+  font-weight: 600;
+   content: '\f0c0'
+}
+
+.icon-role:before{
+  font-weight: 600;
+   content: '\f507'
+}
+
+.icon-image::before{
+    content: '\f03e'
+}
+
+.icon-folder.images::before{
+    content: '\f302'
+}
+.icon-folder.documents::before{
+    content: '\f15c'
+}
+
+.icon-export::before{
+  content:'\f56e'
+}
+
+.icon-import::before{
+  content:'\f56f'
+}
+
+.icon-approve::before{
+  content: '\f058'
+}
+
+.icon-edit::before{
+  content:'\f044'
+}
+
+.icon-sort::before{
+  content:'\f160'
+}
+
+.icon-copy::before{
+  content:'\f0c5'
+}
+
+.icon-move::before{
+  content:'\f0c4'
+}
+
+.icon-delete::before{
+  content:'\f2ed'
+}
+
+.icon-preview::before{
+  content:'\f06e'
+}
+
+
+.icon-subtype-image::before{
+  content:'\f302'
+}
+
+
+.column-sortable::after{
+  font-family: "Font Awesome 5 Free";
+  font-weight: 900;
+  margin-left: 0.2rem;
+  /* content: '\f0dc' */
+}
+
+.column-sortable.desc::after{
+  content: '\f0d7'
+}
+
+.column-sortable.sort-second::after{
+  color: rgb(111, 104, 95);
+}
+
+.column-sortable.asc::after{
+  content: '\f0d8'
+}
+
+.icon-filter::before{
+    content: '\f0b0'
+}
