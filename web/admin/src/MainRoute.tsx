@@ -2,8 +2,8 @@ import React from 'react';
 import { Switch, BrowserRouter as Router, Route, Link, useLocation, Redirect } from "react-router-dom";
 import queryString from 'query-string';
 import Main from './main/Main';
-import Create from './actions/Create';
-import Edit from './actions/Edit';
+import Create from 'digimaker-ui/actions/Create';
+import Edit from 'digimaker-ui/actions/Edit';
 import ViewVersion from './main/ViewVersion';
 
 //with priorized urls, it does redirection. first url which is not empty will be redirected.

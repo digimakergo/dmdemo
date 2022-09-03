@@ -1,18 +1,18 @@
 import React from 'react';
 import { Switch, BrowserRouter as Router, Link, Route, Redirect } from "react-router-dom";
 import './App.css';
-import Slidemenu from 'digimaker-eui/leftmenu/Slidemenu'
-import Login from 'digimaker-eui/user/Login'
-import Select from 'digimaker-eui/tinymce/Select';
-import Logout from 'digimaker-eui/user/Logout';
-import CurrentUser from 'digimaker-eui/user/CurrentUser';
-import {MenuList} from 'digimaker-eui/leftmenu/MenuList';
+import Slidemenu from './leftmenu/Slidemenu'
+import Login from './user/Login'
+import Select from 'digimaker-ui/tinymce/Select';
+import Logout from './user/Logout';
+import CurrentUser from './user/CurrentUser';
+import {MenuList} from './leftmenu/MenuList';
 import Config from './dm.json';
-import 'digimaker-eui/Init';
+import './Init';
 import util from 'digimaker-ui/util'
 import DMInit from 'digimaker-ui/DMInit'
-import ContextProvider from 'digimaker-eui/ContextProvider';
-import MainRoute from 'digimaker-eui/MainRoute';
+import ContextProvider from './ContextProvider';
+import MainRoute from './MainRoute';
 import ErrorBoundary from './ErrorBoundary';
 
 const App: React.FC = () => {

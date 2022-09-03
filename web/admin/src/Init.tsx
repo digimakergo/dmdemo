@@ -12,13 +12,13 @@ import Registry from 'digimaker-ui/Registry'
 import Treemenu from './leftmenu/menutype/Treemenu'
 import Listmenu from './leftmenu/menutype/Listmenu'
 
-import Copy from './actions/Copy';
-import Filter from './actions/Filter';
-import Delete from './actions/Delete'
-import Move from './actions/Move'
-import SetToTop from './actions/SetToTop'
-import AssignRole from './actions/user/AssignRole'
-import SetPriority from './actions/SetPriority';
+import Copy from 'digimaker-ui/actions/Copy';
+import Filter from 'digimaker-ui/actions/Filter';
+import Delete from 'digimaker-ui/actions/Delete'
+import Move from 'digimaker-ui/actions/Move'
+import SetToTop from 'digimaker-ui/actions/SetToTop'
+import AssignRole from 'digimaker-ui/actions/user/AssignRole'
+import SetPriority from 'digimaker-ui/actions/SetPriority';
 import UserRoles from './main/view/UserRoles';
 
 
