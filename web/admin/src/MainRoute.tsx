@@ -4,7 +4,7 @@ import queryString from 'query-string';
 import Main from './main/Main';
 import Create from 'digimaker-ui/actions/Create';
 import Edit from 'digimaker-ui/actions/Edit';
-import ViewVersion from './main/ViewVersion';
+import ViewVersion from 'digimaker-ui/view/ViewVersion';
 
 //with priorized urls, it does redirection. first url which is not empty will be redirected.
 const commonAfterAction = (history:any, status:number, urls:Array<any>)=>{
