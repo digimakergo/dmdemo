@@ -116,8 +116,15 @@ export default class Main extends React.Component<{id:number, contenttype?:strin
                   </div>
                  </div>}
 
-                  <Actions from={this.state.content} content={this.state.content} fromview="content" selected={this.state.content} actionsConfig={mainConfig.actions}
-                    afterAction={(refresh:boolean, jumpToParent:boolean)=>this.afterAction(refresh, jumpToParent)} />
+                  <Actions actionProps={
+                        {from:this.state.content,
+                        params:{
+                          content: this.state.content,
+                          afterAction: (refresh:boolean, jumpToParent:boolean)=>this.afterAction(refresh, jumpToParent)                         
+                        },
+                        fromview:"content"
+                      }}
+                        actionsConfig={mainConfig.actions} />
                 </div>
 
                 <h2>
