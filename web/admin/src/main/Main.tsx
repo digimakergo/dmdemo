@@ -60,8 +60,8 @@ export default class Main extends React.Component<{id:number, contenttype?:strin
       
     }
 
-    afterAction(refresh:boolean, jumpToParent: boolean){
-      if(jumpToParent){
+    afterAction(redirect: boolean){
+      if(redirect){
         window.location.href = process.env.PUBLIC_URL + '/main/'+this.state.content.parent_id; //todo: use better way for redirection.
       }
     }
@@ -120,7 +120,7 @@ export default class Main extends React.Component<{id:number, contenttype?:strin
                         {from:this.state.content,
                         params:{
                           content: this.state.content,
-                          afterAction: (refresh:boolean, jumpToParent:boolean)=>this.afterAction(refresh, jumpToParent)                         
+                          afterAction: (redirect:boolean)=>this.afterAction(redirect)                         
                         },
                         fromview:"content"
                       }}
@@ -189,7 +189,7 @@ export default class Main extends React.Component<{id:number, contenttype?:strin
                       {mainConfig.side_actions&&
                         <div className="slide-actions">
                           <Actions from={this.state.content} content={this.state.content} fromview="content" selected={this.state.content} actionsConfig={mainConfig.side_actions}
-                            afterAction={(refresh:boolean, jumpToParent:boolean)=>this.afterAction(refresh, jumpToParent)} />
+                            afterAction={(redirect:boolean)=>this.afterAction(redirect)} />
                         </div>
                       }
                     </div>
