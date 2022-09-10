@@ -82,6 +82,7 @@ const App: React.FC = () => {
     );
 }
 
+/** get main config based on content */
 const getMainConfig = (content:any)=>{
     let commonActions = [{
         "link": "/edit/{id}",
@@ -116,6 +117,7 @@ const getMainConfig = (content:any)=>{
     return mainConfig;
 }
 
+/* get list config based on parent and content type */
 const getListConfig = (parent:string, contenttype: string)=>{
     return Config.list[contenttype];
 }
