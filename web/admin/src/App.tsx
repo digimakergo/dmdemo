@@ -29,10 +29,16 @@ const App: React.FC = () => {
             <Route path="/login" component={Login}  />
             <Route path="/logout" component={Logout}  />           
             <Redirect exact from="/" to={Config['default_url']} />
-            <Route path="/tinymce/select/:data" exact render={route=><Select data={route.match.params.data} />} />
+            <Route path="/tinymce/select/:data" exact render={route=><Select data={route.match.params.data} browseConfig={{}} />} />
             <Route>
             <div className="App">
-                <DMInit>
+                <DMInit contenttypeSetting={(contenttype:string)=>{
+                    if( contenttype == 'image' ){
+                        return {inline_fields:["image"], block_fields:["name","image"],browselist:{viewmode: 'block', columns:["name"], sort_default:[["priority", "desc"]] }};
+                    }else{
+                        return {inline_fields:["name", "published"],browselist:{viewmode: 'list', columns:["name", "published"], sort_default:[["priority", "desc"]] }}};
+                    }
+                }>
                 <div className="left">
                     <div className="logomenu">                        
                         <Slidemenu config={Config.leftmenu}>

@@ -3,6 +3,8 @@ import { RouteProps } from 'react-router';
 import { BrowserRouter as Router, Route, Link, NavLink } from "react-router-dom";
 import Moment from 'react-moment';
 import List from 'digimaker-ui/List';
+import {ActionProps, ContentActionParams} from 'digimaker-ui/Actions';
+import Delete from 'digimaker-ui/actions/Delete';
 import MetaInfo from './MetaInfo';
 import Actions from 'digimaker-ui/Actions';
 import ViewContent from 'digimaker-ui/ViewContent';
@@ -121,7 +123,7 @@ export default class Main extends React.Component<{id:number, contenttype?:strin
                         params:{
                           content: this.state.content,
                           afterAction: (redirect:boolean)=>this.afterAction(redirect)                         
-                        },
+                        } as ContentActionParams,
                         fromview:"content"
                       }}
                         actionsConfig={mainConfig.actions} />
@@ -171,7 +173,7 @@ export default class Main extends React.Component<{id:number, contenttype?:strin
                         if( !config['name'] ){
                           config['name'] = getDefinition(subtype).name;
                         }
-                        return(<List id={this.props.id} contenttype={subtype} config={config} />)
+                        return(<List id={this.props.id} contenttype={subtype} request_url={'content/list/'+subtype} {...config} row_actions={[...config.row_actions, (actionProps:ActionProps)=><Delete {...actionProps} />]} />)
                     })
                 }
                 </div>
@@ -188,8 +190,14 @@ export default class Main extends React.Component<{id:number, contenttype?:strin
                     <div className="side-body">
                       {mainConfig.side_actions&&
                         <div className="slide-actions">
-                          <Actions from={this.state.content} content={this.state.content} fromview="content" selected={this.state.content} actionsConfig={mainConfig.side_actions}
-                            afterAction={(redirect:boolean)=>this.afterAction(redirect)} />
+                          <Actions actionProps={{
+                          from: this.state.content,
+                          fromview:"content",
+                          params:{
+                          content:this.state.content,
+                          afterAction:(redirect:boolean)=>this.afterAction(redirect)
+                          } as ContentActionParams}} 
+                          actionsConfig={mainConfig.side_actions}  />
                         </div>
                       }
                     </div>
