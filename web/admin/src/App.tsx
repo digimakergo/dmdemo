@@ -60,8 +60,8 @@ const App: React.FC = () => {
                 </div>
                 <div className="main">
                 <div>
-                    <Route path="/main/:id" exact render={route=><Main id={parseInt(route.match.params.id)} mainConfig={Config.main} listConfig={Config.list} redirect={(url:string)=>commonAfterAction( route.history, 0,[url] ) } />} />
-                    <Route path="/main/:contenttype/:id" exact render={route=><Main id={parseInt(route.match.params.id)} contenttype={route.match.params.contenttype} mainConfig={Config.main} listConfig={Config.list}  redirect={(url:string)=>commonAfterAction( route.history, 0,[url] ) } />} />
+                    <Route path="/main/:id" exact render={route=><Main id={parseInt(route.match.params.id)} getMainConfig={getMainConfig} getListConfig={getListConfig} redirect={(url:string)=>commonAfterAction( route.history, 0,[url] ) } />} />
+                    <Route path="/main/:contenttype/:id" exact render={route=><Main id={parseInt(route.match.params.id)} contenttype={route.match.params.contenttype} getMainConfig={getMainConfig} getListConfig={getListConfig}  redirect={(url:string)=>commonAfterAction( route.history, 0,[url] ) } />} />
                     <Route path="/create/:parent/:contenttype" render={route=><Create key={Date.now()} parent={parseInt(route.match.params.parent)} contenttype={route.match.params.contenttype} afterAction={(status)=>commonAfterAction( route.history, status, ['/main/' + route.match.params.parent] )} />} />
                     <Route path="/edit/:contenttype/:id" exact render={route=><Edit id={parseInt(route.match.params.id)} contenttype={route.match.params.contenttype} afterAction={(status, params)=>commonAfterAction(route.history,status, [getFromParam(route.location.search), '/main/'+route.match.params.contenttype+'/'+route.match.params.id])} />} />
                     <Route path="/edit/:id" exact render={route=><Edit id={parseInt(route.match.params.id)} afterAction={(status, params)=>commonAfterAction(route.history,status, [getFromParam(route.location.search), '/main/'+route.match.params.id])} />} />
@@ -80,6 +80,44 @@ const App: React.FC = () => {
         </ErrorBoundary>
         </ContextProvider>
     );
+}
+
+const getMainConfig = (content:any)=>{
+    let commonActions = [{
+        "link": "/edit/{id}",
+        "name": "Edit",
+        "icon": "icon-edit",
+        "title": "Edit the content"
+      }];
+    let mainConfig = {...Config.main[content.content_type]};
+    mainConfig["actions"] = [ commonActions, ...mainConfig["actions"]];
+
+    let list = [] as string[];
+    if( content.content_type==='folder' ){
+        let ids = content.hierarchy.split('/');
+        if( ids.includes('3') ){
+            list = [...list, "article"];
+        }
+        if( ids.includes('583') || ids.includes('461') ){
+            list = [...list, "image"];
+        }
+
+        if( ids.includes('4') ){
+            list = [...list, "user"];
+        }
+
+        if( ids.includes('7') ){
+            list = [...list, "role"];
+        }
+
+        mainConfig['list'] = list;
+        mainConfig['new'] = ['folder', list];
+    }
+    return mainConfig;
+}
+
+const getListConfig = (parent:string, contenttype: string)=>{
+    return Config.list[contenttype];
 }
 
 //with priorized urls, it does redirection. first url which is not empty will be redirected.

@@ -7,12 +7,7 @@ export default class Slidemenu extends React.Component<{config: any, onSelect?:a
         super(props);
         this.state = { show: props.show };
     }
-    // componentDidUpdate(prevProps, prevState, snapshot) {
-    //     if (!this.state.show && !prevState.show && this.props.show) {
-    //         this.setState({ show: true });
-    //     }
-    // }
-
+    
     slide(i:number) {
         if( this.props.onSelect ){
             if( i != -1 ){

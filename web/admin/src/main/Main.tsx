@@ -15,7 +15,7 @@ import ReactTooltip from "react-tooltip";
 import util from 'digimaker-ui/util';
 import {getDefinition, getFields} from 'digimaker-ui/util';
 
-export default class Main extends React.Component<{id:number, contenttype?:string, mainConfig:any, listConfig:any, redirect:(url:string)=>void}, { content: any, sideOpen:any }> {
+export default class Main extends React.Component<{id:number, contenttype?:string, getMainConfig:(content:any)=>any, getListConfig:(parent:any, contenttype:string )=>any, redirect:(url:string)=>void}, { content: any, sideOpen:any }> {
 
     constructor(props: any) {
         super(props);
@@ -65,30 +65,12 @@ export default class Main extends React.Component<{id:number, contenttype?:strin
     afterAction(redirect: boolean){
       if(redirect){
         this.props.redirect('/main/'+this.state.content.parent_id);
-        // window.location.href = process.env.PUBLIC_URL + '/main/'+this.state.content.parent_id; //todo: use better way for redirection.
       }
     }
-
-    //get allowed type. (used in list types and new types configuration)
-    getAllowedTypes(typeConfig:Array<string>){
-      let result: Array<string> = [];
-      if( typeConfig ){
-        typeConfig.map((value:string)=>{
-            let type = util.getAllowedType( this.state.content, value );
-            if( type && !result.includes(type) ){
-              result.push( type );
-            }
-        });
-      }
-      return result;
-    }
+    
 
     getMainConfig(content){
-      let contenttype = content.content_type;
-      let subtype = content.subtype;
-      let configKey = subtype?(contenttype+':'+subtype):contenttype;
-      let mainConfig = util.getSettings( this.props.mainConfig, configKey, 'main');
-      return mainConfig;
+      return this.props.getMainConfig(content);
     }
 
     render() {
@@ -99,9 +81,9 @@ export default class Main extends React.Component<{id:number, contenttype?:strin
         let contenttype = this.state.content.content_type;
         let def = getDefinition(contenttype)
         let mainConfig = this.getMainConfig(this.state.content);
-        let listContenttypes: Array<string> = this.getAllowedTypes(mainConfig['list']);
+        let listContenttypes: Array<string> = mainConfig['list'];
 
-        let newTypes = this.getAllowedTypes(mainConfig['new']);
+        let newTypes = mainConfig['new'];
         return (
             <div key={this.state.content.id} className={"contenttype-"+this.state.content.content_type}>
             <div className="main-top">
@@ -110,7 +92,7 @@ export default class Main extends React.Component<{id:number, contenttype?:strin
                   {newTypes.length>0&&<div className="action-create">
                    <label>Create</label>
                    {newTypes.map((contenttype:any)=>{return (
-                       <Link key={contenttype} to={`/create/${this.state.content.id}/${contenttype}`} data-place='bottom' data-tip={getDefinition(contenttype).name}>
+                       <Link key={contenttype} to={`/create/${this.state.content.id}/${contenttype}`} data-place='bottom' data-tip={''}>
                            <i className={"icon icon-contenttype icon-"+contenttype}></i>
                        </Link>
                       )})}
@@ -166,15 +148,9 @@ export default class Main extends React.Component<{id:number, contenttype?:strin
                 {listContenttypes.length>0&&
                 <div className="list">
                 {
-                    listContenttypes.map((subtype)=>{
-                        let config = util.getSettings(this.props.listConfig, subtype, 'list')
-                        if( config['fieldtypes'] == undefined ){
-                          config['fieldtypes'] = getFields( getDefinition(subtype) );
-                        }
-                        if( !config['name'] ){
-                          config['name'] = getDefinition(subtype).name;
-                        }
-                        return(<List id={this.props.id} contenttype={subtype} {...config} row_actions={[...config.row_actions, (actionProps:ActionProps)=><Delete {...actionProps} />]} />)
+                    listContenttypes.map((subtype)=>{                    
+                        let listConfig = this.props.getListConfig(this.state.content, subtype);
+                        return(<List id={this.props.id} contenttype={subtype} {...listConfig} row_actions={[...listConfig.row_actions, (actionProps:ActionProps)=><Delete {...actionProps} />]} />)
                     })
                 }
                 </div>
