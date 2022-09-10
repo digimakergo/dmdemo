@@ -36,7 +36,7 @@ const App: React.FC = () => {
                     if( contenttype == 'image' ){
                         return {inline_fields:["image"], block_fields:["name","image"],browselist:{viewmode: 'block', columns:["name"], sort_default:[["priority", "desc"]] }};
                     }else{
-                        return {inline_fields:["name", "published"],browselist:{viewmode: 'list', columns:["name", "published"], sort_default:[["priority", "desc"]] }}};
+                        return {inline_fields:["name"],browselist:{viewmode: 'list', columns:["name", "published"], sort_default:[["priority", "desc"]] }}};
                     }
                 }>
                 <div className="left">
