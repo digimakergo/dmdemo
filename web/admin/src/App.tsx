@@ -12,8 +12,12 @@ import './Init';
 import util from 'digimaker-ui/util'
 import DMInit from 'digimaker-ui/DMInit'
 import ContextProvider from './ContextProvider';
-import MainRoute from './MainRoute';
+import queryString from 'query-string';
 import ErrorBoundary from './ErrorBoundary';
+import ViewVersion from 'digimaker-ui/view/ViewVersion';
+import Main from './main/Main';
+import Create from 'digimaker-ui/actions/Create';
+import Edit from 'digimaker-ui/actions/Edit';
 
 const App: React.FC = () => {
 
@@ -55,7 +59,14 @@ const App: React.FC = () => {
                     </div>
                 </div>
                 <div className="main">
-                    <MainRoute config={Config} />
+                <div>
+                    <Route path="/main/:id" exact render={route=><Main id={parseInt(route.match.params.id)} mainConfig={Config.main} listConfig={Config.list} redirect={(url:string)=>commonAfterAction( route.history, 0,[url] ) } />} />
+                    <Route path="/main/:contenttype/:id" exact render={route=><Main id={parseInt(route.match.params.id)} contenttype={route.match.params.contenttype} mainConfig={Config.main} listConfig={Config.list}  redirect={(url:string)=>commonAfterAction( route.history, 0,[url] ) } />} />
+                    <Route path="/create/:parent/:contenttype" render={route=><Create key={Date.now()} parent={parseInt(route.match.params.parent)} contenttype={route.match.params.contenttype} afterAction={(status)=>commonAfterAction( route.history, status, ['/main/' + route.match.params.parent] )} />} />
+                    <Route path="/edit/:contenttype/:id" exact render={route=><Edit id={parseInt(route.match.params.id)} contenttype={route.match.params.contenttype} afterAction={(status, params)=>commonAfterAction(route.history,status, [getFromParam(route.location.search), '/main/'+route.match.params.contenttype+'/'+route.match.params.id])} />} />
+                    <Route path="/edit/:id" exact render={route=><Edit id={parseInt(route.match.params.id)} afterAction={(status, params)=>commonAfterAction(route.history,status, [getFromParam(route.location.search), '/main/'+route.match.params.id])} />} />
+                    <Route path="/version/:id/:version" component={ViewVersion} />
+                </div>
                     <footer>
                       Powered by <a href="http://www.digimaker.com" target="_blank"><img src={process.env.PUBLIC_URL+"/logo.png"} height="18px" />&nbsp;Digimaker CMF</a>
                     </footer>
@@ -70,5 +81,20 @@ const App: React.FC = () => {
         </ContextProvider>
     );
 }
+
+//with priorized urls, it does redirection. first url which is not empty will be redirected.
+const commonAfterAction = (history:any, status:number, urls:Array<any>)=>{
+    for( let url of urls ){
+       if( url ){
+         history.push( url );
+         break;
+       }
+    }
+};
+
+const getFromParam = (location:string)=>{
+    let params = queryString.parse(location);
+    return params['from'];
+  };
 
 export default App;

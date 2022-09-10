@@ -15,7 +15,7 @@ import ReactTooltip from "react-tooltip";
 import util from 'digimaker-ui/util';
 import {getDefinition, getFields} from 'digimaker-ui/util';
 
-export default class Main extends React.Component<{id:number, contenttype?:string, mainConfig:any, listConfig:any}, { content: any, sideOpen:any }> {
+export default class Main extends React.Component<{id:number, contenttype?:string, mainConfig:any, listConfig:any, redirect:(url:string)=>void}, { content: any, sideOpen:any }> {
 
     constructor(props: any) {
         super(props);
@@ -64,7 +64,8 @@ export default class Main extends React.Component<{id:number, contenttype?:strin
 
     afterAction(redirect: boolean){
       if(redirect){
-        window.location.href = process.env.PUBLIC_URL + '/main/'+this.state.content.parent_id; //todo: use better way for redirection.
+        this.props.redirect('/main/'+this.state.content.parent_id);
+        // window.location.href = process.env.PUBLIC_URL + '/main/'+this.state.content.parent_id; //todo: use better way for redirection.
       }
     }
 
@@ -173,7 +174,7 @@ export default class Main extends React.Component<{id:number, contenttype?:strin
                         if( !config['name'] ){
                           config['name'] = getDefinition(subtype).name;
                         }
-                        return(<List id={this.props.id} contenttype={subtype} request_url={'content/list/'+subtype} {...config} row_actions={[...config.row_actions, (actionProps:ActionProps)=><Delete {...actionProps} />]} />)
+                        return(<List id={this.props.id} contenttype={subtype} {...config} row_actions={[...config.row_actions, (actionProps:ActionProps)=><Delete {...actionProps} />]} />)
                     })
                 }
                 </div>
