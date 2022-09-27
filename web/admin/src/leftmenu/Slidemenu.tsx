@@ -26,17 +26,17 @@ export default class Slidemenu extends React.Component<{config: any, onSelect?:a
             <span onClick={(e)=>{this.slide(-1)}}>
                     {this.props.children}
             </span>}
-            <div className={"slidemenu" + (this.state.show ? '' : ' hide')}>
+            <div className={`slidemenu${(this.state.show ? '' : ' hide')}`}>
                 <ul>
                     <li>
                         <a className="logo" href="#" onClick={(e) => { e.preventDefault(); this.slide(-1); }}>
-                            <img src={process.env.PUBLIC_URL+"/images/logo.png"} />
+                            <img src={`${process.env.PUBLIC_URL}/images/logo.png`} />
                         </a>
                     </li>
                     {sidemenus.map((menu:any, i:number) => {
                         return (<li key={menu.path}>
                               <NavLink to={menu.path} onClick={()=>{this.slide(i);}} className={menu.identifier} activeClassName="selected">
-                                <i className={"fas "+menu.icon}></i>
+                                <i className={`fas ${menu.icon}`} />
                               <div>{menu.name}</div>
                               </NavLink>
                             </li>)

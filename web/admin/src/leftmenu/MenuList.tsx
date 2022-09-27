@@ -21,24 +21,24 @@ export const MenuList = (props:{config:any, index?:number}) => {
     
     let menuKey = '';
     for( let menu of menus ){
-      menuKey = menuKey + '-' + menu.name;
+      menuKey = `${menuKey}-${menu.name}`;
     }
 
     return (<React.Suspense fallback="..."><div key={menuKey}>
         {menus.map((menu) => {
                 return(
-                    !menu.type?
-                       <div className="menuitem">
-                        <div className="menuitem-head">
-                         <NavLink to={menu.path} activeClassName="selected">
-                           <i className={"far "+menu.icon} /> {menu.name}
-                         </NavLink>
-                         </div>
-                       </div>
-                    :(()=>{
+                    menu.type?
+                       (()=>{
                         const Com = Registry.getComponent(menu.type) as any;
                         return (<Com key={menu.name} current={current} config={menu} />)
                     })()
+                    :<div className="menuitem">
+                        <div className="menuitem-head">
+                         <NavLink to={menu.path} activeClassName="selected">
+                           <i className={`far ${menu.icon}`} /> {menu.name}
+                         </NavLink>
+                         </div>
+                       </div>
                 )
             })}
     </div></React.Suspense>)
@@ -46,7 +46,7 @@ export const MenuList = (props:{config:any, index?:number}) => {
 
 //get leftmenu configuration based on location path
 function getCurrentMenu(path: string, content:any, leftmenuConfig: any) {
-    let result:Array<any> = [];
+    let result:any[] = [];
 
     for (let i = 0; i < leftmenuConfig.length; i++) {
         if (result.length > 0) {
