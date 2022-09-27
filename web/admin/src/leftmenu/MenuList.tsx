@@ -36,8 +36,8 @@ export const MenuList = (props:{config:any, index?:number}) => {
                          </div>
                        </div>
                     :(()=>{
-                        const Com:React.ReactType = Registry.getComponent(menu.type);
-                          return (<Com key={menu.name} current={current} config={menu} />)
+                        const Com = Registry.getComponent(menu.type) as any;
+                        return (<Com key={menu.name} current={current} config={menu} />)
                     })()
                 )
             })}

@@ -194,16 +194,7 @@
       "show_header": true,
       "show_table_header": true,
       "actions": [],
-      "row_actions": [{
-        "link": "/edit/{id}",
-        "icon": "fas fa-edit",
-        "name": "Edit"
-      },
-      {
-        "link": "#",
-        "icon": "fas fa-trash",
-        "name": "Delete"
-      }],
+      "row_actions": [],
       "pagination": 20,
       "row_more": ["export"]
     },

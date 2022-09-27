@@ -9,8 +9,8 @@ export default class ErrorBoundary extends React.Component<{}, {error:any, error
   }
 
   componentDidCatch(error, errorInfo) {
-    if( error.code=='0001' && window.location.pathname == process.env.PUBLIC_URL+ config.default_url ){
-      window.location.href = process.env.PUBLIC_URL+'/login';
+    if( error.code=='0001' && window.location.pathname == env.PUBLIC_URL+ config.default_url ){
+      window.location.href = env.PUBLIC_URL+'/login';
       return;
     }
     this.setState({
@@ -31,14 +31,13 @@ export default class ErrorBoundary extends React.Component<{}, {error:any, error
             {error.code=='0001'&&<div>
               Error message: {error.message}
               <div>
-                <a href={process.env.PUBLIC_URL+'/login'}>Login</a>
+                <a href={env.PUBLIC_URL+'/login'}>Login</a>
               </div>
             </div>}
             </div>}</div>
+          {this.props.children}
         </div>
       );
     }
-
-    return this.props.children;
   }
 }
