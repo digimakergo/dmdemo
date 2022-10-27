@@ -13,7 +13,7 @@ import Select from "digimaker-ui/tinymce/Select";
 import Logout from "./user/Logout";
 import CurrentUser from "./user/CurrentUser";
 import { MenuList } from "./leftmenu/MenuList";
-import Config from "./Config";
+import { getListConfig, getMainConfig, leftConfig } from "./Config";
 import "./Init";
 import util from "digimaker-ui/util";
 import DMInit from "digimaker-ui/DMInit";
@@ -26,7 +26,7 @@ import Create from "digimaker-ui/actions/Create";
 import Edit from "digimaker-ui/actions/Edit";
 
 const App = () => {
-	util.setConfig(Config);
+	// util.setConfig(Config);
 	// util.setCookieKey("dm_eui"); //todo: use .env?
 	// const errorMessage = "No access to view";
 
@@ -74,7 +74,7 @@ const App = () => {
 							>
 								<div className='left'>
 									<div className='logomenu'>
-										<Slidemenu config={Config.leftmenu}>
+										<Slidemenu config={leftConfig}>
 											<a className='logo' href='#'>
 												<img
 													src={`${process.env.PUBLIC_URL}/images/logo.png`}
@@ -92,7 +92,7 @@ const App = () => {
 										/>
 									</div>
 									<div>
-										<MenuList config={Config.leftmenu} />
+										<MenuList config={leftConfig} />
 									</div>
 								</div>
 								<div className='main'>
@@ -195,47 +195,6 @@ const App = () => {
 	);
 };
 
-/** get main config based on content */
-const getMainConfig = (content: any) => {
-	let commonActions = [
-		{
-			link: "/edit/{id}",
-			name: "Edit",
-			icon: "icon-edit",
-			title: "Edit the content",
-		},
-	];
-	let mainConfig = { ...Config.main[content.content_type] };
-	mainConfig["actions"] = [commonActions, ...mainConfig["actions"]];
-
-	let list = [] as string[];
-	if (content.content_type === "folder") {
-		let ids = content.hierarchy.split("/");
-		if (ids.includes("3")) {
-			list = [...list, "article"];
-		}
-		if (ids.includes("583") || ids.includes("461")) {
-			list = [...list, "image"];
-		}
-
-		if (ids.includes("4")) {
-			list = [...list, "user"];
-		}
-
-		if (ids.includes("7")) {
-			list = [...list, "role"];
-		}
-
-		mainConfig["list"] = list;
-		mainConfig["new"] = ["folder", list];
-	}
-	return mainConfig;
-};
-
-/* get list config based on parent and content type */
-const getListConfig = (_parent: string, contenttype: string) => {
-	return Config.list[contenttype];
-};
 
 //with priorized urls, it does redirection. first url which is not empty will be redirected.
 const commonAfterAction = (history: any, _status: number, urls: any[]) => {

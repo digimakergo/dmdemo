@@ -1,65 +1,60 @@
-export default {
-    leftmenu: [
+export const leftConfig = [
+  {
+    name: 'Sites',
+    icon: 'fa-desktop',
+    path: '/main/3',
+    menu: [
       {
         name: 'Sites',
-        icon: 'fa-desktop',
-        path: '/main/3',
-        menu: [
-          {
-            name: 'Sites',
-            type: 'leftmenu:treemenu',
-            contenttype: ['folder'],
-            icon: 'fas fa-home',
-            is_site: true,
-            open: true,
-            root: 3,
-          },
-          {
-            name: 'Shared',
-            type: 'leftmenu:treemenu',
-            contenttype: ['folder'],
-            icon: 'fas fa-share-alt',
-            open: true,
-            root: 460,
-          },
-          {
-            name: 'Sites',
-            type: 'leftmenu:treemenu',
-            contenttype: ['folder'],
-            icon: 'far fa-images',
-            root: 9,
-          },
-        ],
+        type: 'leftmenu:treemenu',
+        contenttype: ['folder'],
+        icon: 'fas fa-home',
+        is_site: true,
+        open: true,
+        root: 3,
       },
       {
-        name: 'Users',
-        icon: 'fa-users',
-        path: '/main/4',
-        menu: [
-          {
-            name: 'Organizations',
-            type: 'leftmenu:treemenu',
-            contenttype: ['usergroup'],
-            icon: 'fas fa-sitemap',
-            root: 4,
-          },
-          {
-            name: 'Roles',
-            icon: 'fas fa-user-tag',
-            path: '/main/7',
-          },
-        ],
+        name: 'Shared',
+        type: 'leftmenu:treemenu',
+        contenttype: ['folder'],
+        icon: 'fas fa-share-alt',
+        open: true,
+        root: 460,
+      },
+      {
+        name: 'Sites',
+        type: 'leftmenu:treemenu',
+        contenttype: ['folder'],
+        icon: 'far fa-images',
+        root: 9,
       },
     ],
-    list: {
-      _browse: {
-        article: {
-          sort: { name: 'desc' },
-          columns: ['name'],
-          pagination: 20,
-          can_select: false,
-        },
+  },
+  {
+    name: 'Users',
+    icon: 'fa-users',
+    path: '/main/4',
+    menu: [
+      {
+        name: 'Organizations',
+        type: 'leftmenu:treemenu',
+        contenttype: ['usergroup'],
+        icon: 'fas fa-sitemap',
+        root: 4,
       },
+      {
+        name: 'Roles',
+        icon: 'fas fa-user-tag',
+        path: '/main/7',
+      },
+    ],
+  },
+];
+
+
+/* get list config based on parent and content type */
+export const getListConfig = (_parent: any, contenttype: string)=>{
+  const listConfg = {     
       folder: {
         sort_default: [['published', 'desc']],
         sort: [],
@@ -170,139 +165,186 @@ export default {
         ],
         pagination: 10,
         row_more: [],
+      }
+    };
+
+    return listConfg[contenttype];
+}
+
+const mainConfig = {
+  '*': {
+    sort_default: [
+      ['priority', 'desc'],
+      ['name', 'asc'],
+    ],
+    sort: { id: 'desc', priority: 'desc', name: 'asc' },
+    columns: ['id', 'name', 'priority'],
+    pagination: 25,
+    show_header: true,
+    show_table_header: true,
+    actions: [
+      {
+        link: '/edit/{id}',
+        name: 'Edit',
+        icon: 'icon-edit',
+        title: 'Edit the content',
       },
+      {
+        com: 'action:move',
+        icon: 'icon-move',
+        name: 'Move',
+      },
+    ],
+    row_actions: [
+      { link: '/edit/{id}', name: 'Edit', icon: 'icon-edit' },
+      { com: 'action:set_priority' },
+    ],
+  },
+  folder: {
+    list: ['3:article', '583:image', '461:image', '4:user', '7:role'],
+    actions: [
+      {
+        com: 'action:delete',
+        icon: 'fas fa-trash',
+        name: 'delete',
+      },
+      {
+        com: 'action:set_priority',
+      },
+    ],
+    new: ['article', 'folder', 'frontpage', 'image', '4:user', 'role:7'],
+  },
+  frontpage: {
+    list: ['frontpage_block'],
+    actions: [],
+    new: '',
+  },
+  usergroup: {
+    list: ['user'],
+    new: ['usergroup', 'user'],
+    actions: [
+      {
+        link: '/edit/{id}',
+        title: 'Edit this',
+        name: 'Edit',
+      },
+    ],
+  },
+  role: {
+    view: true,
+    new: [],
+    openSide: true,
+    list: [],
+  },
+  article: {
+    view: true,
+    actions: [
+      {
+        link: '/edit/{id}',
+        title: 'Edit this',
+        name: 'Edit',
+      },
+      {
+        com: 'action:move',
+        icon: 'icon icon-move',
+        name: 'move',
+      },
+      {
+        com: 'action:delete',
+        icon: 'fas fa-trash',
+        name: 'delete',
+      },
+    ],
+  },
+  user: {
+    view: true,
+    view_com: 'view:user_roles',
+    actions: [
+      {
+        link: '/edit/{id}',
+        com: 'action:delete',
+        title: 'Edit this',
+        name: 'Edit',
+      },
+    ],
+  },
+};
+
+/** get main config based on content */
+export const getMainConfig = (content: any) => {
+	let commonActions = [
+		{
+			link: "/edit/{id}",
+			name: "Edit",
+			icon: "icon-edit",
+			title: "Edit the content",
+		},
+	];
+	let result = { ...mainConfig[content.content_type] };
+	result["actions"] = [commonActions, ...result["actions"]];
+
+	let list = [] as string[];
+	if (content.content_type === "folder") {
+		let ids = content.hierarchy.split("/");
+		if (ids.includes("3")) {
+			list = [...list, "article"];
+		}
+		if (ids.includes("583") || ids.includes("461")) {
+			list = [...list, "image"];
+		}
+
+		if (ids.includes("4")) {
+			list = [...list, "user"];
+		}
+
+		if (ids.includes("7")) {
+			list = [...list, "role"];
+		}
+
+		result["list"] = list;
+		result["new"] = ["folder", list];
+	}
+	return result;
+};
+
+export const getBrowseConfig = ()=>{
+  return  { filter: {
+      '*': { contenttype: ['folder'] },
+      usergroup: { contenttype: ['usergroup'] },
+      user: { contenttype: ['folder'] },
+      sv_product: { contenttype: ['sv_product_package'] },
     },
-    browse: {
-      filter: {
-        '*': { contenttype: ['folder'] },
-        usergroup: { contenttype: ['usergroup'] },
-        user: { contenttype: ['folder'] },
-        sv_product: { contenttype: ['sv_product_package'] },
-      },
-      list: {
-        '*': {
-          level: 1,
-          can_select: false,
-          pagination: 10,
-          sort_default: [
-            ['priority', 'desc'],
-            ['name', 'asc'],
-          ],
-          sort: { priority: 'desc', name: 'asc', modified: 'desc', id: 'desc' },
-          actions: [],
-          columns: ['id', 'title', 'modified', 'priority'],
-        },
-        image: {
-          viewmode: 'block',
-          parent: 461,
-          sort_default: [['modified', 'desc'], '-'],
-          block_fields: ['image', 'name'],
-        },
-        user: {
-          sort_default: [['modified', 'desc'], '-'],
-          parent: 4,
-        },
-      },
-    },
-    main: {
+    list: {
       '*': {
+        level: 1,
+        can_select: false,
+        pagination: 10,
         sort_default: [
           ['priority', 'desc'],
           ['name', 'asc'],
         ],
-        sort: { id: 'desc', priority: 'desc', name: 'asc' },
-        columns: ['id', 'name', 'priority'],
-        pagination: 25,
-        show_header: true,
-        show_table_header: true,
-        actions: [
-          {
-            link: '/edit/{id}',
-            name: 'Edit',
-            icon: 'icon-edit',
-            title: 'Edit the content',
-          },
-          {
-            com: 'action:move',
-            icon: 'icon-move',
-            name: 'Move',
-          },
-        ],
-        row_actions: [
-          { link: '/edit/{id}', name: 'Edit', icon: 'icon-edit' },
-          { com: 'action:set_priority' },
-        ],
-      },
-      folder: {
-        list: ['3:article', '583:image', '461:image', '4:user', '7:role'],
-        actions: [
-          {
-            com: 'action:delete',
-            icon: 'fas fa-trash',
-            name: 'delete',
-          },
-          {
-            com: 'action:set_priority',
-          },
-        ],
-        new: ['article', 'folder', 'frontpage', 'image', '4:user', 'role:7'],
-      },
-      frontpage: {
-        list: ['frontpage_block'],
+        sort: { priority: 'desc', name: 'asc', modified: 'desc', id: 'desc' },
         actions: [],
-        new: '',
+        columns: ['id', 'title', 'modified', 'priority'],
       },
-      usergroup: {
-        list: ['user'],
-        new: ['usergroup', 'user'],
-        actions: [
-          {
-            link: '/edit/{id}',
-            title: 'Edit this',
-            name: 'Edit',
-          },
-        ],
-      },
-      role: {
-        view: true,
-        new: [],
-        openSide: true,
-        list: [],
-      },
-      article: {
-        view: true,
-        actions: [
-          {
-            link: '/edit/{id}',
-            title: 'Edit this',
-            name: 'Edit',
-          },
-          {
-            com: 'action:move',
-            icon: 'icon icon-move',
-            name: 'move',
-          },
-          {
-            com: 'action:delete',
-            icon: 'fas fa-trash',
-            name: 'delete',
-          },
-        ],
+      image: {
+        viewmode: 'block',
+        parent: 461,
+        sort_default: [['modified', 'desc'], '-'],
+        block_fields: ['image', 'name'],
       },
       user: {
-        view: true,
-        view_com: 'view:user_roles',
-        actions: [
-          {
-            link: '/edit/{id}',
-            com: 'action:delete',
-            title: 'Edit this',
-            name: 'Edit',
-          },
-        ],
-      },
-    },
-    inline: {
+        sort_default: [['modified', 'desc'], '-'],
+        parent: 4,
+      }
+    }
+  };  
+}
+
+
+export const getViewFields = ( mode:string, contenttype: string )=>{
+  const fields = {
+      inline: {
       article: ['name'],
       image: ['image'],
       user: ['name'],
@@ -310,5 +352,8 @@ export default {
     block: {
       article: ['title'],
       image: ['image', 'name'],
-    },
+    }
   };
+
+  return fields[mode][contenttype];
+}
