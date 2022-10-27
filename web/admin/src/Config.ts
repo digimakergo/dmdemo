@@ -215,7 +215,6 @@ export default {
         pagination: 25,
         show_header: true,
         show_table_header: true,
-        pagination: 25,
         actions: [
           {
             link: '/edit/{id}',
