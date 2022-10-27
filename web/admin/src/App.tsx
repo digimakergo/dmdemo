@@ -32,14 +32,13 @@ const App = () => {
 
 	return (
 		<ContextProvider>
-			{" "}
 			{/*context between right and left area */}
-			<ErrorBoundary />
+			<ErrorBoundary>
 			<Router basename={process.env.PUBLIC_URL}>
 				<Switch>
 					<Route path='/login' component={Login} />
 					<Route path='/logout' component={Logout} />
-					<Redirect exact={true} from='/' to={Config["default_url"]} />
+					<Redirect exact={true} from='/' to={'/main/3'} />
 					<Route
 						path='/tinymce/select/:data'
 						exact={true}
@@ -191,6 +190,7 @@ const App = () => {
 					</Route>
 				</Switch>
 			</Router>
+			</ErrorBoundary>
 		</ContextProvider>
 	);
 };

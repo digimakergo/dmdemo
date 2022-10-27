@@ -39,5 +39,6 @@ export default class ErrorBoundary extends React.Component<{}, {error:any, error
         </div>
       );
     }
+    return this.props.children;
   }
 }
