@@ -1,15 +1,10 @@
 import * as React from "react";
-import { RouteProps } from "react-router";
 import {
-	BrowserRouter as Router,
-	Route,
 	Link,
-	NavLink,
 } from "react-router-dom";
 import Moment from "react-moment";
 import List from "digimaker-ui/List";
-import { ActionProps, ContentActionParams } from "digimaker-ui/Actions";
-import Delete from "digimaker-ui/actions/Delete";
+import { ContentActionParams } from "digimaker-ui/Actions";
 import MetaInfo from "./MetaInfo";
 import Actions from "digimaker-ui/Actions";
 import ViewContent from "digimaker-ui/ViewContent";
@@ -17,7 +12,6 @@ import Registry from "digimaker-ui/Registry";
 import { ContentContext } from "../Context";
 import { FetchWithAuth } from "digimaker-ui/util";
 import ReactTooltip from "react-tooltip";
-import util from "digimaker-ui/util";
 import { getDefinition, getFields } from "digimaker-ui/util";
 
 export default class Main extends React.Component<

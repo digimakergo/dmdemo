@@ -95,6 +95,7 @@ export const getListConfig = (_parent: any, contenttype: string)=>{
           author_name: 'asc',
         },
         row_actions:[
+          ...commonSettings.row_actions,
           (actionProps:ActionProps)=><SetToTop {...actionProps} />
         ],
         columns: ['name', 'coverimage', 'author_name', 'modified', 'priority'],
