@@ -1,3 +1,10 @@
+import { ActionProps } from "digimaker-ui/Actions";
+import Delete from "digimaker-ui/actions/Delete";
+import Move from "digimaker-ui/actions/Move";
+import SetPriority from "digimaker-ui/actions/SetPriority";
+import SetToTop from "digimaker-ui/actions/SetToTop";
+import React from "react";
+
 export const leftConfig = [
   {
     name: 'Sites',
@@ -65,11 +72,7 @@ export const getListConfig = (_parent: any, contenttype: string)=>{
         name: 'Edit',
         icon: 'icon-edit',
       },
-      {
-        com: 'action:delete',
-        icon: 'fas fa-trash',
-        name: 'delete',
-      }
+      (actionProps:ActionProps)=><Delete {...actionProps} />
     ]
   }
 
@@ -91,6 +94,9 @@ export const getListConfig = (_parent: any, contenttype: string)=>{
           priority: 'desc',
           author_name: 'asc',
         },
+        row_actions:[
+          (actionProps:ActionProps)=><SetToTop {...actionProps} />
+        ],
         columns: ['name', 'coverimage', 'author_name', 'modified', 'priority'],
         pagination: 20,
       },     
@@ -109,11 +115,7 @@ export const getListConfig = (_parent: any, contenttype: string)=>{
             name: 'Edit',
             icon: 'icon-edit',
           },
-          {
-            com: 'action:delete',
-            icon: 'fas fa-trash',
-            name: 'delete',
-          },
+          (actionProps:ActionProps)=><Delete {...actionProps} />
         ],
         pagination: 10,
         row_more: ['export'],
@@ -142,12 +144,7 @@ export const getListConfig = (_parent: any, contenttype: string)=>{
             link: '/edit/role/{cid}?from=/main/7',
             icon: 'fas fa-edit',
             name: 'Edit',
-          },
-          {
-            com: 'action:delete',
-            icon: 'fas fa-trash',
-            name: 'delete',
-          },
+          }          
         ],
         pagination: 10,
       }
@@ -161,14 +158,8 @@ export const getMainConfig = (content: any) => {
   const mainConfig = {
     folder: {
       actions: [
-        {
-          com: 'action:delete',
-          icon: 'fas fa-trash',
-          name: 'delete',
-        },
-        {
-          com: 'action:set_priority',
-        },
+        (actionProps:ActionProps)=><SetPriority {...actionProps} />,
+        (actionProps:ActionProps)=><Delete {...actionProps} />
       ]
     },
     frontpage: {
@@ -180,16 +171,8 @@ export const getMainConfig = (content: any) => {
     article: {
       view: true,
       actions: [      
-        {
-          com: 'action:move',
-          icon: 'icon icon-move',
-          name: 'move',
-        },
-        {
-          com: 'action:delete',
-          icon: 'fas fa-trash',
-          name: 'delete',
-        },
+        (actionProps:ActionProps)=><Move {...actionProps} /> ,
+        (actionProps:ActionProps)=><Delete {...actionProps} />     
       ],
     },
     user: {
@@ -205,11 +188,7 @@ export const getMainConfig = (content: any) => {
 			icon: "icon-edit",
 			title: "Edit the content",
 		},
-    {
-      com: 'action:delete',
-      icon: 'fas fa-trash',
-      name: 'delete',
-    },
+    (actionProps:ActionProps)=><Delete {...actionProps} />
 	];
 
   const commonMain = {list:[], new:[]};

@@ -227,12 +227,7 @@ export default class Main extends React.Component<
 											id={this.props.id}
 											contenttype={subtype}
 											{...listConfig}
-											row_actions={[
-												...listConfig.row_actions,
-												(actionProps: ActionProps) => (
-													<Delete {...actionProps} />
-												),
-											]}
+											row_actions={listConfig.row_actions}
 										/>
 									);
 								})}

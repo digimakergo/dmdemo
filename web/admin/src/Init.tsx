@@ -21,14 +21,6 @@ import SetPriority from 'digimaker-ui/actions/SetPriority.js';
 import UserRoles from 'digimaker-ui/view/UserRoles.js';
 
 
-Registry.register( 'action', 'copy', Copy );
-Registry.register( 'action', 'delete', Delete );
-Registry.register( 'action', 'move', Move );
-Registry.register( 'action', 'set_priority', SetPriority );
-Registry.register( 'action', 'set_to_top', SetToTop );
-Registry.register( 'action', 'assign_role', AssignRole );
-Registry.register( 'action', 'filter', Filter );
 Registry.register( 'view', 'user_roles', UserRoles );
-
 
 Registry.register( 'leftmenu', 'treemenu', Treemenu );
