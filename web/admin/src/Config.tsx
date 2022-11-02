@@ -159,8 +159,7 @@ export const getMainConfig = (content: any) => {
   const mainConfig = {
     folder: {
       actions: [
-        (actionProps:ActionProps)=><SetPriority {...actionProps} />,
-        (actionProps:ActionProps)=><Delete {...actionProps} />
+        (actionProps:ActionProps)=><SetPriority {...actionProps} />
       ]
     },
     frontpage: {
@@ -172,8 +171,7 @@ export const getMainConfig = (content: any) => {
     article: {
       view: true,
       actions: [      
-        (actionProps:ActionProps)=><Move {...actionProps} /> ,
-        (actionProps:ActionProps)=><Delete {...actionProps} />     
+        (actionProps:ActionProps)=><Move {...actionProps} />
       ],
     },
     user: {
