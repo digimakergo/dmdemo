@@ -16,7 +16,7 @@ import { MenuList } from "./leftmenu/MenuList";
 import { getContenttypeSettings, getListConfig, getMainConfig, leftConfig } from "./Config";
 import "./Init";
 import util from "digimaker-ui/util";
-import DMInit from "digimaker-ui/DMInit";
+import DMInit, { ContentTypeSettingType } from "digimaker-ui/DMInit";
 import ContextProvider from "./ContextProvider";
 import queryString from "query-string";
 import ErrorBoundary from "./ErrorBoundary";
