@@ -13,7 +13,7 @@ import Select from "digimaker-ui/tinymce/Select";
 import Logout from "./user/Logout";
 import CurrentUser from "./user/CurrentUser";
 import { MenuList } from "./leftmenu/MenuList";
-import { getListConfig, getMainConfig, leftConfig } from "./Config";
+import { getContenttypeSettings, getListConfig, getMainConfig, leftConfig } from "./Config";
 import "./Init";
 import util from "digimaker-ui/util";
 import DMInit from "digimaker-ui/DMInit";
@@ -49,28 +49,7 @@ const App = () => {
 					<Route>
 						<div className='App'>
 							<DMInit
-								contenttypeSetting={(contenttype: string) => {
-									if (contenttype === "image") {
-										return {
-											inline_fields: ["image"],
-											block_fields: ["name", "image"],
-											browselist: {
-												viewmode: "block",
-												columns: ["name"],
-												sort_default: [["priority", "desc"]],
-											},
-										};
-									} else {
-										return {
-											inline_fields: ["name"],
-											browselist: {
-												viewmode: "list",
-												columns: ["name", "published"],
-												sort_default: [["priority", "desc"]],
-											},
-										};
-									}
-								}}
+								contenttypeSetting={getContenttypeSettings}
 							>
 								<div className='left'>
 									<div className='logomenu'>

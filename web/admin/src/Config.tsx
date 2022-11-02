@@ -255,18 +255,25 @@ export const getBrowseConfig = ()=>{
 }
 
 
-export const getViewFields = ( mode:string, contenttype: string )=>{
-  const fields = {
-      inline: {
-      article: ['name'],
-      image: ['image'],
-      user: ['name'],
-    },
-    block: {
-      article: ['title'],
-      image: ['image', 'name'],
-    }
-  };
-
-  return fields[mode][contenttype];
+export const getContenttypeSettings = ( mode:string, contenttype: string )=>{
+  if (contenttype === "image") {
+    return {
+      inline_fields: ["image"],
+      block_fields: ["name", "image"],
+      browselist: {
+        viewmode: "block",
+        columns: ["name"],
+        sort_default: [["priority", "desc"]],
+      },
+    };
+  } else {
+    return {
+      inline_fields: ["title"],
+      browselist: {
+        viewmode: "list",
+        columns: ["name", "published"],
+        sort_default: [["priority", "desc"]],
+      },
+    };
+  } 
 }
