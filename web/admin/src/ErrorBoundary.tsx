@@ -31,7 +31,7 @@ export default class ErrorBoundary extends React.Component<{}, {error:any, error
             {error.code=='0001'&&<div>
               Error message: {error.message}
               <div>
-                <a href={env.PUBLIC_URL+'/login'}>Login</a>
+                <a href={process.env.PUBLIC_URL+'/login'}>Login</a>
               </div>
             </div>}
             </div>}</div>

@@ -9,8 +9,7 @@
 // @ts-ignore
 import Registry from 'digimaker-ui/Registry'
 
-import Treemenu from './leftmenu/menutype/Treemenu'
-import Listmenu from './leftmenu/menutype/Listmenu'
+import Treemenu from './leftmenu/Treemenu'
 
 import Copy from 'digimaker-ui/actions/Copy.js';
 import Filter from 'digimaker-ui/actions/Filter.js';
@@ -33,4 +32,3 @@ Registry.register( 'view', 'user_roles', UserRoles );
 
 
 Registry.register( 'leftmenu', 'treemenu', Treemenu );
-Registry.register( 'leftmenu', 'listmenu', Listmenu );
