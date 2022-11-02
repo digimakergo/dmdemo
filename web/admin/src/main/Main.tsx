@@ -2,7 +2,6 @@ import * as React from "react";
 import {
 	Link,
 } from "react-router-dom";
-import Moment from "react-moment";
 import List from "digimaker-ui/List";
 import { ContentActionParams } from "digimaker-ui/Actions";
 import MetaInfo from "./MetaInfo";
