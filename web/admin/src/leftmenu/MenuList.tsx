@@ -1,8 +1,8 @@
 import * as React from 'react';
-import { BrowserRouter as Router, Route, Link, NavLink, useLocation } from "react-router-dom";
+import { NavLink, useLocation } from "react-router-dom";
 import Registry from 'digimaker-ui/Registry'
 import {ContentContext} from '../Context';
-import { useState, useContext } from 'react';
+import { useContext } from 'react';
 
 //A menu container which list all the menus from top to down.
 export const MenuList = (props:{config:any, index?:number}) => {
@@ -56,7 +56,7 @@ function getCurrentMenu(path: string, content:any, leftmenuConfig: any) {
         for (let j = 0; j < menus.length; j++)
         {
               let menuitem = menus[j];
-              if (menuitem['path'] == path)
+              if (menuitem['path'] === path)
               {
                 result = menus;
                 break;

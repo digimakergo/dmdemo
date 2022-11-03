@@ -11,7 +11,7 @@ import Registry from "digimaker-ui/Registry";
 import { ContentContext } from "../Context";
 import { FetchWithAuth } from "digimaker-ui/util";
 import ReactTooltip from "react-tooltip";
-import { getDefinition, getFields } from "digimaker-ui/util";
+import { getDefinition } from "digimaker-ui/util";
 
 export default class Main extends React.Component<
 	{
@@ -60,7 +60,7 @@ export default class Main extends React.Component<
 
 	componentDidUpdate(prevProps, prevState, snapshot) {
 		//when changing page
-		if (prevProps.id != this.props.id) {
+		if (prevProps.id !== this.props.id) {
 			this.setState({ sideOpen: prevState.sideOpen });
 			this.fetchData();
 		}
@@ -217,6 +217,7 @@ export default class Main extends React.Component<
 									);
 									return (
 										<List
+										    key={subtype}
 											id={this.props.id}
 											contenttype={subtype}
 											{...listConfig}

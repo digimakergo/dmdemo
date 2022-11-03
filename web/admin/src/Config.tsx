@@ -3,7 +3,7 @@ import Delete from "digimaker-ui/actions/Delete";
 import Move from "digimaker-ui/actions/Move";
 import SetPriority from "digimaker-ui/actions/SetPriority";
 import SetToTop from "digimaker-ui/actions/SetToTop";
-import { ContentTypeSettingType } from "digimaker-ui/DMInit";
+import { ViewSettingsType } from "digimaker-ui/DMInit";
 import React from "react";
 
 export const leftConfig = [
@@ -30,7 +30,7 @@ export const leftConfig = [
         root: 460,
       },
       {
-        name: 'Sites',
+        name: 'Resources',
         type: 'leftmenu:treemenu',
         contenttype: ['folder'],
         icon: 'far fa-images',
@@ -256,7 +256,7 @@ export const getBrowseConfig = ()=>{
 }
 
 
-export const getContenttypeSettings = ( contenttype: string )=>{
+export const getViewSettings = ( contenttype: string )=>{
   if (contenttype === "image") {
     return {
       inline_fields: ["image"],
@@ -266,7 +266,7 @@ export const getContenttypeSettings = ( contenttype: string )=>{
         columns: ["name"],
         sort_default: [["priority", "desc"]],
       },
-    } as ContentTypeSettingType;
+    } as ViewSettingsType;
   } else {
     return {
       inline_fields: ["title"],
@@ -275,6 +275,6 @@ export const getContenttypeSettings = ( contenttype: string )=>{
         columns: ["name", "published"],
         sort_default: [["priority", "desc"]],
       },
-    } as ContentTypeSettingType;
+    } as ViewSettingsType;
   } 
 }

@@ -13,10 +13,9 @@ import Select from "digimaker-ui/tinymce/Select";
 import Logout from "./user/Logout";
 import CurrentUser from "./user/CurrentUser";
 import { MenuList } from "./leftmenu/MenuList";
-import { getContenttypeSettings, getListConfig, getMainConfig, leftConfig } from "./Config";
+import { getListConfig, getMainConfig, getViewSettings, leftConfig } from "./Config";
 import "./Init";
-import util from "digimaker-ui/util";
-import DMInit, { ContentTypeSettingType } from "digimaker-ui/DMInit";
+import DMInit from "digimaker-ui/DMInit";
 import ContextProvider from "./ContextProvider";
 import queryString from "query-string";
 import ErrorBoundary from "./ErrorBoundary";
@@ -49,7 +48,7 @@ const App = () => {
 					<Route>
 						<div className='App'>
 							<DMInit
-								contenttypeSetting={getContenttypeSettings}
+								viewSettings={getViewSettings}
 							>
 								<div className='left'>
 									<div className='logomenu'>
