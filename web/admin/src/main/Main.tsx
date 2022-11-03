@@ -133,7 +133,7 @@ export default class Main extends React.Component<
 					</div>
 
 					<h2>
-						<a href="#" onClick={(e: any) => e.preventDefault()}>
+						<a href="/" onClick={(e: any) => e.preventDefault()}>
 							<i
 								data-tip={true}
 								data-for="contentype"
@@ -168,7 +168,7 @@ export default class Main extends React.Component<
 								{/* <Moment unix format="DD.MM.YYYY HH:mm">{this.state.content.modified}</Moment> */}
 							</i>
 							&nbsp;&nbsp;
-							<a href="#">
+							<a href="/" onClick={(e=>e.preventDefault())}>
 								<i
 									data-tip={true}
 									data-for="metainfo"
@@ -238,7 +238,7 @@ export default class Main extends React.Component<
 						>
 							<div className="hider">
 								<a
-									href="#"
+									href="/"
 									onClick={(e) => {
 										e.preventDefault();
 										this.setState({

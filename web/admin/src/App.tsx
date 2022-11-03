@@ -53,8 +53,9 @@ const App = () => {
 								<div className='left'>
 									<div className='logomenu'>
 										<Slidemenu config={leftConfig}>
-											<a className='logo' href='#'>
+											<a className='logo' href='/' onClick={(e)=>e.preventDefault()}>
 												<img
+												    alt=''
 													src={`${process.env.PUBLIC_URL}/images/logo.png`}
 													width='28px'
 												/>
@@ -154,8 +155,10 @@ const App = () => {
 										Powered by <a
 											href='http://www.digimaker.com'
 											target='_blank'
+											rel="noopener noreferrer" 
 										>
 											<img
+											    alt="Digimaker"
 												src={`${process.env.PUBLIC_URL}/logo.png`}
 												height='18px'
 											/>

@@ -171,6 +171,7 @@ export const getMainConfig = (content: any) => {
     },
     article: {
       view: true,
+      metainfo:true,
       actions: [      
         (actionProps:ActionProps)=><Move {...actionProps} />
       ],

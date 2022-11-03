@@ -1,8 +1,7 @@
 import * as React from 'react';
-import { BrowserRouter as Router, Route, Link, NavLink } from "react-router-dom";
+import { NavLink } from "react-router-dom";
 import { FetchWithAuth } from 'digimaker-ui/util';
 import ReactTooltip from "react-tooltip";
-import Select from 'react-select';
 import TreeNode from 'digimaker-ui/TreeNode';
 import { Collapse } from 'react-bootstrap';
 
@@ -62,10 +61,10 @@ export default class Treemenu extends React.Component<{ config: any, current:any
 
             {this.state.data.children&&          
             <span className="right">
-            {this.props.config.refresh&&<a href="#" onClick={(e)=>this.refresh(e)} style={{marginRight:'15px'}}><i className={"fas fa-sync"+(this.state.rotating?' rotate':'')}></i></a>}
+            {this.props.config.refresh&&<a href="/" onClick={(e)=>this.refresh(e)} style={{marginRight:'15px'}}><i className={"fas fa-sync"+(this.state.rotating?' rotate':'')}></i></a>}
             {this.props.config.is_site &&
-              <a className="select-site" href="#" data-tip="Site list"><i className="fas fa-list"></i></a>}
-              <a href="#" onClick={(e:any)=>{e.preventDefault();this.setState({open:!this.state.open})}}>
+              <a className="select-site" href="/" onClick={e=>e.preventDefault()} data-tip="Site list"><i className="fas fa-list"></i></a>}
+              <a href="/" onClick={(e:any)=>{e.preventDefault();this.setState({open:!this.state.open})}}>
                 <i className={"foldable fas fa-chevron-right"+(this.state.open?' open':'')}>
               </i></a>
               <ReactTooltip effect="solid" />

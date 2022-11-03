@@ -10,7 +10,7 @@ export default class Slidemenu extends React.Component<{config: any, onSelect?:a
     
     slide(i:number) {
         if( this.props.onSelect ){
-            if( i != -1 ){
+            if( i !== -1 ){
                 this.props.onSelect(i);
             }
         }
@@ -29,8 +29,8 @@ export default class Slidemenu extends React.Component<{config: any, onSelect?:a
             <div className={`slidemenu${(this.state.show ? '' : ' hide')}`}>
                 <ul>
                     <li>
-                        <a className="logo" href="#" onClick={(e) => { e.preventDefault(); this.slide(-1); }}>
-                            <img src={`${process.env.PUBLIC_URL}/images/logo.png`} />
+                        <a className="logo" href="/" onClick={(e) => { e.preventDefault(); this.slide(-1); }}>
+                            <img alt='Logo' src={`${process.env.PUBLIC_URL}/images/logo.png`} />
                         </a>
                     </li>
                     {sidemenus.map((menu:any, i:number) => {
