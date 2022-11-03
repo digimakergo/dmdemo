@@ -45,6 +45,7 @@ For full documentation and references, please visit [https://digimaker.org/doc](
   The admin client is under web/admin
   ```sh   
    cd web/admin
+   # you may use npm install --legacy-peer-deps if npm version is > 7
    npm install
    npm start
    ```
