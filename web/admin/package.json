@@ -8,7 +8,7 @@
         "dmdemo",
         "digimaker"
     ],
-    "proxy": "http://localhost:9200",
+    "proxy": "http://dmdemo.dev.digimaker.no",
     "license": "MIT",
     "author": "Digimaker Go",
     "bugs": {
@@ -27,7 +27,7 @@
         "@types/react-dom": "^16.9.0",
         "@types/react-router": "^5.1.7",
         "@types/react-router-dom": "^5.1.5",
-        "digimaker-ui": "latest",
+        "digimaker-ui": "^0.2.0-beta.4",
         "formdata-polyfill": "^3.0.19",
         "i18next": "^19.0.2",
         "jquery": "^3.4.1",
@@ -73,6 +73,5 @@
             "last 1 firefox version",
             "last 1 safari version"
         ]
-    },
-    "devDependencies": {}
+    }
 }
