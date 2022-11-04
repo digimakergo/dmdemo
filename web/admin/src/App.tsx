@@ -7,31 +7,26 @@ import {
 	Redirect,
 } from "react-router-dom";
 import "./App.css";
-import Slidemenu from "./leftmenu/Slidemenu";
+import Slidemenu from "./Slidemenu";
 import Login from "./user/Login";
 import Select from "digimaker-ui/tinymce/Select";
 import Logout from "./user/Logout";
 import CurrentUser from "./user/CurrentUser";
 import { MenuList } from "./leftmenu/MenuList";
 import { getListConfig, getMainConfig, getViewSettings, leftConfig } from "./Config";
-import "./Init";
 import DMInit from "digimaker-ui/DMInit";
-import ContextProvider from "./ContextProvider";
 import queryString from "query-string";
 import ErrorBoundary from "./ErrorBoundary";
 import ViewVersion from "digimaker-ui/view/ViewVersion";
-import Main from "./main/Main";
+import Main from "digimaker-ui/Main";
 import Create from "digimaker-ui/actions/Create";
 import Edit from "digimaker-ui/actions/Edit";
+import { useState } from "react";
 
-const App = () => {
-	// util.setConfig(Config);
-	// util.setCookieKey("dm_eui"); //todo: use .env?
-	// const errorMessage = "No access to view";
+const App = (props) => {
+	const [current,setCurrent]=useState(null);
 
 	return (
-		<ContextProvider>
-			{/*context between right and left area */}
 			<ErrorBoundary>
 			<Router basename={process.env.PUBLIC_URL}>
 				<Switch>
@@ -71,7 +66,7 @@ const App = () => {
 										/>
 									</div>
 									<div>
-										<MenuList config={leftConfig} />
+										<MenuList config={leftConfig} current={current} />
 									</div>
 								</div>
 								<div className='main'>
@@ -81,6 +76,9 @@ const App = () => {
 											exact={true}
 											render={(route) => (
 												<Main
+													onLoad={(content)=>{
+														setCurrent(content);
+													}}										    
 													id={parseInt(route.match.params.id)}
 													getMainConfig={getMainConfig}
 													getListConfig={getListConfig}
@@ -172,7 +170,6 @@ const App = () => {
 				</Switch>
 			</Router>
 			</ErrorBoundary>
-		</ContextProvider>
 	);
 };
 

@@ -4,6 +4,7 @@ import Move from "digimaker-ui/actions/Move";
 import SetPriority from "digimaker-ui/actions/SetPriority";
 import SetToTop from "digimaker-ui/actions/SetToTop";
 import { ViewSettingsType } from "digimaker-ui/DMInit";
+import UserRoles from "digimaker-ui/view/UserRoles";
 import React from "react";
 
 export const leftConfig = [
@@ -14,7 +15,7 @@ export const leftConfig = [
     menu: [
       {
         name: 'Sites',
-        type: 'leftmenu:treemenu',
+        type: 'treemenu',
         contenttype: ['folder'],
         icon: 'fas fa-home',
         is_site: true,
@@ -23,7 +24,7 @@ export const leftConfig = [
       },
       {
         name: 'Shared',
-        type: 'leftmenu:treemenu',
+        type: 'treemenu',
         contenttype: ['folder'],
         icon: 'fas fa-share-alt',
         open: true,
@@ -31,7 +32,7 @@ export const leftConfig = [
       },
       {
         name: 'Resources',
-        type: 'leftmenu:treemenu',
+        type: 'treemenu',
         contenttype: ['folder'],
         icon: 'far fa-images',
         root: 9,
@@ -45,7 +46,7 @@ export const leftConfig = [
     menu: [
       {
         name: 'Organizations',
-        type: 'leftmenu:treemenu',
+        type: 'treemenu',
         contenttype: ['usergroup'],
         icon: 'fas fa-sitemap',
         root: 4,
@@ -178,7 +179,7 @@ export const getMainConfig = (content: any) => {
     },
     user: {
       view: true,
-      view_com: 'view:user_roles',    
+      viewComponent: UserRoles,    
     },
   };
 
@@ -274,7 +275,8 @@ export const getViewSettings = ( contenttype: string )=>{
       browselist: {
         viewmode: "list",
         columns: ["name", "published"],
-        sort_default: [["priority", "desc"]],
+        sort_default: [["name", "desc"]],
+        pagination: 2
       },
     } as ViewSettingsType;
   } 

@@ -1,19 +1,16 @@
 import * as React from 'react';
 import { NavLink, useLocation } from "react-router-dom";
 import Registry from 'digimaker-ui/Registry'
-import {ContentContext} from '../Context';
-import { useContext } from 'react';
+import Treemenu from './Treemenu';
 
 //A menu container which list all the menus from top to down.
-export const MenuList = (props:{config:any, index?:number}) => {
-    const current = useContext(ContentContext).data;
-
+export const MenuList = (props:{config:any, index?:number, current?:any}) => {
     let location = useLocation();
     let path = location.pathname;
 
     let menus:any = null;
     if( props.index == null){
-      menus = getCurrentMenu(path, current, props.config);
+      menus = getCurrentMenu(path, props.current, props.config);
     }else{
       menus = props.config[props.index].menu;
     }
@@ -27,11 +24,8 @@ export const MenuList = (props:{config:any, index?:number}) => {
     return (<React.Suspense fallback="..."><div key={menuKey}>
         {menus.map((menu) => {
                 return(
-                    menu.type?
-                       (()=>{
-                        const Com = Registry.getComponent(menu.type) as any;
-                        return (<Com key={menu.name} current={current} config={menu} />)
-                    })()
+                    menu.type === 'treemenu'?
+                    <Treemenu key={menu.name} current={props.current} config={menu} />                      
                     :<div className="menuitem">
                         <div className="menuitem-head">
                          <NavLink to={menu.path} activeClassName="selected">
