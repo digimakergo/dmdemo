@@ -1,9 +1,5 @@
 import * as React from 'react';
-import {Redirect, Link} from 'react-router-dom'
-import Cookies from 'universal-cookie';
-
-const cookies = new Cookies();
-
+import util from 'digimaker-ui/util';
 
 export default class Login extends React.Component<{}, {username:string, password: string, sending:boolean, error:string}> {
 
@@ -20,7 +16,7 @@ export default class Login extends React.Component<{}, {username:string, passwor
     .then(this.handleErrors)
     .then((response) => response.json())
     .then((res) => {
-      cookies.set('refreshToken',res.data.refresh_token);
+      util.setRefreshToken(res.data.refresh_token);
       window.location.href = process.env.PUBLIC_URL+'/';
     })
     .catch((err) => {

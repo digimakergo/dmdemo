@@ -49,11 +49,11 @@ const UserInfo=() =>{
 
   useEffect(()=>{
     if( !user ){
-      FetchWithAuth(process.env.REACT_APP_REMOTE_URL + '/user/current/dmdemo')
+      FetchWithAuth( 'user/current/dmdemo')
          .then((data:any)=>{
           setUser( data.data );
         }).catch(err=>{
-            window.location.href = '#login';
+          console.error(err);
         });
     }
   })
