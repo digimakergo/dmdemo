@@ -2,9 +2,6 @@ import * as React from 'react';
 import Cookies from 'universal-cookie';
 import util from 'digimaker-ui/util';
 
-const cookies = new Cookies();
-
-
 export default class Login extends React.Component<{}, {username:string, password: string, sending:boolean, error:string}> {
 
   constructor(props: any) {
@@ -19,11 +16,15 @@ export default class Login extends React.Component<{}, {username:string, passwor
     fetch(process.env.REACT_APP_REMOTE_URL + '/auth/auth', { method: 'post', body: JSON.stringify(input) })
     .then((response) => response.json())
     .then((res) => {
-      cookies.set( util.getCookieKey(),res.data.refresh_token);
-      window.location.href = process.env.PUBLIC_URL+'/';
+      if( res.error === false ){
+        util.setRefreshToken(res.data.refresh_token);
+        window.location.href = process.env.PUBLIC_URL+'/';
+      }else{
+        this.setState({sending: false,error: res.data.message});
+      }
     })
     .catch((err) => {
-        this.setState({ error: err.toString() });
+        window.alert( err.toString());
       });
   }
 
