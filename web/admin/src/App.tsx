@@ -19,13 +19,11 @@ import {
   getViewSettings,
   leftConfig,
 } from "./Config";
-import DMInit from "digimaker-ui/DMInit";
+import {DMInit, Main} from "digimaker-ui";
+import {ViewVersion} from "digimaker-ui/view";
 import queryString from "query-string";
 import ErrorBoundary from "./ErrorBoundary";
-import ViewVersion from "digimaker-ui/view/ViewVersion";
-import Main from "digimaker-ui/Main";
-import Create from "digimaker-ui/actions/Create";
-import Edit from "digimaker-ui/actions/Edit";
+import {Create, Edit} from "digimaker-ui/actions";
 import { useState } from "react";
 
 const App = (props) => {
@@ -100,7 +98,7 @@ const App = (props) => {
                       path="/main/:contenttype/:id"
                       exact={true}
                       render={(route) => (
-                        <Main
+                        <Main                        
                           id={parseInt(route.match.params.id)}
                           contenttype={route.match.params.contenttype}
                           getMainConfig={getMainConfig}

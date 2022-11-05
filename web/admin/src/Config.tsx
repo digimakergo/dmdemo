@@ -1,10 +1,7 @@
-import { ActionProps } from "digimaker-ui/Actions";
-import Delete from "digimaker-ui/actions/Delete";
-import Move from "digimaker-ui/actions/Move";
-import SetPriority from "digimaker-ui/actions/SetPriority";
-import SetToTop from "digimaker-ui/actions/SetToTop";
-import { ViewSettingsType } from "digimaker-ui/DMInit";
-import UserRoles from "digimaker-ui/view/UserRoles";
+import { ActionProps } from "digimaker-ui/ActionsRender";
+import {Delete, Move, SetPriority, SetToTop} from "digimaker-ui/actions";
+import { ViewSettingsType } from "digimaker-ui";
+import {UserRoles} from "digimaker-ui/view";
 import React from "react";
 
 export const leftConfig = [

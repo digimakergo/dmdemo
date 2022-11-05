@@ -1,5 +1,4 @@
 import * as React from 'react';
-import Cookies from 'universal-cookie';
 import util from 'digimaker-ui/util';
 
 export default class Login extends React.Component<{}, {username:string, password: string, sending:boolean, error:string}> {

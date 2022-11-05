@@ -1,6 +1,5 @@
 import * as React from 'react';
 import { NavLink, useLocation } from "react-router-dom";
-import Registry from 'digimaker-ui/Registry'
 import Treemenu from './Treemenu';
 
 //A menu container which list all the menus from top to down.
