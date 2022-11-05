@@ -71,7 +71,7 @@ export const getListConfig = (_parent: any, contenttype: string)=>{
         name: 'Edit',
         icon: 'icon-edit',
       },
-      (actionProps:ActionProps)=><Delete {...actionProps} />
+      Delete
     ]
   }
 
@@ -115,7 +115,7 @@ export const getListConfig = (_parent: any, contenttype: string)=>{
             name: 'Edit',
             icon: 'icon-edit',
           },
-          (actionProps:ActionProps)=><Delete {...actionProps} />
+          Delete
         ],
         pagination: 10,
         row_more: ['export'],
@@ -187,7 +187,7 @@ export const getMainConfig = (content: any) => {
 			icon: "icon-edit",
 			title: "Edit the content",
 		},
-    (actionProps:ActionProps)=><Delete {...actionProps} />
+    Delete
 	];
 
   const commonMain = {list:[], new:[]};
