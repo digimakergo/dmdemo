@@ -25,9 +25,10 @@ import queryString from "query-string";
 import ErrorBoundary from "./ErrorBoundary";
 import {Create, Edit} from "digimaker-ui/actions";
 import { useState } from "react";
+import { FullEdit } from "./actions/FullEdit";
 
 const App = (props) => {
-  const [current, setCurrent] = useState(null);
+  const [current, setCurrent] = useState(null);  
 
   return (
     <ErrorBoundary>
@@ -46,6 +47,22 @@ const App = (props) => {
           <Route>
             <div className="App">
               <DMInit viewSettings={getViewSettings}>
+              <Route
+                      path="/fulledit/:id"
+                      exact={true}
+                      render={(route) => (
+                        <FullEdit
+                          id={parseInt(route.match.params.id)}
+                          afterAction={(status, _params) =>
+                            commonAfterAction(route.history, status, [
+                              getFromParam(route.location.search),
+                              `/main/${route.match.params.id}`,
+                            ])
+                          }
+                        />
+                      )}
+                    />
+
                 <div className="left">
                   <div className="logomenu">
                     <Slidemenu config={leftConfig}>
@@ -154,7 +171,7 @@ const App = (props) => {
                           }
                         />
                       )}
-                    />
+                    />                     
                     <Route
                       path="/version/:id/:version"
                       component={ViewVersion}

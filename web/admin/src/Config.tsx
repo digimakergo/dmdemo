@@ -95,6 +95,11 @@ export const getListConfig = (_parent: any, contenttype: string)=>{
         },
         row_actions:[
           ...commonSettings.row_actions,
+          {
+            link: '/fulledit/{_contenttype_id}?from=/main/{_from_id}',
+            name: 'Full edit',
+            icon: 'icon-edit',
+          },
           (actionProps:ActionProps)=><SetToTop {...actionProps} />
         ],
         columns: ['name', 'coverimage', 'author_name', 'modified', 'priority'],
