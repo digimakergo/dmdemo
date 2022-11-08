@@ -60,7 +60,7 @@ export default class Treemenu extends React.Component<{ config: any, current:any
 
           <Collapse in={isOpen}>
             <div className="menuitem-content">
-              <TreeNode selectedId={selectedId} rootID={this.props.config.root} contenttype={this.props.config.contenttype} onDataFetched={data=>this.setState({data:data})} onClick={(e, data)=>this.treenodeChange(e, data)} />
+              <TreeNode showRoot={false} selectedId={selectedId} rootID={this.props.config.root} contenttype={this.props.config.contenttype} onDataFetched={data=>this.setState({data:data})} onClick={(e, data)=>this.treenodeChange(e, data)} />
             </div>
           </Collapse>
       </div>
