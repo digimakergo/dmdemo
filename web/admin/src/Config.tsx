@@ -268,7 +268,7 @@ export const getViewSettings = ( contenttype: string )=>{
       browselist: {
         viewmode: "block",
         columns: ["name"],
-        sort_default: [["priority", "desc"]],
+        sort_default: [["published", "desc"]],
       },
     } as ViewSettingsType;
   } else {
