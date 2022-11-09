@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import {fetchWithAuth} from 'digimaker-ui/util';
 import {DMEditor} from 'dmeditor';
 import { ListItemIcon, ListItemText, Menu, MenuItem, MenuList, Tooltip } from '@mui/material';
-import { CloseOutlined, MenuOutlined, SaveAsOutlined, SaveOutlined } from '@mui/icons-material';
+import { CloseOutlined, MenuOutlined, InfoOutlined, SendOutlined, SaveOutlined } from '@mui/icons-material';
 import { Button } from 'react-bootstrap';
 
 export const FullEdit = (props:{id:number, afterAction:any})=>{
@@ -16,7 +16,7 @@ export const FullEdit = (props:{id:number, afterAction:any})=>{
         setAnchorEl(null);
         fetchWithAuth('content/update/'+props.id, {method:'POST', body:JSON.stringify({body:JSON.stringify(data)}) }).then(data=>{
             if(data.error === false){
-                window.alert('Updated!');
+                window.alert('Saved!');
                 props.afterAction(1);
             }else{
               window.alert(data.data.detail);
@@ -43,7 +43,7 @@ export const FullEdit = (props:{id:number, afterAction:any})=>{
     },[props.id]);
 
     if( !content || !data ){
-        return <div>...</div>;
+        return <div style={{position:'absolute'}}>...</div>;
     }
 
     return <div>
@@ -52,6 +52,11 @@ export const FullEdit = (props:{id:number, afterAction:any})=>{
         menu={<div><Button onClick={(e)=>setAnchorEl(e.currentTarget)} size='sm' variant='outlink-info'>
             <Tooltip title={content.name}>
             <MenuOutlined />
+            </Tooltip>
+        </Button>
+        <Button onClick={save} size='sm' variant='outlink-info'>
+            <Tooltip title={'Send'}>
+            <SendOutlined />
             </Tooltip>
         </Button>
         <Menu
@@ -63,20 +68,21 @@ export const FullEdit = (props:{id:number, afterAction:any})=>{
           'aria-labelledby': 'basic-button',
         }}
       >
-        <MenuItem onClick={save}>
-          <ListItemIcon>
-            <SaveOutlined fontSize="small" />
-          </ListItemIcon>
-          <ListItemText>
-          Save
-          </ListItemText>
-        </MenuItem>
         <MenuItem onClick={cancel}><ListItemIcon>
             <CloseOutlined fontSize="small" />
           </ListItemIcon>
           <ListItemText>
           Exit
-          </ListItemText></MenuItem>
+          </ListItemText>
+        </MenuItem>
+        <MenuItem onClick={save}>          
+          <ListItemIcon>
+            <InfoOutlined fontSize="small" />
+          </ListItemIcon>
+          <ListItemText>
+          About
+          </ListItemText>
+        </MenuItem>        
       </Menu>
         </div>}
         data={data} onChange={(data)=>setData(data)} /> 
