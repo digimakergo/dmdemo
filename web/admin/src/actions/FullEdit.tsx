@@ -50,9 +50,7 @@ export const FullEdit = (props:{id:number, afterAction:any})=>{
         <div>
         <DMEditor
         menu={<div><Button onClick={(e)=>setAnchorEl(e.currentTarget)} size='sm' variant='outlink-info'>
-            <Tooltip title={content.name}>
             <MenuOutlined />
-            </Tooltip>
         </Button>
         <Button onClick={save} size='sm' variant='outlink-info'>
             <Tooltip title={'Send'}>
