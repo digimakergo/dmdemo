@@ -73,7 +73,7 @@ export const FullEdit = (props:{id:number, afterAction:any})=>{
           Exit
           </ListItemText>
         </MenuItem>
-        <MenuItem onClick={save}>          
+        <MenuItem>          
           <ListItemIcon>
             <InfoOutlined fontSize="small" />
           </ListItemIcon>
