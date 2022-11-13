@@ -14,7 +14,7 @@ export const FullEdit = (props:{id:number, afterAction:any})=>{
 
     const save = ()=>{
         setAnchorEl(null);
-        fetchWithAuth('content/update/'+props.id, {method:'POST', body:JSON.stringify({body:JSON.stringify(data)}) }).then(data=>{
+        fetchWithAuth('content/update/'+props.id, {method:'POST', body:JSON.stringify({body_json:JSON.stringify(data)}) }).then(data=>{
             if(data.error === false){
                 window.alert('Saved!');
                 props.afterAction(1);
@@ -34,7 +34,7 @@ export const FullEdit = (props:{id:number, afterAction:any})=>{
         let data = fetchWithAuth('content/get/'+props.id).then(data=>{
             setContent(data.data);
             try{
-              const bodyObject = JSON.parse(data.data.body);
+              const bodyObject = data.data.body_json;
               setData(bodyObject);
             }catch(err){
               window.alert("Wrong format: "+ err); 
