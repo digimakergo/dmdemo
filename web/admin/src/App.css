@@ -1,1 +1,5 @@
 @import "admin-common.css";
+
+.dmeditor a.btn-success{
+    color: white;
+}

@@ -26,6 +26,8 @@ import ErrorBoundary from "./ErrorBoundary";
 import {Create, Edit} from "digimaker-ui/actions";
 import { useState } from "react";
 import { FullEdit } from "./actions/FullEdit";
+import './Init';
+import './DMEditorInit';
 
 const App = (props) => {
   const [current, setCurrent] = useState(null);  
@@ -44,10 +46,7 @@ const App = (props) => {
               <Select data={route.match.params.data} browseConfig={{}} />
             )}
           />
-          <Route>
-            <div className="App">
-              <DMInit viewSettings={getViewSettings}>
-              <Route
+          <Route
                       path="/fulledit/:id"
                       exact={true}
                       render={(route) => (
@@ -62,7 +61,9 @@ const App = (props) => {
                         />
                       )}
                     />
-
+          <Route>
+            <div className="App">
+              <DMInit viewSettings={getViewSettings}>
                 <div className="left">
                   <div className="logomenu">
                     <Slidemenu config={leftConfig}>
