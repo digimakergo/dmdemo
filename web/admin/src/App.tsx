@@ -25,7 +25,7 @@ import queryString from "query-string";
 import ErrorBoundary from "./ErrorBoundary";
 import {Create, Edit} from "digimaker-ui/actions";
 import { useState } from "react";
-import { FullEdit } from "./actions/FullEdit";
+import { FullEdit } from "dmeditor-digimaker/actions/FullEdit";
 import './Init';
 import './DMEditorInit';
 

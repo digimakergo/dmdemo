@@ -28,7 +28,7 @@
         "@types/react-router": "^5.1.7",
         "@types/react-router-dom": "^5.1.5",
         "digimaker-ui": "^0.2.0-beta.5",
-        "dmeditor": "^0.1.0-alpha.6",
+        "dmeditor-digimaker": "latest",        
         "formdata-polyfill": "^3.0.19",
         "i18next": "^19.0.2",
         "jquery": "^3.4.1",
