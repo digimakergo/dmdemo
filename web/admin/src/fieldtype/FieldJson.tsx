@@ -15,7 +15,6 @@ export const FieldJson = (props:FieldtypeProps)=>{
             {props.data&&<DMEditorView data={props.data} />}
         </div>}
         {props.mode&&props.mode==='edit'&&<div>
-            <Link to={"/fulledit/"+props.formdata.id}>Switch to full edit</Link>
          </div>}
         </div>}</div>;
 
