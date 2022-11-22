@@ -10,8 +10,8 @@ export const FieldJson = (props:FieldtypeProps)=>{
 
     return <div>        
         {format==='dmeditor'&&<div>
-        <label>{def.name}:</label> 
         {props.mode&&props.mode==='view'&&<div>
+            <label>{def.name}:</label> 
             {props.data&&<DMEditorView data={props.data} />}
         </div>}
         {props.mode&&props.mode==='edit'&&<div>
