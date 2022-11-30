@@ -5,56 +5,90 @@ import {UserRoles} from "digimaker-ui/view";
 import React from "react";
 
 export const leftConfig = [
+  // {
+  //   name: 'Sites',
+  //   icon: 'fa-desktop',
+  //   path: '/main/3',
+  //   menu: [
+  //     {
+  //       name: 'Sites',
+  //       type: 'treemenu',
+  //       contenttype: ['folder'],
+  //       icon: 'fas fa-home',
+  //       is_site: true,
+  //       open: true,
+  //       root: 3,
+  //     },
+  //     {
+  //       name: 'Shared',
+  //       type: 'treemenu',
+  //       contenttype: ['folder'],
+  //       icon: 'fas fa-share-alt',
+  //       open: true,
+  //       root: 460,
+  //     },
+  //     {
+  //       name: 'Resources',
+  //       type: 'treemenu',
+  //       contenttype: ['folder'],
+  //       icon: 'far fa-images',
+  //       root: 9,
+  //     },
+  //   ],
+  // },
+  // {
+  //   name: 'Users',
+  //   icon: 'fa-users',
+  //   path: '/main/4',
+  //   menu: [
+  //     {
+  //       name: 'Organizations',
+  //       type: 'treemenu',
+  //       contenttype: ['usergroup'],
+  //       icon: 'fas fa-sitemap',
+  //       root: 4,
+  //     },
+  //     {
+  //       name: 'Roles',
+  //       icon: 'fas fa-user-tag',
+  //       path: '/main/7',
+  //     },
+  //   ],
+  // },
   {
-    name: 'Sites',
-    icon: 'fa-desktop',
+    name: 'Demo',
+    icon: 'far fa-folder-open',
     path: '/main/3',
-    menu: [
-      {
-        name: 'Sites',
-        type: 'treemenu',
-        contenttype: ['folder'],
-        icon: 'fas fa-home',
-        is_site: true,
-        open: true,
-        root: 3,
-      },
-      {
-        name: 'Shared',
-        type: 'treemenu',
-        contenttype: ['folder'],
-        icon: 'fas fa-share-alt',
-        open: true,
-        root: 460,
-      },
-      {
-        name: 'Resources',
-        type: 'treemenu',
-        contenttype: ['folder'],
-        icon: 'far fa-images',
-        root: 9,
-      },
-    ],
+    type: 'treemenu',
+    contenttype: ['folder'],
+    is_site: true,
+    open: true,
+    root: 3,
   },
   {
-    name: 'Users',
-    icon: 'fa-users',
-    path: '/main/4',
-    menu: [
-      {
-        name: 'Organizations',
-        type: 'treemenu',
-        contenttype: ['usergroup'],
-        icon: 'fas fa-sitemap',
-        root: 4,
-      },
-      {
-        name: 'Roles',
-        icon: 'fas fa-user-tag',
-        path: '/main/7',
-      },
-    ],
+    name: 'Shared/Photos',
+    icon: 'far fa-file-image',
+    path: '/main/461',
+    contenttype: ['folder'],
   },
+  {
+    name: 'Resource/Files',
+    icon: 'far fa-file-alt',
+    path: '/main/459',
+    contenttype: ['folder'],
+  },
+  {
+    name: 'Organizations',
+    icon: 'fas fa-users',
+    path: '/main/4',
+    contenttype: ['usergroup'],
+  },
+  {
+    name: 'Roles',
+    icon: 'far fa-user',
+    path: '/main/7',
+  },
+ 
 ];
 
 
@@ -163,7 +197,7 @@ export const getMainConfig = (content: any) => {
   const mainConfig = {
     folder: {
       actions: [
-        {link:'fullcreate/{id}/article', name:'Create article'},
+        {link:'/fullcreate/{id}/article', name:'Create article'},
         (actionProps:ActionProps)=><SetPriority {...actionProps} />
       ]
     },

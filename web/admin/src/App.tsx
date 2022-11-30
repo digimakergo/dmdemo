@@ -5,14 +5,15 @@ import {
   Link,
   Route,
   Redirect,
+  useParams,useLocation
 } from "react-router-dom";
 import "./App.css";
-import Slidemenu from "./Slidemenu";
+import {Slidemenu} from "./Slidemenu";
 import Login from "./user/Login";
 import Select from "digimaker-ui/tinymce/Select";
 import Logout from "./user/Logout";
 import CurrentUser from "./user/CurrentUser";
-import { MenuList } from "./leftmenu/MenuList";
+import { TreeMenu } from "./leftmenu/TreeMenu2";
 import {
   getListConfig,
   getMainConfig,
@@ -24,15 +25,29 @@ import {ViewVersion} from "digimaker-ui/view";
 import queryString from "query-string";
 import ErrorBoundary from "./ErrorBoundary";
 import {Create, Edit} from "digimaker-ui/actions";
-import { useState } from "react";
+import { useState,useEffect } from "react";
 import { FullEdit } from "dmeditor-digimaker/actions/FullEdit";
+import { FullCreate } from "dmeditor-digimaker/actions/FullCreate";
+// import { FullEdit } from "./actions/FullEdit";
+// import { FullCreate } from "./actions/FullCreate";
 import './Init';
 import './DMEditorInit';
+import toast, { Toaster } from 'react-hot-toast';
 
 const App = (props) => {
   const [current, setCurrent] = useState(null);  
+  const [hasSubMenu,setHasSubMenu]=useState(true);
+  const [index,setIndex] = React.useState(0);
+
+  const onSelect = (i:any)=>{
+    if(!((i??'')==='')){
+      leftConfig[i]?.type==='treemenu'?setHasSubMenu(true):setHasSubMenu(false)
+    }
+  }
 
   return (
+    <>
+    <Toaster />
     <ErrorBoundary>
       <Router basename={process.env.PUBLIC_URL}>
         <Switch>
@@ -47,53 +62,53 @@ const App = (props) => {
             )}
           />
           <Route
-                      path="/fulledit/:id"
-                      exact={true}
-                      render={(route) => (
-                        <FullEdit
-                          id={parseInt(route.match.params.id)}
-                          afterAction={(status, _params) =>
-                            commonAfterAction(route.history, status, [
-                              getFromParam(route.location.search),
-                              `/main/${route.match.params.id}`,
-                            ])
-                          }
-                        />
-                      )}
-                    />
+            path="/fulledit/:id"
+            exact={true}
+            render={(route) => (
+              <FullEdit
+                id={parseInt(route.match.params.id)}
+                afterAction={(status, _params) =>
+                  commonAfterAction(route.history, status, [
+                    getFromParam(route.location.search),
+                    `/main/${route.match.params.id}`,
+                  ])
+                }
+              />
+            )}
+          />
+          
+          <Route
+            path="/fullcreate/:id/article"
+            exact={true}
+            render={(route) =>(
+              <FullCreate
+                id={parseInt(route.match.params.id)}
+                afterAction={(status, _params) =>
+                  commonAfterAction(route.history, status, [
+                    getFromParam(route.location.search),
+                    `/main/${route.match.params.id}`,
+                  ])
+                }
+              />
+            )}
+          />  
+        
           <Route>
             <div className="App">
               <DMInit viewSettings={getViewSettings}>
-                <div className="left">
+                <div className="left" style={{'width':hasSubMenu?'300px':'60px'}}>
                   <div className="logomenu">
-                    <Slidemenu config={leftConfig}>
-                      <a
-                        className="logo"
-                        href="/"
-                        onClick={(e) => e.preventDefault()}
-                      >
-                        <img
-                          alt=""
-                          src={`${process.env.PUBLIC_URL}/images/logo.png`}
-                          width="28px"
-                        />
-                      </a>
-                    </Slidemenu>
-                    <CurrentUser
-                      as={(user) => (
-                        <Link to="/1" className="profile">
-                          {" "}
-                          <i className="fas fa-user" />
-                          &nbsp;{user.name}
-                        </Link>
-                      )}
-                    />
+                    <Slidemenu config={leftConfig} onSelect={onSelect} current={current} />
                   </div>
-                  <div>
-                    <MenuList config={leftConfig} current={current} />
+                  {hasSubMenu&&<div className="submenu">
+                    <TreeMenu config={leftConfig} current={current} />
                   </div>
+                  }
                 </div>
-                <div className="main">
+                <div className="main" style={{width:hasSubMenu?'calc(100% - 308px)':'calc(100% - 60px)',marginLeft:hasSubMenu?'300px':'60px'}}>
+                  <div style={{textAlign: 'right',marginTop:'15px'}}>
+                      <a href="#">Profile</a>
+                  </div>
                   <div>
                     <Route
                       path="/main/:id"
@@ -158,6 +173,7 @@ const App = (props) => {
                         />
                       )}
                     />
+                   
                     <Route
                       path="/edit/:id"
                       exact={true}
@@ -172,11 +188,12 @@ const App = (props) => {
                           }
                         />
                       )}
-                    />                     
+                    />                   
                     <Route
                       path="/version/:id/:version"
                       component={ViewVersion}
                     />
+
                   </div>
                   <footer>
                     Powered by{" "}
@@ -200,6 +217,7 @@ const App = (props) => {
         </Switch>
       </Router>
     </ErrorBoundary>
+    </>
   );
 };
 

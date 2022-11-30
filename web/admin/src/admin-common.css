@@ -1,5 +1,14 @@
 @import "icon.css";
 
+:root{
+  --color-darkBlue:#203C63;
+  --color-lightBlue:#50AADD;
+  --color-blue:#92D2EC;
+  --color-blue2:#DBE8EE;
+  --color-orange:#e67800;
+  --primary: #43f70e!important;
+}
+
 .App-logo {
   height: 40vmin;
 }
@@ -41,10 +50,7 @@ a:hover, .left a:hover{
   /* text-decoration: underline; */
 }
 
-.left{
-  overflow-y:auto;
-  z-index: 1000;
-}
+
 
 .treemenu{
   padding-left:0px;
@@ -64,10 +70,13 @@ a:hover, .left a:hover{
 }
 
 .left{
-  background: #f0f0f0;
   height: 100vh;
   width: 20%;
   position: fixed;
+  overflow-y:auto;
+  z-index: 1000;
+  display: flex;
+  background: var(--color-blue2)
 }
 
 .main{
@@ -196,12 +205,10 @@ td.content-name span{
   text-decoration: none;
 }
 
-.left{
-  background: #525a5f
-}
+
 
 .left a{
- color: #ffffff
+ color: var(--color-lightBlue)
 }
 
 .table > tbody > tr:hover > td{
@@ -264,7 +271,10 @@ td.content-name span{
 
 .logomenu{
  border-bottom: 1px solid #464646;
- padding: 5px 5px 5px 10px;
+ /* padding: 5px 5px 5px 10px; */
+}
+.submenu{
+  width:calc(100% - 60px);
 }
 
 .menuitem{
@@ -401,14 +411,18 @@ div.loading{
 }
 
 .slidemenu{
-    position: fixed;
+    /* position: fixed; */
     width: 60px;
-    top: 0px;
+    height: 100%;
+    /* top: 0px;
     bottom: 0px;
-    left: 0px;
-    background: #272d31;
+    left: 0px; */
+    background: var(--color-darkBlue);
     border-right: 1px solid #464040;
     box-shadow: 1px 7px 4px #464040;
+    /* background: #272d31;
+    border-right: 1px solid #464040;
+    box-shadow: 1px 7px 4px #464040; */
     transition: 0.3s;
     z-index: 50;
 }
@@ -429,9 +443,13 @@ div.loading{
     font-size: 1.6em;
 }
 
-.slidemenu a:hover, .slidemenu .selected{
-    background: #333a3e;
-    color: rgb(230, 120, 0);
+.slidemenu .selected{
+  background: var(--color-lightBlue)!important;
+  color: #fff;  
+}
+.slidemenu a:hover{
+  background: var(--color-blue);
+  color: #fff;  
 }
 
 .treemenu li.selected > a .tree-text > span{
@@ -516,7 +534,7 @@ footer{
 }
 
 .menuitem-content{
-  background: rgb(74, 81, 86);
+  /* background: transparent */
 }
 
 .menuitem-content .treemenu, .listmenu{
@@ -615,7 +633,7 @@ footer{
 .slidemenu .logout{
     position: absolute;
     bottom: 0px;
-    width: 100%;
+    width: 60px;
 }
 
 .slidemenu .logout a{
@@ -982,6 +1000,7 @@ tr.empty-row td{
 
 .treemenu li > a{
 display:flex;
+color:var(--color-darkBlue)
 }
 
 .main-top h2 i.icon{

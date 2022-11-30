@@ -4,6 +4,7 @@ import Treemenu from './Treemenu';
 
 //A menu container which list all the menus from top to down.
 export const MenuList = (props:{config:any, index?:number, current?:any}) => {
+  console.log("123")
     let location = useLocation();
     let path = location.pathname;
 
@@ -11,29 +12,17 @@ export const MenuList = (props:{config:any, index?:number, current?:any}) => {
     if( props.index == null){
       menus = getCurrentMenu(path, props.current, props.config);
     }else{
-      menus = props.config[props.index].menu;
+      menus = props.config[props.index];
     }
 
     
     let menuKey = '';
-    for( let menu of menus ){
-      menuKey = `${menuKey}-${menu.name}`;
-    }
+      menuKey = `${menuKey}-${menus.name}`;
 
     return (<React.Suspense fallback="..."><div key={menuKey}>
-        {menus.map((menu) => {
-                return(
-                    menu.type === 'treemenu'?
-                    <Treemenu key={menu.name} current={props.current} config={menu} />                      
-                    :<div className="menuitem">
-                        <div className="menuitem-head">
-                         <NavLink to={menu.path} activeClassName="selected">
-                           <i className={`far ${menu.icon}`} /> {menu.name}
-                         </NavLink>
-                         </div>
-                       </div>
-                )
-            })}
+          { menus.type === 'treemenu'&&
+            <Treemenu key={menus.name} current={props.current} config={menus} />                      
+          }
     </div></React.Suspense>)
 }
 
@@ -45,23 +34,16 @@ function getCurrentMenu(path: string, content:any, leftmenuConfig: any) {
         if (result.length > 0) {
             break;
         }
-        let menus = leftmenuConfig[i].menu;
-        for (let j = 0; j < menus.length; j++)
-        {
-              let menuitem = menus[j];
-              if (menuitem['path'] === path)
-              {
-                result = menus;
-                break;
-              }
-              else if(menuitem.root)
-              {
-                  if( content && content.hierarchy && content.hierarchy.split( '/' ).includes( menuitem.root.toString() ) )
-                  {
-                    result =menus;
-                    break;
-                  }
-              }
+        let menus = leftmenuConfig[i];
+        if(menus.path===path){
+          result = menus;
+        }
+        if(menus.root){
+          if( content && content.hierarchy && content.hierarchy.split( '/' ).includes( menus.root.toString() ) )
+          {
+            result =menus;
+            break;
+          }
         }
     }
     return result;
