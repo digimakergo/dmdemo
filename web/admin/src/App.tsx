@@ -67,7 +67,6 @@ const App = (props) => {
               />
             )}
           />
-          
           <Route
             path="/fullcreate/:id/article"
             exact={true}
@@ -81,19 +80,8 @@ const App = (props) => {
                   ])
                 }
               />
-              // <Create
-              //   key={Date.now()}
-              //   parent={parseInt(route.match.params.id)}
-              //   contenttype={'article'}
-              //   afterAction={(status) =>
-              //     commonAfterAction(route.history, status, [
-              //       `/main/${route.match.params.id}`,
-              //     ])
-              //   }
-              // />
             )}
           />  
-        
           <Route>
             <div className="App">
               <DMInit viewSettings={getViewSettings}>
@@ -191,7 +179,6 @@ const App = (props) => {
                         />
                       )}
                     />
-                   
                     <Route
                       path="/edit/:id"
                       exact={true}
@@ -211,7 +198,6 @@ const App = (props) => {
                       path="/version/:id/:version"
                       component={ViewVersion}
                     />
-
                   </div>
                   <footer>
                     Powered by{" "}
