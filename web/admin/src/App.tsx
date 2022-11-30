@@ -26,13 +26,19 @@ import ErrorBoundary from "./ErrorBoundary";
 import {Create, Edit} from "digimaker-ui/actions";
 import { useState } from "react";
 import { FullEdit } from "dmeditor-digimaker/actions/FullEdit";
+import { FullCreate } from "dmeditor-digimaker/actions/FullCreate";
+// import { FullEdit } from "./actions/FullEdit";
+// import { FullCreate } from "./actions/FullCreate";
 import './Init';
 import './DMEditorInit';
+import toast, { Toaster } from 'react-hot-toast';
 
 const App = (props) => {
   const [current, setCurrent] = useState(null);  
 
   return (
+    <>
+    <Toaster />
     <ErrorBoundary>
       <Router basename={process.env.PUBLIC_URL}>
         <Switch>
@@ -47,20 +53,47 @@ const App = (props) => {
             )}
           />
           <Route
-                      path="/fulledit/:id"
-                      exact={true}
-                      render={(route) => (
-                        <FullEdit
-                          id={parseInt(route.match.params.id)}
-                          afterAction={(status, _params) =>
-                            commonAfterAction(route.history, status, [
-                              getFromParam(route.location.search),
-                              `/main/${route.match.params.id}`,
-                            ])
-                          }
-                        />
-                      )}
-                    />
+            path="/fulledit/:id"
+            exact={true}
+            render={(route) => (
+              <FullEdit
+                id={parseInt(route.match.params.id)}
+                afterAction={(status, _params) =>
+                  commonAfterAction(route.history, status, [
+                    getFromParam(route.location.search),
+                    `/main/${route.match.params.id}`,
+                  ])
+                }
+              />
+            )}
+          />
+          
+          <Route
+            path="/fullcreate/:id/article"
+            exact={true}
+            render={(route) =>(
+              <FullCreate
+                id={parseInt(route.match.params.id)}
+                afterAction={(status, _params) =>
+                  commonAfterAction(route.history, status, [
+                    getFromParam(route.location.search),
+                    `/main/${route.match.params.id}`,
+                  ])
+                }
+              />
+              // <Create
+              //   key={Date.now()}
+              //   parent={parseInt(route.match.params.id)}
+              //   contenttype={'article'}
+              //   afterAction={(status) =>
+              //     commonAfterAction(route.history, status, [
+              //       `/main/${route.match.params.id}`,
+              //     ])
+              //   }
+              // />
+            )}
+          />  
+        
           <Route>
             <div className="App">
               <DMInit viewSettings={getViewSettings}>
@@ -158,6 +191,7 @@ const App = (props) => {
                         />
                       )}
                     />
+                   
                     <Route
                       path="/edit/:id"
                       exact={true}
@@ -172,11 +206,12 @@ const App = (props) => {
                           }
                         />
                       )}
-                    />                     
+                    />                   
                     <Route
                       path="/version/:id/:version"
                       component={ViewVersion}
                     />
+
                   </div>
                   <footer>
                     Powered by{" "}
@@ -200,6 +235,7 @@ const App = (props) => {
         </Switch>
       </Router>
     </ErrorBoundary>
+    </>
   );
 };
 
