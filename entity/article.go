@@ -13,6 +13,8 @@ import (
     
 	. "github.com/digimakergo/digimaker/core/db"
     
+    "github.com/digimakergo/digimaker/core/fieldtype/fieldtypes"
+    
 )
 
 
@@ -27,6 +29,11 @@ type Article struct{
                   
          
             Body  string `boil:"body" json:"body" toml:"body" yaml:"body"`
+         
+    
+                  
+         
+            BodyJson  fieldtypes.Json `boil:"body_json" json:"body_json" toml:"body_json" yaml:"body_json"`
          
     
                   
@@ -96,6 +103,12 @@ func (c *Article) ToDBValues() map[string]interface{} {
     
         
         
+            result["body_json"]=c.BodyJson
+        
+        
+    
+        
+        
             result["coverimage"]=c.Coverimage
         
         
@@ -130,7 +143,7 @@ func (c *Article) ToDBValues() map[string]interface{} {
 
 //Get identifier list of fields(NOT including data_fields )
 func (c *Article) IdentifierList() []string {
-	return []string{ "body","coverimage","editors","related_articles","summary","title","useful_resources",}
+	return []string{ "body","body_json","coverimage","editors","related_articles","summary","title","useful_resources",}
 }
 
 //Get field value
@@ -147,6 +160,11 @@ func (c *Article) Value(identifier string) interface{} {
     
     case "body":
             result = (c.Body)        
+    
+    
+    
+    case "body_json":
+            result = (c.BodyJson)        
     
     
     
@@ -196,6 +214,12 @@ func (c *Article) SetValue(identifier string, value interface{}) error {
             
             case "body":
             c.Body = value.(string)
+                    
+        
+                        
+            
+            case "body_json":
+            c.BodyJson = value.(fieldtypes.Json)
                     
         
                         

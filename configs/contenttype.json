@@ -120,6 +120,15 @@
         "required": false
       },
       {
+        "identifier": "fullbody",
+        "type": "json",
+        "name": "Body",
+        "required": false,
+        "parameters":{
+          "format":"dmeditor"
+        }
+      },
+      {
         "identifier": "relations",
         "type": "container",
         "is_output": true,
