@@ -15,7 +15,7 @@
               <ul class="menu">
                   {% for child in dm.children(root,"folder") %}
                           <li data-nav-to="nav-{{child.ID}}" {%for i in content.Path()%}{%if i==child.ID%}class='current'{%endif%}{%endfor%}>
-                              <a href="{{dm.niceurl(child)}}">{{child.Location.Name}}</a>
+                              <a href="{{dm.niceurl(child)}}">{{child.Name}}</a>
                           </li>
                   {%endfor%}
               </ul>
