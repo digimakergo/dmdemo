@@ -33,17 +33,17 @@ type Article struct{
     
                   
          
-            BodyJson  fieldtypes.Json `boil:"body_json" json:"body_json" toml:"body_json" yaml:"body_json"`
-         
-    
-                  
-         
             Coverimage  string `boil:"coverimage" json:"coverimage" toml:"coverimage" yaml:"coverimage"`
          
     
                   
          
             Editors  contenttype.RelationList `boil:"-" json:"editors" toml:"editors" yaml:"editors"`
+         
+    
+                  
+         
+            Fullbody  fieldtypes.Json `boil:"fullbody" json:"fullbody" toml:"fullbody" yaml:"fullbody"`
          
     
                   
@@ -103,16 +103,16 @@ func (c *Article) ToDBValues() map[string]interface{} {
     
         
         
-            result["body_json"]=c.BodyJson
-        
-        
-    
-        
-        
             result["coverimage"]=c.Coverimage
         
         
     
+        
+    
+        
+        
+            result["fullbody"]=c.Fullbody
+        
         
     
         
@@ -143,7 +143,7 @@ func (c *Article) ToDBValues() map[string]interface{} {
 
 //Get identifier list of fields(NOT including data_fields )
 func (c *Article) IdentifierList() []string {
-	return []string{ "body","body_json","coverimage","editors","related_articles","summary","title","useful_resources",}
+	return []string{ "body","coverimage","editors","fullbody","related_articles","summary","title","useful_resources",}
 }
 
 //Get field value
@@ -163,11 +163,6 @@ func (c *Article) Value(identifier string) interface{} {
     
     
     
-    case "body_json":
-            result = (c.BodyJson)        
-    
-    
-    
     case "coverimage":
             result = (c.Coverimage)        
     
@@ -175,6 +170,11 @@ func (c *Article) Value(identifier string) interface{} {
     
     case "editors":
             result = (c.Editors)        
+    
+    
+    
+    case "fullbody":
+            result = (c.Fullbody)        
     
     
     
@@ -218,12 +218,6 @@ func (c *Article) SetValue(identifier string, value interface{}) error {
         
                         
             
-            case "body_json":
-            c.BodyJson = value.(fieldtypes.Json)
-                    
-        
-                        
-            
             case "coverimage":
             c.Coverimage = value.(string)
                     
@@ -232,6 +226,12 @@ func (c *Article) SetValue(identifier string, value interface{}) error {
             
             case "editors":
             c.Editors = value.(contenttype.RelationList)
+                    
+        
+                        
+            
+            case "fullbody":
+            c.Fullbody = value.(fieldtypes.Json)
                     
         
                         
