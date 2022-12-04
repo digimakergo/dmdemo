@@ -7,7 +7,6 @@ import (
     "context"
     "database/sql"
     "github.com/digimakergo/digimaker/core/db"
-    "github.com/digimakergo/digimaker/core/definition"
     "github.com/digimakergo/digimaker/core/contenttype"
     
     "github.com/digimakergo/digimaker/core/util"
@@ -19,7 +18,9 @@ import (
 
 
 type Frontpage struct{
-     contenttype.ContentCommon `boil:",bind"`
+     contenttype.Metadata `boil:",bind" json:"metadata"`
+
+	 ID int `boil:"id" json:"id" toml:"id" yaml:"id"`
 
      
     
@@ -54,35 +55,22 @@ type Frontpage struct{
          
     
     
-     contenttype.Location `boil:"location,bind"`
+     contenttype.Location `boil:"location,bind" json:"location"`
     
 }
 
-func (c *Frontpage ) ContentType() string{
-	 return "frontpage"
+func (c Frontpage ) GetID() int{
+	 return c.ID
 }
 
-func (c *Frontpage ) GetName() string{
-	 location := c.GetLocation()
-     if location != nil{
-         return location.Name
-     }else{
-         return ""
-     }
+func (c *Frontpage ) GetMetadata() *contenttype.Metadata{
+	 return &c.Metadata
 }
 
 func (c *Frontpage) GetLocation() *contenttype.Location{
     
     return &c.Location
     
-}
-
-func (c *Frontpage) ToMap() map[string]interface{}{
-    result := map[string]interface{}{}
-    for _, identifier := range c.IdentifierList(){
-      result[identifier] = c.Value(identifier)
-    }
-    return result
 }
 
 //Get map of the all fields(including data_fields)
@@ -116,7 +104,7 @@ func (c *Frontpage) ToDBValues() map[string]interface{} {
         
         
     
-	for key, value := range c.ContentCommon.ToDBValues() {
+	for key, value := range c.Metadata.ToDBValues() {
 		result[key] = value
 	}
 	return result
@@ -124,12 +112,7 @@ func (c *Frontpage) ToDBValues() map[string]interface{} {
 
 //Get identifier list of fields(NOT including data_fields )
 func (c *Frontpage) IdentifierList() []string {
-	return append(c.ContentCommon.IdentifierList(),[]string{ "mainarea","mainarea_blocks","sidearea","sidearea_blocks","slideshow","title",}...)
-}
-
-func (c *Frontpage) Definition(language ...string) definition.ContentType {
-	def, _ := definition.GetDefinition( c.ContentType(), language... )
-    return def
+	return []string{ "mainarea","mainarea_blocks","sidearea","sidearea_blocks","slideshow","title",}
 }
 
 //Get field value
@@ -173,10 +156,8 @@ func (c *Frontpage) Value(identifier string) interface{} {
             result = (c.Title)        
     
     
-	case "cid":
-		result = c.ContentCommon.CID
-    default:
-    	result = c.ContentCommon.Value( identifier )
+	case "id":
+		result = c.ID
     }
 	return result
 }
@@ -221,25 +202,23 @@ func (c *Frontpage) SetValue(identifier string, value interface{}) error {
             case "title":
             c.Title = value.(string)
                     
-        
-	default:
-		return c.ContentCommon.SetValue(identifier, value)        
+             
 	}
 	//todo: check if identifier exist
 	return nil
 }
 
 //Store content.
-//Note: it will set id to CID after success
+//Note: it will set id to ID after success
 func (c *Frontpage) Store(ctx context.Context, transaction ...*sql.Tx) error {
-	if c.CID == 0 {
-		id, err := db.Insert(ctx, "dm_frontpage", c.ToDBValues(), transaction...)
-		c.CID = id
+	if c.ID == 0 {
+		id, err := db.Insert(ctx, "dmc_frontpage", c.ToDBValues(), transaction...)
+		c.ID = id
 		if err != nil {
 			return err
 		}
 	} else {
-		err := db.Update(ctx, "dm_frontpage", c.ToDBValues(), Cond("id", c.CID), transaction...)
+		err := db.Update(ctx, "dmc_frontpage", c.ToDBValues(), Cond("id", c.ID), transaction...)
     if err != nil {
 			return err
 		}
@@ -254,13 +233,15 @@ func (c *Frontpage)StoreWithLocation(){
 
 //Delete content only
 func (c *Frontpage) Delete(ctx context.Context, transaction ...*sql.Tx) error {
-	contentError := db.Delete(ctx, "dm_frontpage", Cond("id", c.CID), transaction...)
+	contentError := db.Delete(ctx, "dmc_frontpage", Cond("id", c.ID), transaction...)
 	return contentError
 }
 
 func init() {
 	new := func() contenttype.ContentTyper {
-		return &Frontpage{}
+        entity := &Frontpage{}
+        entity.Metadata.Contenttype = "frontpage"
+        return entity
 	}
 
 	newList := func() interface{} {

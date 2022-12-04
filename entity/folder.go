@@ -7,7 +7,6 @@ import (
     "context"
     "database/sql"
     "github.com/digimakergo/digimaker/core/db"
-    "github.com/digimakergo/digimaker/core/definition"
     "github.com/digimakergo/digimaker/core/contenttype"
     
     "github.com/digimakergo/digimaker/core/util"
@@ -19,7 +18,9 @@ import (
 
 
 type Folder struct{
-     contenttype.ContentCommon `boil:",bind"`
+     contenttype.Metadata `boil:",bind" json:"metadata"`
+
+	 ID int `boil:"id" json:"id" toml:"id" yaml:"id"`
 
      
           FolderType  string `boil:"folder_type" json:"folder_type" toml:"folder_type" yaml:"folder_type"`
@@ -41,35 +42,22 @@ type Folder struct{
          
     
     
-     contenttype.Location `boil:"location,bind"`
+     contenttype.Location `boil:"location,bind" json:"location"`
     
 }
 
-func (c *Folder ) ContentType() string{
-	 return "folder"
+func (c Folder ) GetID() int{
+	 return c.ID
 }
 
-func (c *Folder ) GetName() string{
-	 location := c.GetLocation()
-     if location != nil{
-         return location.Name
-     }else{
-         return ""
-     }
+func (c *Folder ) GetMetadata() *contenttype.Metadata{
+	 return &c.Metadata
 }
 
 func (c *Folder) GetLocation() *contenttype.Location{
     
     return &c.Location
     
-}
-
-func (c *Folder) ToMap() map[string]interface{}{
-    result := map[string]interface{}{}
-    for _, identifier := range c.IdentifierList(){
-      result[identifier] = c.Value(identifier)
-    }
-    return result
 }
 
 //Get map of the all fields(including data_fields)
@@ -99,7 +87,7 @@ func (c *Folder) ToDBValues() map[string]interface{} {
         
         
     
-	for key, value := range c.ContentCommon.ToDBValues() {
+	for key, value := range c.Metadata.ToDBValues() {
 		result[key] = value
 	}
 	return result
@@ -107,12 +95,7 @@ func (c *Folder) ToDBValues() map[string]interface{} {
 
 //Get identifier list of fields(NOT including data_fields )
 func (c *Folder) IdentifierList() []string {
-	return append(c.ContentCommon.IdentifierList(),[]string{ "display_type","summary","title",}...)
-}
-
-func (c *Folder) Definition(language ...string) definition.ContentType {
-	def, _ := definition.GetDefinition( c.ContentType(), language... )
-    return def
+	return []string{ "display_type","summary","title",}
 }
 
 //Get field value
@@ -144,10 +127,8 @@ func (c *Folder) Value(identifier string) interface{} {
             result = (c.Title)        
     
     
-	case "cid":
-		result = c.ContentCommon.CID
-    default:
-    	result = c.ContentCommon.Value( identifier )
+	case "id":
+		result = c.ID
     }
 	return result
 }
@@ -177,25 +158,23 @@ func (c *Folder) SetValue(identifier string, value interface{}) error {
             case "title":
             c.Title = value.(string)
                     
-        
-	default:
-		return c.ContentCommon.SetValue(identifier, value)        
+             
 	}
 	//todo: check if identifier exist
 	return nil
 }
 
 //Store content.
-//Note: it will set id to CID after success
+//Note: it will set id to ID after success
 func (c *Folder) Store(ctx context.Context, transaction ...*sql.Tx) error {
-	if c.CID == 0 {
-		id, err := db.Insert(ctx, "dm_folder", c.ToDBValues(), transaction...)
-		c.CID = id
+	if c.ID == 0 {
+		id, err := db.Insert(ctx, "dmc_folder", c.ToDBValues(), transaction...)
+		c.ID = id
 		if err != nil {
 			return err
 		}
 	} else {
-		err := db.Update(ctx, "dm_folder", c.ToDBValues(), Cond("id", c.CID), transaction...)
+		err := db.Update(ctx, "dmc_folder", c.ToDBValues(), Cond("id", c.ID), transaction...)
     if err != nil {
 			return err
 		}
@@ -210,13 +189,15 @@ func (c *Folder)StoreWithLocation(){
 
 //Delete content only
 func (c *Folder) Delete(ctx context.Context, transaction ...*sql.Tx) error {
-	contentError := db.Delete(ctx, "dm_folder", Cond("id", c.CID), transaction...)
+	contentError := db.Delete(ctx, "dmc_folder", Cond("id", c.ID), transaction...)
 	return contentError
 }
 
 func init() {
 	new := func() contenttype.ContentTyper {
-		return &Folder{}
+        entity := &Folder{}
+        entity.Metadata.Contenttype = "folder"
+        return entity
 	}
 
 	newList := func() interface{} {

@@ -7,7 +7,6 @@ import (
     "context"
     "database/sql"
     "github.com/digimakergo/digimaker/core/db"
-    "github.com/digimakergo/digimaker/core/definition"
     "github.com/digimakergo/digimaker/core/contenttype"
     
     "github.com/digimakergo/digimaker/core/util"
@@ -19,7 +18,9 @@ import (
 
 
 type Article struct{
-     contenttype.ContentCommon `boil:",bind"`
+     contenttype.Metadata `boil:",bind" json:"metadata"`
+
+	 ID int `boil:"id" json:"id" toml:"id" yaml:"id"`
 
      
     
@@ -62,35 +63,22 @@ type Article struct{
          
     
     
-     contenttype.Location `boil:"location,bind"`
+     contenttype.Location `boil:"location,bind" json:"location"`
     
 }
 
-func (c *Article ) ContentType() string{
-	 return "article"
+func (c Article ) GetID() int{
+	 return c.ID
 }
 
-func (c *Article ) GetName() string{
-	 location := c.GetLocation()
-     if location != nil{
-         return location.Name
-     }else{
-         return ""
-     }
+func (c *Article ) GetMetadata() *contenttype.Metadata{
+	 return &c.Metadata
 }
 
 func (c *Article) GetLocation() *contenttype.Location{
     
     return &c.Location
     
-}
-
-func (c *Article) ToMap() map[string]interface{}{
-    result := map[string]interface{}{}
-    for _, identifier := range c.IdentifierList(){
-      result[identifier] = c.Value(identifier)
-    }
-    return result
 }
 
 //Get map of the all fields(including data_fields)
@@ -134,7 +122,7 @@ func (c *Article) ToDBValues() map[string]interface{} {
     
         
     
-	for key, value := range c.ContentCommon.ToDBValues() {
+	for key, value := range c.Metadata.ToDBValues() {
 		result[key] = value
 	}
 	return result
@@ -142,12 +130,7 @@ func (c *Article) ToDBValues() map[string]interface{} {
 
 //Get identifier list of fields(NOT including data_fields )
 func (c *Article) IdentifierList() []string {
-	return append(c.ContentCommon.IdentifierList(),[]string{ "body","coverimage","editors","related_articles","summary","title","useful_resources",}...)
-}
-
-func (c *Article) Definition(language ...string) definition.ContentType {
-	def, _ := definition.GetDefinition( c.ContentType(), language... )
-    return def
+	return []string{ "body","coverimage","editors","related_articles","summary","title","useful_resources",}
 }
 
 //Get field value
@@ -198,10 +181,8 @@ func (c *Article) Value(identifier string) interface{} {
             result = (c.UsefulResources)        
     
     
-	case "cid":
-		result = c.ContentCommon.CID
-    default:
-    	result = c.ContentCommon.Value( identifier )
+	case "id":
+		result = c.ID
     }
 	return result
 }
@@ -255,25 +236,23 @@ func (c *Article) SetValue(identifier string, value interface{}) error {
             case "useful_resources":
             c.UsefulResources = value.(contenttype.RelationList)
                     
-        
-	default:
-		return c.ContentCommon.SetValue(identifier, value)        
+             
 	}
 	//todo: check if identifier exist
 	return nil
 }
 
 //Store content.
-//Note: it will set id to CID after success
+//Note: it will set id to ID after success
 func (c *Article) Store(ctx context.Context, transaction ...*sql.Tx) error {
-	if c.CID == 0 {
-		id, err := db.Insert(ctx, "dm_article", c.ToDBValues(), transaction...)
-		c.CID = id
+	if c.ID == 0 {
+		id, err := db.Insert(ctx, "dmc_article", c.ToDBValues(), transaction...)
+		c.ID = id
 		if err != nil {
 			return err
 		}
 	} else {
-		err := db.Update(ctx, "dm_article", c.ToDBValues(), Cond("id", c.CID), transaction...)
+		err := db.Update(ctx, "dmc_article", c.ToDBValues(), Cond("id", c.ID), transaction...)
     if err != nil {
 			return err
 		}
@@ -288,13 +267,15 @@ func (c *Article)StoreWithLocation(){
 
 //Delete content only
 func (c *Article) Delete(ctx context.Context, transaction ...*sql.Tx) error {
-	contentError := db.Delete(ctx, "dm_article", Cond("id", c.CID), transaction...)
+	contentError := db.Delete(ctx, "dmc_article", Cond("id", c.ID), transaction...)
 	return contentError
 }
 
 func init() {
 	new := func() contenttype.ContentTyper {
-		return &Article{}
+        entity := &Article{}
+        entity.Metadata.Contenttype = "article"
+        return entity
 	}
 
 	newList := func() interface{} {

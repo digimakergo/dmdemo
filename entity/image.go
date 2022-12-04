@@ -7,7 +7,6 @@ import (
     "context"
     "database/sql"
     "github.com/digimakergo/digimaker/core/db"
-    "github.com/digimakergo/digimaker/core/definition"
     "github.com/digimakergo/digimaker/core/contenttype"
     
 	. "github.com/digimakergo/digimaker/core/db"
@@ -17,18 +16,24 @@ import (
 
 
 type Image struct{
-     contenttype.ContentEntity `boil:",bind"`
+     contenttype.Metadata `boil:",bind" json:"metadata"`
+
+     ID int `boil:"id" json:"id" toml:"id" yaml:"id"`
 
      
-          Author  int `boil:"author" json:"author" toml:"author" yaml:"author"`
+            
      
-          Cuid  string `boil:"cuid" json:"cuid" toml:"cuid" yaml:"cuid"`
+            
      
-          LocationId  int `boil:"location_id" json:"location_id" toml:"location_id" yaml:"location_id"`
+            
      
-          Modified  int `boil:"modified" json:"modified" toml:"modified" yaml:"modified"`
+            
      
-          Published  int `boil:"published" json:"published" toml:"published" yaml:"published"`
+            
+     
+            
+                LocationId  int `boil:"location_id" json:"location_id" toml:"location_id" yaml:"location_id"`
+            
      
     
              
@@ -43,24 +48,16 @@ type Image struct{
     
 }
 
-func (c *Image ) ContentType() string{
-	 return "image"
+func (c Image ) GetID() int{
+        return c.ID
 }
 
-func (c *Image ) GetName() string{
-	 return ""
+func (c *Image ) GetMetadata() *contenttype.Metadata{
+        return &c.Metadata
 }
 
 func (c *Image) GetLocation() *contenttype.Location{
     return nil
-}
-
-func (c *Image) ToMap() map[string]interface{}{
-    result := map[string]interface{}{}
-    for _, identifier := range c.IdentifierList(){
-      result[identifier] = c.Value(identifier)
-    }
-    return result
 }
 
 //Get map of the all fields(including data_fields)
@@ -68,15 +65,19 @@ func (c *Image) ToMap() map[string]interface{}{
 func (c *Image) ToDBValues() map[string]interface{} {
 	result := make(map[string]interface{})
     
-         result["author"]=c.Author
+         
     
-         result["cuid"]=c.Cuid
+         
     
+         
+    
+         
+    
+         
+    
+         
          result["location_id"]=c.LocationId
-    
-         result["modified"]=c.Modified
-    
-         result["published"]=c.Published
+         
     
 
     
@@ -92,6 +93,11 @@ func (c *Image) ToDBValues() map[string]interface{} {
         
         
     
+
+    for key, value := range c.Metadata.ToDBValues() {
+		result[key] = value
+	}
+
 	return result
 }
 
@@ -100,31 +106,26 @@ func (c *Image) IdentifierList() []string {
 	return []string{ "image","name",}
 }
 
-func (c *Image) Definition(language ...string) definition.ContentType {
-	def, _ := definition.GetDefinition( c.ContentType(), language... )
-    return def
-}
-
 //Get field value
 func (c *Image) Value(identifier string) interface{} {
     
     var result interface{}
 	switch identifier {
     
-      case "author":
-         result = c.Author
+      
     
-      case "cuid":
-         result = c.Cuid
+      
     
+      
+    
+      
+    
+      
+    
+      
       case "location_id":
          result = c.LocationId
-    
-      case "modified":
-         result = c.Modified
-    
-      case "published":
-         result = c.Published
+      
     
     
     
@@ -147,20 +148,20 @@ func (c *Image) Value(identifier string) interface{} {
 func (c *Image) SetValue(identifier string, value interface{}) error {
 	switch identifier {
         
-          case "author":
-             c.Author = value.(int)
+         
         
-          case "cuid":
-             c.Cuid = value.(string)
+         
         
+         
+        
+         
+        
+         
+        
+         
           case "location_id":
              c.LocationId = value.(int)
         
-          case "modified":
-             c.Modified = value.(int)
-        
-          case "published":
-             c.Published = value.(int)
         
         
             
@@ -175,8 +176,6 @@ func (c *Image) SetValue(identifier string, value interface{}) error {
             c.Name = value.(string)
                      
         
-	default:
-          return c.ContentEntity.SetValue(identifier, value)        
 	}
 	//todo: check if identifier exist
 	return nil
@@ -186,13 +185,13 @@ func (c *Image) SetValue(identifier string, value interface{}) error {
 //Note: it will set id to ID after success
 func (c *Image) Store(ctx context.Context, transaction ...*sql.Tx) error {
 	if c.ID == 0 {
-		id, err := db.Insert(ctx, "dm_image", c.ToDBValues(), transaction...)
+		id, err := db.Insert(ctx, "dmc_image", c.ToDBValues(), transaction...)
 		c.ID = id
 		if err != nil {
 			return err
 		}
 	} else {
-		err := db.Update(ctx, "dm_image", c.ToDBValues(), Cond("id", c.ID), transaction...)
+		err := db.Update(ctx, "dmc_image", c.ToDBValues(), Cond("id", c.ID), transaction...)
 		return err
 	}
 	return nil
@@ -205,14 +204,14 @@ func (c *Image)StoreWithLocation(){
 
 //Delete content only
 func (c *Image) Delete(ctx context.Context, transaction ...*sql.Tx) error {
-	contentError := db.Delete(ctx, "dm_image", Cond("id", c.ID), transaction...)
+	contentError := db.Delete(ctx, "dmc_image", Cond("id", c.ID), transaction...)
 	return contentError
 }
 
 func init() {
 	new := func() contenttype.ContentTyper {
     entity := &Image{}
-    entity.ContentEntity.ContentType = "Image"
+    entity.Metadata.Contenttype = "image"
     return entity
 	}
 

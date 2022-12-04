@@ -9,10 +9,12 @@ import (
 	_ "dmdemo/pkg/controller"
 
 	_ "github.com/digimakergo/digimaker/core/auth/tokenmanager"
+	"github.com/digimakergo/digimaker/core/config"
 	_ "github.com/digimakergo/digimaker/core/fieldtype/fieldtypes"
 	_ "github.com/digimakergo/digimaker/core/handler/handlers"
+
 	"github.com/digimakergo/digimaker/core/log"
-	"github.com/digimakergo/digimaker/core/util"
+	"github.com/spf13/viper"
 
 	_ "github.com/digimakergo/digimaker/core/util/localmail"
 
@@ -22,22 +24,23 @@ import (
 
 	_ "github.com/go-sql-driver/mysql"
 
+	_ "github.com/digimakergo/digimaker/graphql"
 	_ "github.com/digimakergo/digimaker/sitekit/filters"
 	_ "github.com/digimakergo/digimaker/sitekit/functions"
 )
 
 func main() {
 	//host var - remember to override in proxy server
-	http.Handle("/var/", http.StripPrefix("/var/", http.FileServer(http.Dir(util.HomePath()+"/var"))))
+	http.Handle("/var/", http.StripPrefix("/var/", http.FileServer(http.Dir(config.HomePath()+"/var"))))
 
 	//remember: remove this in real project
 	if envValue := os.Getenv("env"); envValue == "dev" {
-		http.Handle("/debug/", http.StripPrefix("/debug/", http.FileServer(http.Dir(util.HomePath()+"/debug"))))
+		http.Handle("/debug/", http.StripPrefix("/debug/", http.FileServer(http.Dir(config.HomePath()+"/debug"))))
 	}
 
-	http.Handle("/mypage/", http.StripPrefix("/mypage/", http.FileServer(http.Dir(util.HomePath()+"/web/app/build"))))
+	http.Handle("/mypage/", http.StripPrefix("/mypage/", http.FileServer(http.Dir(config.HomePath()+"/web/app/build"))))
 
-	http.Handle("/assets/", http.StripPrefix("/assets/", http.FileServer(http.Dir(util.HomePath()+"/web/assets"))))
+	http.Handle("/assets/", http.StripPrefix("/assets/", http.FileServer(http.Dir(config.HomePath()+"/web/assets"))))
 
 	//Rest api
 	router := mux.NewRouter()
@@ -60,7 +63,7 @@ func main() {
 	// go http.ListenAndServe(":9200", router)
 	go http.ListenAndServe(":9201", router)
 
-	host := util.GetConfig("general", "host", "dm")
+	host := viper.GetString("general.host")
 	log.Info("Listen on " + host)
 
 	// select {}

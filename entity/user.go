@@ -7,7 +7,6 @@ import (
     "context"
     "database/sql"
     "github.com/digimakergo/digimaker/core/db"
-    "github.com/digimakergo/digimaker/core/definition"
     "github.com/digimakergo/digimaker/core/contenttype"
     
     "github.com/digimakergo/digimaker/core/util"
@@ -19,7 +18,9 @@ import (
 
 
 type User struct{
-     contenttype.ContentCommon `boil:",bind"`
+     contenttype.Metadata `boil:",bind" json:"metadata"`
+
+	 ID int `boil:"id" json:"id" toml:"id" yaml:"id"`
 
      
     
@@ -49,35 +50,22 @@ type User struct{
          
     
     
-     contenttype.Location `boil:"location,bind"`
+     contenttype.Location `boil:"location,bind" json:"location"`
     
 }
 
-func (c *User ) ContentType() string{
-	 return "user"
+func (c User ) GetID() int{
+	 return c.ID
 }
 
-func (c *User ) GetName() string{
-	 location := c.GetLocation()
-     if location != nil{
-         return location.Name
-     }else{
-         return ""
-     }
+func (c *User ) GetMetadata() *contenttype.Metadata{
+	 return &c.Metadata
 }
 
 func (c *User) GetLocation() *contenttype.Location{
     
     return &c.Location
     
-}
-
-func (c *User) ToMap() map[string]interface{}{
-    result := map[string]interface{}{}
-    for _, identifier := range c.IdentifierList(){
-      result[identifier] = c.Value(identifier)
-    }
-    return result
 }
 
 //Get map of the all fields(including data_fields)
@@ -117,7 +105,7 @@ func (c *User) ToDBValues() map[string]interface{} {
         
         
     
-	for key, value := range c.ContentCommon.ToDBValues() {
+	for key, value := range c.Metadata.ToDBValues() {
 		result[key] = value
 	}
 	return result
@@ -125,12 +113,7 @@ func (c *User) ToDBValues() map[string]interface{} {
 
 //Get identifier list of fields(NOT including data_fields )
 func (c *User) IdentifierList() []string {
-	return append(c.ContentCommon.IdentifierList(),[]string{ "email","firstname","lastname","login","password",}...)
-}
-
-func (c *User) Definition(language ...string) definition.ContentType {
-	def, _ := definition.GetDefinition( c.ContentType(), language... )
-    return def
+	return []string{ "email","firstname","lastname","login","password",}
 }
 
 //Get field value
@@ -169,10 +152,8 @@ func (c *User) Value(identifier string) interface{} {
             result = (c.Password)        
     
     
-	case "cid":
-		result = c.ContentCommon.CID
-    default:
-    	result = c.ContentCommon.Value( identifier )
+	case "id":
+		result = c.ID
     }
 	return result
 }
@@ -211,25 +192,23 @@ func (c *User) SetValue(identifier string, value interface{}) error {
             case "password":
             c.Password = value.(string)
                     
-        
-	default:
-		return c.ContentCommon.SetValue(identifier, value)        
+             
 	}
 	//todo: check if identifier exist
 	return nil
 }
 
 //Store content.
-//Note: it will set id to CID after success
+//Note: it will set id to ID after success
 func (c *User) Store(ctx context.Context, transaction ...*sql.Tx) error {
-	if c.CID == 0 {
-		id, err := db.Insert(ctx, "dm_user", c.ToDBValues(), transaction...)
-		c.CID = id
+	if c.ID == 0 {
+		id, err := db.Insert(ctx, "dmc_user", c.ToDBValues(), transaction...)
+		c.ID = id
 		if err != nil {
 			return err
 		}
 	} else {
-		err := db.Update(ctx, "dm_user", c.ToDBValues(), Cond("id", c.CID), transaction...)
+		err := db.Update(ctx, "dmc_user", c.ToDBValues(), Cond("id", c.ID), transaction...)
     if err != nil {
 			return err
 		}
@@ -244,13 +223,15 @@ func (c *User)StoreWithLocation(){
 
 //Delete content only
 func (c *User) Delete(ctx context.Context, transaction ...*sql.Tx) error {
-	contentError := db.Delete(ctx, "dm_user", Cond("id", c.CID), transaction...)
+	contentError := db.Delete(ctx, "dmc_user", Cond("id", c.ID), transaction...)
 	return contentError
 }
 
 func init() {
 	new := func() contenttype.ContentTyper {
-		return &User{}
+        entity := &User{}
+        entity.Metadata.Contenttype = "user"
+        return entity
 	}
 
 	newList := func() interface{} {

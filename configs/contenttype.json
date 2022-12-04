@@ -1,7 +1,7 @@
 {
   "folder": {
     "name": "Folder",
-    "table_name": "dm_folder",
+    "table_name": "dmc_folder",
     "name_pattern": "{title}",
     "has_version": false,
     "has_location": true,    
@@ -33,7 +33,7 @@
   },
   "frontpage": {
     "name": "Frontpage",
-    "table_name": "dm_frontpage",
+    "table_name": "dmc_frontpage",
     "has_version": false,
     "has_location": true,    
     "fields": [{
@@ -76,7 +76,7 @@
   },
   "article": {
     "Name": "Article",
-    "table_name": "dm_article",
+    "table_name": "dmc_article",
     "has_version": true,
     "has_location": true,
     "name_pattern": "{title}",
@@ -153,7 +153,7 @@
   },
   "usergroup": {
     "name": "User group",
-    "table_name": "dm_usergroup",
+    "table_name": "dmc_usergroup",
     "has_version": false,
     "name_pattern": "{title}",
     "has_location": true,   
@@ -173,7 +173,7 @@
   },
   "role": {
     "name": "Role",
-    "table_name": "dm_role",
+    "table_name": "dmc_role",
     "has_version": false,
     "name_pattern": "{title}",
     "has_location": false,   
@@ -210,7 +210,7 @@
   },
   "user": {
     "name": "User",
-    "table_name": "dm_user",
+    "table_name": "dmc_user",
     "name_pattern": "{firstname} {lastname}",
     "has_version": true,
     "has_location": true,
@@ -252,11 +252,11 @@
   },
   "image": {
     "name": "Image",
-    "table_name": "dm_image",
+    "table_name": "dmc_image",
     "has_version": false,
     "has_location": false,
-    "has_location_id": true,
-    "data_fields":[ {"identifier":"location_id", "fieldtype":"int"}, {"identifier":"author", "fieldtype":"int"}, {"identifier":"published", "fieldtype":"int"}, {"identifier":"modified", "fieldtype":"int"}, {"identifier":"cuid", "fieldtype":"string"}],
+    "name_pattern":"{name}",
+    "data_fields":[ {"identifier":"location_id", "fieldtype":"int"}, {"identifier":"_author", "fieldtype":"int"}, {"identifier":"_published", "fieldtype":"int"}, {"identifier":"_modified", "fieldtype":"int"}, {"identifier":"_name", "fieldtype":"string"}, {"identifier":"_cuid", "fieldtype":"string"}],
     "fields": [
       {
         "identifier": "name",
@@ -274,10 +274,9 @@
   },
   "file": {
     "name": "File",
-    "table_name": "dm_file",
+    "table_name": "dmc_file",
     "has_version": false,
     "has_location": false,
-    "has_location_id": true,
     "fields_display": [
       "filetype",
       "title",

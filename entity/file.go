@@ -7,7 +7,6 @@ import (
     "context"
     "database/sql"
     "github.com/digimakergo/digimaker/core/db"
-    "github.com/digimakergo/digimaker/core/definition"
     "github.com/digimakergo/digimaker/core/contenttype"
     
 	. "github.com/digimakergo/digimaker/core/db"
@@ -17,7 +16,9 @@ import (
 
 
 type File struct{
-     contenttype.ContentEntity `boil:",bind"`
+     contenttype.Metadata `boil:",bind" json:"metadata"`
+
+     ID int `boil:"id" json:"id" toml:"id" yaml:"id"`
 
      
     
@@ -38,24 +39,16 @@ type File struct{
     
 }
 
-func (c *File ) ContentType() string{
-	 return "file"
+func (c File ) GetID() int{
+        return c.ID
 }
 
-func (c *File ) GetName() string{
-	 return ""
+func (c *File ) GetMetadata() *contenttype.Metadata{
+        return &c.Metadata
 }
 
 func (c *File) GetLocation() *contenttype.Location{
     return nil
-}
-
-func (c *File) ToMap() map[string]interface{}{
-    result := map[string]interface{}{}
-    for _, identifier := range c.IdentifierList(){
-      result[identifier] = c.Value(identifier)
-    }
-    return result
 }
 
 //Get map of the all fields(including data_fields)
@@ -83,17 +76,17 @@ func (c *File) ToDBValues() map[string]interface{} {
         
         
     
+
+    for key, value := range c.Metadata.ToDBValues() {
+		result[key] = value
+	}
+
 	return result
 }
 
 //Get identifier list of fields(NOT including data_fields )
 func (c *File) IdentifierList() []string {
 	return []string{ "filetype","path","title",}
-}
-
-func (c *File) Definition(language ...string) definition.ContentType {
-	def, _ := definition.GetDefinition( c.ContentType(), language... )
-    return def
 }
 
 //Get field value
@@ -147,8 +140,6 @@ func (c *File) SetValue(identifier string, value interface{}) error {
             c.Title = value.(string)
                      
         
-	default:
-          return c.ContentEntity.SetValue(identifier, value)        
 	}
 	//todo: check if identifier exist
 	return nil
@@ -158,13 +149,13 @@ func (c *File) SetValue(identifier string, value interface{}) error {
 //Note: it will set id to ID after success
 func (c *File) Store(ctx context.Context, transaction ...*sql.Tx) error {
 	if c.ID == 0 {
-		id, err := db.Insert(ctx, "dm_file", c.ToDBValues(), transaction...)
+		id, err := db.Insert(ctx, "dmc_file", c.ToDBValues(), transaction...)
 		c.ID = id
 		if err != nil {
 			return err
 		}
 	} else {
-		err := db.Update(ctx, "dm_file", c.ToDBValues(), Cond("id", c.ID), transaction...)
+		err := db.Update(ctx, "dmc_file", c.ToDBValues(), Cond("id", c.ID), transaction...)
 		return err
 	}
 	return nil
@@ -177,14 +168,14 @@ func (c *File)StoreWithLocation(){
 
 //Delete content only
 func (c *File) Delete(ctx context.Context, transaction ...*sql.Tx) error {
-	contentError := db.Delete(ctx, "dm_file", Cond("id", c.ID), transaction...)
+	contentError := db.Delete(ctx, "dmc_file", Cond("id", c.ID), transaction...)
 	return contentError
 }
 
 func init() {
 	new := func() contenttype.ContentTyper {
     entity := &File{}
-    entity.ContentEntity.ContentType = "File"
+    entity.Metadata.Contenttype = "file"
     return entity
 	}
 

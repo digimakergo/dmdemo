@@ -7,7 +7,6 @@ import (
     "context"
     "database/sql"
     "github.com/digimakergo/digimaker/core/db"
-    "github.com/digimakergo/digimaker/core/definition"
     "github.com/digimakergo/digimaker/core/contenttype"
     
 	. "github.com/digimakergo/digimaker/core/db"
@@ -17,14 +16,22 @@ import (
 
 
 type Role struct{
-     contenttype.ContentEntity `boil:",bind"`
+     contenttype.Metadata `boil:",bind" json:"metadata"`
+
+     ID int `boil:"id" json:"id" toml:"id" yaml:"id"`
 
      
-          Author  int `boil:"author" json:"author" toml:"author" yaml:"author"`
+            
+                Author  int `boil:"author" json:"author" toml:"author" yaml:"author"`
+            
      
-          Modified  int `boil:"modified" json:"modified" toml:"modified" yaml:"modified"`
+            
+                Modified  int `boil:"modified" json:"modified" toml:"modified" yaml:"modified"`
+            
      
-          Published  int `boil:"published" json:"published" toml:"published" yaml:"published"`
+            
+                Published  int `boil:"published" json:"published" toml:"published" yaml:"published"`
+            
      
     
              
@@ -49,24 +56,16 @@ type Role struct{
     
 }
 
-func (c *Role ) ContentType() string{
-	 return "role"
+func (c Role ) GetID() int{
+        return c.ID
 }
 
-func (c *Role ) GetName() string{
-	 return ""
+func (c *Role ) GetMetadata() *contenttype.Metadata{
+        return &c.Metadata
 }
 
 func (c *Role) GetLocation() *contenttype.Location{
     return nil
-}
-
-func (c *Role) ToMap() map[string]interface{}{
-    result := map[string]interface{}{}
-    for _, identifier := range c.IdentifierList(){
-      result[identifier] = c.Value(identifier)
-    }
-    return result
 }
 
 //Get map of the all fields(including data_fields)
@@ -74,11 +73,17 @@ func (c *Role) ToMap() map[string]interface{}{
 func (c *Role) ToDBValues() map[string]interface{} {
 	result := make(map[string]interface{})
     
+         
          result["author"]=c.Author
+         
     
+         
          result["modified"]=c.Modified
+         
     
+         
          result["published"]=c.Published
+         
     
 
     
@@ -106,6 +111,11 @@ func (c *Role) ToDBValues() map[string]interface{} {
         
         
     
+
+    for key, value := range c.Metadata.ToDBValues() {
+		result[key] = value
+	}
+
 	return result
 }
 
@@ -114,25 +124,26 @@ func (c *Role) IdentifierList() []string {
 	return []string{ "identifier","name","summary","under_folder",}
 }
 
-func (c *Role) Definition(language ...string) definition.ContentType {
-	def, _ := definition.GetDefinition( c.ContentType(), language... )
-    return def
-}
-
 //Get field value
 func (c *Role) Value(identifier string) interface{} {
     
     var result interface{}
 	switch identifier {
     
+      
       case "author":
          result = c.Author
+      
     
+      
       case "modified":
          result = c.Modified
+      
     
+      
       case "published":
          result = c.Published
+      
     
     
     
@@ -165,14 +176,20 @@ func (c *Role) Value(identifier string) interface{} {
 func (c *Role) SetValue(identifier string, value interface{}) error {
 	switch identifier {
         
+         
           case "author":
              c.Author = value.(int)
         
+        
+         
           case "modified":
              c.Modified = value.(int)
         
+        
+         
           case "published":
              c.Published = value.(int)
+        
         
         
             
@@ -199,8 +216,6 @@ func (c *Role) SetValue(identifier string, value interface{}) error {
             c.UnderFolder = value.(int)
                      
         
-	default:
-          return c.ContentEntity.SetValue(identifier, value)        
 	}
 	//todo: check if identifier exist
 	return nil
@@ -210,13 +225,13 @@ func (c *Role) SetValue(identifier string, value interface{}) error {
 //Note: it will set id to ID after success
 func (c *Role) Store(ctx context.Context, transaction ...*sql.Tx) error {
 	if c.ID == 0 {
-		id, err := db.Insert(ctx, "dm_role", c.ToDBValues(), transaction...)
+		id, err := db.Insert(ctx, "dmc_role", c.ToDBValues(), transaction...)
 		c.ID = id
 		if err != nil {
 			return err
 		}
 	} else {
-		err := db.Update(ctx, "dm_role", c.ToDBValues(), Cond("id", c.ID), transaction...)
+		err := db.Update(ctx, "dmc_role", c.ToDBValues(), Cond("id", c.ID), transaction...)
 		return err
 	}
 	return nil
@@ -229,14 +244,14 @@ func (c *Role)StoreWithLocation(){
 
 //Delete content only
 func (c *Role) Delete(ctx context.Context, transaction ...*sql.Tx) error {
-	contentError := db.Delete(ctx, "dm_role", Cond("id", c.ID), transaction...)
+	contentError := db.Delete(ctx, "dmc_role", Cond("id", c.ID), transaction...)
 	return contentError
 }
 
 func init() {
 	new := func() contenttype.ContentTyper {
     entity := &Role{}
-    entity.ContentEntity.ContentType = "Role"
+    entity.Metadata.Contenttype = "role"
     return entity
 	}
 

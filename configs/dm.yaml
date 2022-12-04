@@ -30,6 +30,8 @@ database:
    password: "dmdemo"
    database: "dmdemo"
 
+graphql:
+  api_key: "dddd7383423424sjfshfgfysifsik"
 
 user:
   unique_email: true
