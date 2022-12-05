@@ -163,7 +163,7 @@ export const getMainConfig = (content: any) => {
   const mainConfig = {
     folder: {
       actions: [
-        {link:'fullcreate/{id}/article', name:'Create article'},
+        {link:'/fullcreate/{id}/article', name:'Create article'},
         (actionProps:ActionProps)=><SetPriority {...actionProps} />
       ]
     },
