@@ -67,7 +67,7 @@ export const getListConfig = (_parent: any, contenttype: string)=>{
     sort:[],
     row_actions: [
       {
-        link: '/edit/{_contenttype_id}?from=/main/{_from_id}',
+        link: '/edit/{_location_id}?from=/main/{_from_id}',
         name: 'Edit',
         icon: 'icon-edit',
       },
@@ -96,7 +96,7 @@ export const getListConfig = (_parent: any, contenttype: string)=>{
         row_actions:[
           ...commonSettings.row_actions,
           {
-            link: '/fulledit/{_contenttype_id}?from=/main/{_from_id}',
+            link: '/fulledit/{_location_id}?from=/main/{_from_id}',
             name: 'Full edit',
             icon: 'icon-edit',
           },
@@ -197,14 +197,14 @@ export const getMainConfig = (content: any) => {
 	];
 
   const commonMain = {list:[], new:[]};
-	let result = { ...commonMain, ...mainConfig[content.content_type] };
+	let result = { ...commonMain, ...mainConfig[content.metadata.contenttype] };
   if( result["actions"] ){
     result["actions"] = [...commonActions, ...result['actions']];
   }
 
 	let list = [] as string[];
-	if (content.content_type === "folder") {
-		let ids = content.hierarchy.split("/");
+	if (content.metadata.contenttype === "folder") {
+		let ids = content.location.hierarchy.split("/");
 		if (ids.includes("3")) {
 			list = [...list, "article"];
 		}

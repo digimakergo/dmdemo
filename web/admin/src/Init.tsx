@@ -1,5 +1,5 @@
 import React from 'react';
-import {FieldRegister, FieldtypeProps} from 'digimaker-ui';
+import {FieldRegister} from 'digimaker-ui';
 import { FieldJson } from './fieldtype/FieldJson';
 
 
