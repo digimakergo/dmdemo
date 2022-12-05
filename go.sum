@@ -69,6 +69,10 @@ github.com/digimakergo/digimaker v0.1.0-beta.3.0.20220112115844-21cadfe814b5 h1:
 github.com/digimakergo/digimaker v0.1.0-beta.3.0.20220112115844-21cadfe814b5/go.mod h1:OTA+Adbz4dwdJb0xuR9zWRIYESxK+Vo+7jSIs+flAWY=
 github.com/digimakergo/digimaker v0.1.1-beta.1 h1:ZqydKUSv/s/msoovEVkThcQIZcmQF63yKuArLF5xlh4=
 github.com/digimakergo/digimaker v0.1.1-beta.1/go.mod h1:nksOJezf3qpqH6gq3v/lTfCejad6v/5RcESvgMBPCjs=
+github.com/digimakergo/dmext v0.0.0-20220214133615-d0ed42556df9 h1:IZVju4tkY93MdNvhSQfdIx89rT4B131oh8tdtUg/iYc=
+github.com/digimakergo/dmext v0.0.0-20220214133615-d0ed42556df9/go.mod h1:P2O8soH0rHJk1E0h43eGpExpnX6+H4Na6uP5LTl3Qcc=
+github.com/digimakergo/dmext v0.1.1-beta.1 h1:FK1srxFciVBdvvc9L8cOWxTwHDGQwmzce3B0j70D4AQ=
+github.com/digimakergo/dmext v0.1.1-beta.1/go.mod h1:dXXGtDoeq+CMbSwOVPRuzP1CARFzYGEEQig1eXEkuBY=
 github.com/envoyproxy/go-control-plane v0.9.0/go.mod h1:YTl/9mNaCwkRvm6d1a2C3ymFceY/DCBVvsKhRF0iEA4=
 github.com/envoyproxy/go-control-plane v0.9.1-0.20191026205805-5f8ba28d4473/go.mod h1:YTl/9mNaCwkRvm6d1a2C3ymFceY/DCBVvsKhRF0iEA4=
 github.com/envoyproxy/go-control-plane v0.9.4/go.mod h1:6rpuAdCZL397s3pYoYcLgu1mIlRU8Am5FuJP05cCM98=
@@ -189,6 +193,7 @@ github.com/hashicorp/serf v0.8.2/go.mod h1:6hOLApaqBFA1NXqRQAsxw9QxuDEvNxSQRwA/J
 github.com/ianlancetaylor/demangle v0.0.0-20181102032728-5e5cf60278f6/go.mod h1:aSSvb/t6k1mPoxDqO4vJh6VOCGPwU4O0C2/Eqndh1Sc=
 github.com/ianlancetaylor/demangle v0.0.0-20200824232613-28f6c0f3b639/go.mod h1:aSSvb/t6k1mPoxDqO4vJh6VOCGPwU4O0C2/Eqndh1Sc=
 github.com/inconshreveable/mousetrap v1.0.0/go.mod h1:PxqpIevigyE2G7u3NXJIT2ANytuPF1OarO4DADm73n8=
+github.com/jordan-wright/email v4.0.1-0.20210109023952-943e75fe5223+incompatible/go.mod h1:1c7szIrayyPPB/987hsnvNzLushdWf4o/79s3P08L8A=
 github.com/json-iterator/go v1.1.11/go.mod h1:KdQUCv79m/52Kvf8AW2vK1V8akMuk1QjK/uOdHXbAo4=
 github.com/jstemmer/go-junit-report v0.0.0-20190106144839-af01ea7f8024/go.mod h1:6v2b51hI/fHJwM22ozAgKL4VKDeJcHhJFhtBdhmNjmU=
 github.com/jstemmer/go-junit-report v0.9.1/go.mod h1:Brl9GWCQeLvo8nXZwPNNblvFj/XSXhF0NWZEnDohbsk=

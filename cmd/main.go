@@ -20,8 +20,10 @@ import (
 
 	"github.com/digimakergo/digimaker/rest"
 	"github.com/digimakergo/digimaker/sitekit"
+
 	"github.com/gorilla/mux"
 
+	_ "github.com/digimakergo/dmext/dmeditor"
 	_ "github.com/go-sql-driver/mysql"
 
 	_ "github.com/digimakergo/digimaker/graphql"

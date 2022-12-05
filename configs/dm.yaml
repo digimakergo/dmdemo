@@ -23,6 +23,8 @@ general:
   debug_header: "DMDebug" #putting this to header with debug token will enable debug for this request
   debug_token_last: "10m" #debug token's lasting time.
 
+  dmeditor_server_url: "http://localhost:8086/dmeditor"
+
 database:
    type: mysql
    host: "127.0.0.1"
