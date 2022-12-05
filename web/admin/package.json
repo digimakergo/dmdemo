@@ -8,7 +8,7 @@
         "dmdemo",
         "digimaker"
     ],
-    "proxy": "http://dmdemo.dev.digimaker.no",
+    "proxy": "http://dmdemo2.dev.digimaker.no",
     "license": "MIT",
     "author": "Digimaker Go",
     "bugs": {
