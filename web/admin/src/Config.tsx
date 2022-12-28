@@ -2,6 +2,7 @@ import { ActionProps } from "digimaker-ui/ActionsRender";
 import {Delete, Move, SetPriority, SetToTop} from "digimaker-ui/actions";
 import { ViewSettingsType } from "digimaker-ui";
 import {UserRoles} from "digimaker-ui/view";
+import MultiUpload from 'digimaker-ui/MultiUpload';
 import React from "react";
 
 export const leftConfig = [
@@ -102,7 +103,34 @@ export const getListConfig = (_parent: any, contenttype: string)=>{
           },
           (actionProps:ActionProps)=><SetToTop {...actionProps} />
         ],
-        columns: ['name', 'coverimage', 'author_name', 'modified', 'priority'],
+        columns:[
+          {
+            field:"name",
+            header:'Name',
+            render: (content)=><div>{content.title}</div>
+          },
+          {
+            field:"coverimage",
+            header:'',
+            // render: (content)=><div>{content.title}</div>
+          },
+          {
+            field:"author_name",
+            header:'Author',
+            // render: (content)=><div>{content.title}</div>
+          },
+          {
+            field:"modified",
+            header:'Modified',
+            // render: (content)=><div>{content.title}</div>
+          },
+          {
+            field:"priority",
+            header:'P',
+            // render: (content)=><div>{content.title}</div>
+          }
+        ],
+        // columns: ['name', 'coverimage', 'author_name', 'modified', 'priority'],
         pagination: 20,
       },     
       image: {
@@ -163,7 +191,8 @@ export const getMainConfig = (content: any) => {
   const mainConfig = {
     folder: {
       actions: [
-        {link:'/fullcreate/{id}/article', name:'Create article'},
+        {link:'/fullcreate/{_location_id}/article', name:'Create article'},
+        {link:'/image/multiupload/{_location_id}', name:'MultiUpload'},
         (actionProps:ActionProps)=><SetPriority {...actionProps} />
       ]
     },
@@ -283,4 +312,30 @@ export const getViewSettings = ( contenttype: string )=>{
       },
     } as ViewSettingsType;
   } 
+}
+
+export const getEditField = ( contenttype: string )=>{
+  let contentTypeField={
+    "article":'fullbody',
+    "folder":'body'
+  }
+  return contentTypeField[contenttype]
+}
+
+export const getBrowseAfterList = (content:any)=>{
+   if(content.content_type=='image'){
+     return <MultiUpload 
+      name='multiUpload' 
+      service="content" 
+      multi={true} 
+      format="image/*" 
+      value={content.data} 
+      onSuccess={content.onSuccess} 
+      onSubmit={content.onSubmit}
+      parent={content.parent}
+      afterAction={content.afterAction}
+      />
+   }else{
+     return <></>
+   }
 }
