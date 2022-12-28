@@ -12,20 +12,32 @@ registerTool(toolContentGallery);
 
 registerTool({
     type: "tab",
-    menu: { text: "Tab", category: "blocks", icon: <TabOutlined /> },
-    initData: "test",
+    name:"Tab", 
+    menu: { category: "blocks", icon: <TabOutlined /> },
+    initData:  ()=>{
+      return {
+        type:'tab', 
+        data:'tab',
+       
+     }
+    },
     view:()=><div>Not implemented</div>,
     render: () => <div>Not implemented</div>,
   });
   
   registerTool({
     type: "expandable_list",
+    name:"Expandable list",
     menu: {
-      text: "Expandable list",
       category: "blocks",
       icon: <ViewListOutlined />,
     },
-    initData: "test",
+    initData: ()=>{
+      return {
+        type:'expandable_list', 
+        data:'ddd',
+     }
+    },
     view:()=><div>Not implemented</div>,
     render: () => <div>Not implemented</div>,
   });
