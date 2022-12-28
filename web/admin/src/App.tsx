@@ -17,10 +17,13 @@ import {
   getListConfig,
   getMainConfig,
   getViewSettings,
+  getEditField,
   leftConfig,
+  getBrowseAfterList,
 } from "./Config";
 import {DMInit, Main} from "digimaker-ui";
 import {ViewVersion} from "digimaker-ui/view";
+import MultiUpload from 'digimaker-ui/MultiUpload';
 import queryString from "query-string";
 import ErrorBoundary from "./ErrorBoundary";
 import {Create, Edit} from "digimaker-ui/actions";
@@ -64,11 +67,14 @@ const App = (props) => {
                     `/main/${route.match.params.id}`,
                   ])
                 }
+                editField={(contentType: string)=>{
+                  return getEditField(contentType)
+                }}
               />
             )}
           />
           <Route
-            path="/fullcreate/:id/article"
+            path="/fullcreate/:id/:contenttype"
             exact={true}
             render={(route) =>(
               <FullCreate
@@ -79,12 +85,17 @@ const App = (props) => {
                     `/main/${route.match.params.id}`,
                   ])
                 }
+                contentType={route.match.params.contenttype}
+                editField={getEditField(route.match.params.contenttype)}
               />
             )}
           />  
           <Route>
             <div className="App">
-              <DMInit viewSettings={getViewSettings}>
+              <DMInit 
+              viewSettings={getViewSettings} 
+              dateTime={{format:'YYYY-MM-DD hh:mm'}} 
+              browseAfterList={getBrowseAfterList}>
                 <div className="left">
                   <div className="logomenu">
                     <Slidemenu config={leftConfig}>
@@ -198,6 +209,24 @@ const App = (props) => {
                       path="/version/:id/:version"
                       component={ViewVersion}
                     />
+                    <Route
+                      path="/image/multiupload/:parent"
+                      exact={true}
+                      render={(route) =>(
+                        <MultiUpload 
+                          name='multiUpload' 
+                          service="content" 
+                          multi={true} 
+                          format="image/*" 
+                          value={[]} 
+                          parent={route.match.params.parent}
+                          afterAction={(status) =>
+                            commonAfterAction(route.history, status, [
+                              `/main/${route.match.params.parent}`,
+                            ])}
+                          />
+                      )}
+                    /> 
                   </div>
                   <footer>
                     Powered by{" "}
