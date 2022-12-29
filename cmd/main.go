@@ -6,6 +6,8 @@ import (
 
 	_ "dmdemo/entity"
 
+	"github.com/digimakergo/digimaker/core/definition"
+
 	_ "dmdemo/pkg/controller"
 
 	_ "github.com/digimakergo/digimaker/core/auth/tokenmanager"
@@ -32,6 +34,10 @@ import (
 )
 
 func main() {
+	definition.Load()
+
+	sitekit.Load()
+
 	//host var - remember to override in proxy server
 	http.Handle("/var/", http.StripPrefix("/var/", http.FileServer(http.Dir(config.HomePath()+"/var"))))
 
