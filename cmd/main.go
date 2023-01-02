@@ -23,6 +23,7 @@ import (
 	"github.com/digimakergo/digimaker/rest"
 	"github.com/digimakergo/digimaker/sitekit"
 
+	//_ "github.com/digimakergo/digimaker/sitekit/rest"
 	"github.com/gorilla/mux"
 
 	_ "github.com/digimakergo/dmext/dmeditor"
