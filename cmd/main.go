@@ -29,7 +29,7 @@ import (
 	_ "github.com/digimakergo/dmext/dmeditor"
 	_ "github.com/go-sql-driver/mysql"
 
-	_ "github.com/digimakergo/digimaker/graphql"
+	"github.com/digimakergo/digimaker/graphql"
 	_ "github.com/digimakergo/digimaker/sitekit/filters"
 	_ "github.com/digimakergo/digimaker/sitekit/functions"
 )
@@ -38,6 +38,8 @@ func main() {
 	definition.Load()
 
 	sitekit.Load()
+
+	graphql.Load()
 
 	//host var - remember to override in proxy server
 	http.Handle("/var/", http.StripPrefix("/var/", http.FileServer(http.Dir(config.HomePath()+"/var"))))
