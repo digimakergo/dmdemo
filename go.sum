@@ -69,6 +69,8 @@ github.com/digimakergo/digimaker v0.1.0-beta.3.0.20220112115844-21cadfe814b5 h1:
 github.com/digimakergo/digimaker v0.1.0-beta.3.0.20220112115844-21cadfe814b5/go.mod h1:OTA+Adbz4dwdJb0xuR9zWRIYESxK+Vo+7jSIs+flAWY=
 github.com/digimakergo/digimaker v0.1.1-beta.1 h1:ZqydKUSv/s/msoovEVkThcQIZcmQF63yKuArLF5xlh4=
 github.com/digimakergo/digimaker v0.1.1-beta.1/go.mod h1:nksOJezf3qpqH6gq3v/lTfCejad6v/5RcESvgMBPCjs=
+github.com/digimakergo/digimaker v0.1.1-beta.2 h1:OuXlCpSrZWopgrHqkm9TT08TC67B5lLMMbyS3HwDetk=
+github.com/digimakergo/digimaker v0.1.1-beta.2/go.mod h1:V2ytwiePpohy3B5p6J80qTSztyeAI/xKAVszy9uwvwU=
 github.com/digimakergo/dmext v0.0.0-20220214133615-d0ed42556df9 h1:IZVju4tkY93MdNvhSQfdIx89rT4B131oh8tdtUg/iYc=
 github.com/digimakergo/dmext v0.0.0-20220214133615-d0ed42556df9/go.mod h1:P2O8soH0rHJk1E0h43eGpExpnX6+H4Na6uP5LTl3Qcc=
 github.com/digimakergo/dmext v0.1.1-beta.1 h1:FK1srxFciVBdvvc9L8cOWxTwHDGQwmzce3B0j70D4AQ=
